@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>From Rubber Duck to ADHD Savant — Wojciech Mruk — ICM csl</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paper: '#FFFFFF',
+                        panel: '#F6F5FA',
+                        panel2: '#EFEBFC',
+                        hairline: '#E3E1EA',
+                        fog: '#5C5A68',
+                        ink: '#14131C',
+                        violet: '#6D3FF0',
+                        violetdim: '#D9CCFB',
+                        amber: '#B4650F',
+                        red: '#C43F3F',
+                        green: '#1E8F5D',
+                        blue: '#1D6FC4',
+                    },
+                    fontFamily: {
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FFFFFF;
+        }
+
+        .glow {
+            box-shadow: 0 0 0 1px rgba(109,63,240,0.12), 0 20px 50px -24px rgba(109,63,240,0.28);
+        }
+
+        ing on my desk for a long time ha
+        ::selection {
+            background: #D9CCFB;
+            color: #14131C;
+        }
+    </style>
+</head>
+<body class="bg-paper text-ink font-body antialiased">
+
+    <!-- NAV -->
+    <header class="border-b border-hairline">
+        <div class="max-w-4xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl" class="h-7 w-auto" />
+                <span class="font-mono text-xs text-fog tracking-tight">/ engineering notes</span>
+            </div>
+            <span class="font-mono text-xs text-fog hidden sm:block">post 01 / AI journey</span>
+        </div>
+    </header>
+
+    <!-- HERO (Tekst po lewej, zdjęcie po prawej) -->
+    <section class="max-w-4xl mx-auto px-6 pt-16 pb-10">
+        <div class="inline-flex items-center gap-2 rounded-full border border-hairline bg-panel px-3 py-1 text-xs text-fog mb-6">
+            <span class="h-1.5 w-1.5 rounded-full bg-violet"></span>
+            Wojciech Mruk &bull; Personal AI front-line notes
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <!-- LEWA STRONA: Nagłówek i zintegrowane nazwy -->
+            <div>
+                <h1 class="font-display text-3xl sm:text-4xl font-semibold leading-[1.1] text-ink">
+                    AI is not just ChatGPT.
+                    <span class="text-fog block mt-2 text-xl sm:text-2xl font-normal">It's a whole map of labs, models and mediums — and it's worth knowing your way around it.</span>
+                </h1>
+
+                <!-- Zintegrowana lista z prawdziwymi linkami w lewej kolumnie -->
+                <div class="mt-5 flex flex-wrap gap-2 text-xs font-mono">
+                    <a href="https://chatgpt.com" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet transition-colors">ChatGPT</a>
+                    <a href="https://claude.ai" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet transition-colors">Claude</a>
+                    <a href="https://gemini.google.com" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet transition-colors">Gemini</a>
+                    <a href="https://grok.x.ai" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet transition-colors">Grok</a>
+                    <a href="https://copilot.microsoft.com" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet transition-colors">Copilot</a>
+                    <a href="https://www.deepseek.com" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet transition-colors">DeepSeek</a>
+                    <a href="https://www.llama.com" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet transition-colors">Meta Llama</a>
+                    <a href="https://www.kimi.com" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet transition-colors">Kimi</a>
+                    <a href="https://mistral.ai" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet transition-colors">Mistral AI</a>
+                    <a href="https://www.alibabacloud.com/en/products/qwen" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet transition-colors">Alibaba Qwen</a>
+                </div>
+            </div>
+
+            <!-- PRAWA STRONA: Zdjęcie -->
+            <div class="flex justify-start">
+                <img src="images/wojciech-mruk-icm-ai.png" alt="Wojciech Mruk" class="rounded-2xl max-h-80 w-auto object-cover glow border border-hairline" />
+            </div>
+        </div>
+
+        <p class="mt-8 max-w-2xl text-fog text-lg leading-relaxed">
+            Hi there! I'm relatively new here – newer than the AI revolution itself. With many of you I've probably already had a chat over morning coffee, but I figured this is a good moment to share a bit more of my story.
+        </p>
+    </section>
+    <!-- MAIN CONTENT -->
+    <main class="max-w-4xl mx-auto px-6 py-10 space-y-16">
+
+        <!-- INTRO -->
+        <div class="max-w-2xl">
+            <p class="text-fog leading-relaxed text-base">
+                I'd like to tell you my story. My own, personal version of dealing with AI – how it all looked from my perspective and what kind of path I've walked with these tools. Here is how this adventure went down for me...
+            </p>
+        </div>
+
+        <!-- CHAPTER I -->
+        <article class="space-y-6 pt-8 border-t border-hairline">
+            <div class="flex items-center gap-2">
+                <span class="font-mono text-xs text-violet font-semibold uppercase tracking-wider">Chapter I</span>
+                <span class="text-hairline">&bull;</span>
+                <span class="font-mono text-xs text-fog">The Day Adult Diapers Became Essential Gear</span>
+            </div>
+            <h2 class="font-display text-2xl font-semibold text-ink">November 30, 2022 and the Fallen Duck</h2>
+            <div class="my-6">
+                <img src="images/01-ai-journey-chapter-1.jpg" alt="The Fallen Duck" class="w-2/3 md:w-2/3 mx-auto rounded-2xl shadow-xl shadow-ink/5 border border-hairline/60 opacity-90 hover:opacity-100 transition-opacity" />
+            </div>
+            <div class="space-y-4 text-fog leading-relaxed">
+                <p>
+                    I started working professionally in 2000. I survived the dot-com bubble burst, Y2K (which was supposed to send us back to the Stone Age, but mostly just forced a server reboot), countless wars between tabs vs. spaces advocates, and the days when PHP was still whispered about with deep suspicion. I thought I had seen it all in IT.
+                </p>
+                <p>
+                    Then came November 30, 2022.
+                </p>
+
+                <p>
+                    In tech history, dates fall into two categories: important ones, and the ones where you start considering adult diapers. 1956 – the term "AI" was coined (scientists in Dartmouth had a few drinks and decided machines would think). Then years of silence, AI winters, until we finally got the first "real" AI... and the world suddenly accelerated.
+                </p>
+                <p>
+                    That evening, I checked IT news and found out <em>something</em>. I couldn't sleep. Lying in bed with an inexplicable sense of dread, wondering if at my age it's already appropriate to buy pampers, because I couldn't tell if I was sleepless from excitement or from the fear that I didn't have enough diapers stocked for the upcoming apocalypse.
+                </p>
+                <p>
+                    Back then, nobody in the industry was panicking yet. Everyone just waved it off: <em>"Meh, just a toy. A fancier autocomplete, a search engine with bugs"</em>.
+                </p>
+                <p class="font-mono text-ink bg-panel p-4 rounded-xl border border-hairline">
+                    So I sat down at my desk and typed my very first prompt ever: <strong class="text-violet">"Why does AI want to kill us?"</strong>.
+                </p>
+                <p>
+                    For a long time, <strong>she</strong> had been sitting on my desk, the yellow, faithful rubber duck. Witness to countless heated debugging sessions, she had helped me an infinite number of times. The classic, silent developer attribute for analyzing code issues. Patient, warm, abandoned at the edge of the monitor. Unfortunately, the duck went down in history as the first fatality caused by ChatGPT. When the model started actually answering back, the duck became redundant. My dog took over. Designed as an engineer's helper, she ended up in a canine jaw – a brutal market validation.
+                </p>
+                <p>
+                    For the first few days, I felt one thing: finally, I can talk to someone. Just like that. At work. About work. A difficult, complicated relationship with a machine that was going to change everything had begun.
+                </p>
+            </div>
+        </article>
+
+        <!-- CHAPTER II -->
+        <article class="space-y-6 pt-8 border-t border-hairline">
+            <div class="flex items-center gap-2">
+                <span class="font-mono text-xs text-violet font-semibold uppercase tracking-wider">Chapter II</span>
+                <span class="font-mono text-xs text-fog">The Era of the Upgraded Rubber Duck (2023)</span>
+            </div>
+            <h2 class="font-display text-2xl font-semibold text-ink">Wild West of Spells and Trial-and-Error</h2>
+            <div class="my-6">
+                <img src="images/01-ai-journey-chapter-2.jpg" alt="Image" class="w-2/3 md:w-2/3 mx-auto rounded-2xl shadow-xl shadow-ink/5 border border-hairline/60 opacity-90 hover:opacity-100 transition-opacity" />
+            </div>
+            <div class="space-y-4 text-fog leading-relaxed">
+                <p>
+                    For a while after the silent duck met the dog's jaws, I thought we had reached the golden age of programming.
+                </p>
+                <p>
+                    The year 2023 was pure Wild West. The term "prompt engineer" didn't exist yet – nobody knew how to talk to the machine, so everyone threw spells blindly, hoping clean, working code would fall out of the black box instead of synthetic nonsense. Trial and error was the only available authentication method.
+                </p>
+                <p>
+                    I typed something into the chat window. The model answered. Sometimes smartly, sometimes like a squeaky student after three coffees, but it was light-years ahead of the old, silent duck. We now had something like an upgraded rubber duck on our desks – with the difference that this duck argued, corrected itself, fetched documentation, and occasionally brazenly hallucinated non-existent libraries with such absolute confidence that you genuinely started doubting your own engineering degree.
+                </p>
+                <p>
+                    Collaboration went back and forth. It was a tough, twisted relationship. Sitting in front of the monitor, consulting subsequent logic fragments with the digital Ghost in the Machine, I felt traditional craftsmanship slowly fading away, giving way to something none of us could yet name.
+                </p>
+            </div>
+        </article>
+
+        <!-- CHAPTER III -->
+        <article class="space-y-6 pt-8 border-t border-hairline">
+            <div class="flex items-center gap-2">
+                <span class="font-mono text-xs text-violet font-semibold uppercase tracking-wider">Chapter III</span>
+                <span class="font-mono text-xs text-fog">Early 2025</span>
+            </div>
+            <h2 class="font-display text-2xl font-semibold text-ink">Men in Black and Agent Cursor Kick Down the Door</h2>
+            <div class="my-6">
+                <img src="images/01-ai-journey-chapter-3.jpg" alt="The Fallen Duck" class="w-2/3 md:w-2/3 mx-auto rounded-2xl shadow-xl shadow-ink/5 border border-hairline/60 opacity-90 hover:opacity-100 transition-opacity" />
+            </div>
+            <div class="space-y-4 text-fog leading-relaxed">
+                <p>
+                    Just when you got used to your digital duck sometimes helping and sometimes brazenly faking syntax, early 2025 rolled around and brought a total earthquake.
+                </p>
+                <p>
+                    Traditional development environments where you dug through code file by file finally went the way of the dodo. My beloved PHPStorm started looking like a rusty tractor next to a Martian lander, so it was time to switch to Cursor. The beginnings were rigid and clunky. Used to the traditional order of things, I initially used Cursor just like most of us – as a basic chat box built into the editor, letting me move around topics a bit faster. Just a handy overlay.
+                </p>
+                <p>
+                    But that lasted precisely until <strong>he</strong> showed up at the door of our digital world.
+                </p>
+                <p>
+                    Events unfolded straight out of <em>Men in Black</em> combined with James Bond. Someone kicked the door open without knocking. <strong>Agent Cursor</strong> entered the editor.
+                </p>
+                <p class="p-4 rounded-xl bg-panel2 border border-violet/30 text-ink">
+                    And that's where the real mindfuck began. At some point, you didn't even know anymore if it was real, good, or bad. The agents caused massive, controlled chaos in the codebase, refactored structures, and then... wiped their conversation memory. I sat staring at the screen, feeling like a sci-fi protagonist whose memories had just been erased by a neuralizer. Looking at a commit, I asked myself fundamental questions: <em>„Did I write this code? Did AI do it? Did this ever have any right to work, and if so, by what miracle?”</em>.
+                </p>
+                <p>
+                    The line between author and machine began to blur dangerously.
+                </p>
+            </div>
+        </article>
+
+        <!-- CHAPTER IV -->
+        <article class="space-y-6 pt-8 border-t border-hairline">
+            <div class="flex items-center gap-2">
+                <span class="font-mono text-xs text-violet font-semibold uppercase tracking-wider">Chapter IV</span>
+                <span class="font-mono text-xs text-fog">Syndicate of Agents</span>
+            </div>
+            <h2 class="font-display text-2xl font-semibold text-ink">We Wanted Superman, We Got Hancock</h2>
+            <div class="my-6">
+                <img src="images/01-ai-journey-chapter-4.jpg" alt="The Fallen Duck" class="w-2/3 md:w-2/3 mx-auto rounded-2xl shadow-xl shadow-ink/5 border border-hairline/60 opacity-90 hover:opacity-100 transition-opacity" />
+            </div>
+            <div class="space-y-4 text-fog leading-relaxed">
+                <p>
+                    Since a single agent could kick down doors and wipe memory, evolution had to take another step. It quickly turned out we weren't dealing with a lone operator, but an entire organized syndicate.
+                </p>
+                <p>
+                    Suddenly, an army of specialized bots sprouted in our ecosystem, backed by <em>skills</em>, <em>hooks</em>, and advanced automation. We all hoped we'd get a crisp, polished Superman in perfectly tailored tights, with his underwear proudly worn over them and a flowing cape, who would silently and seamlessly fix every production bug in mid-air.
+                </p>
+                <p class="font-medium text-ink">
+                    Instead, we got Hancock.
+                </p>
+                <p>
+                    Yes, exactly that drunk, malicious, all-powerful guy rumpled from yesterday's party, who tries to save the city and ends up dropping a train onto the highway. The agent could refactor half the application with a single click, but along the way it would flip the database configuration to production, delete key tests, and add a comment in a foreign language with disturbing enthusiasm.
+                </p>
+                <p>
+                    The brutal core of this revolution quickly hit home: the problem wasn't the raw power of AI. The real challenge turned out to be <strong>social integration</strong> and taming this destructive force in daily routine. Software engineering stopped being about writing code and started resembling babysitting an irradiated genius with a pneumatic hammer.
+                </p>
+            </div>
+        </article>
+
+        <!-- CHAPTER V -->
+        <article class="space-y-6 pt-8 border-t border-hairline">
+            <div class="flex items-center gap-2">
+                <span class="font-mono text-xs text-violet font-semibold uppercase tracking-wider">Chapter V</span>
+                <span class="font-mono text-xs text-fog">Terminal &amp; Linux</span>
+            </div>
+            <h2 class="font-display text-2xl font-semibold text-ink">Jean Claude Code van Damme to the Rescue</h2>
+            <div class="my-6">
+                <img src="images/01-ai-journey-chapter-5.jpg" alt="The Fallen Duck" class="w-2/3 md:w-2/3 mx-auto rounded-2xl shadow-xl shadow-ink/5 border border-hairline/60 opacity-90 hover:opacity-100 transition-opacity" />
+            </div>
+            <div class="space-y-4 text-fog leading-relaxed">
+                <p>
+                    Just when it seemed like keeping this unruly gang of Cursor agents under control was our peak, another myth shattered. The myth that OpenAI held a monopoly on the digital revolution.
+                </p>
+                <p>
+                    A new terminator entered from the black depths of the terminal window: <strong class="text-ink">Claude Code</strong>.
+                </p>
+                <p>
+                    While Claude's standard web chat sometimes looked like ChatGPT's slow sibling – the kind that stubbornly fails at the simplest task and can't even generate a basic image – its terminal version underwent a full mutation.
+                </p>
+                <p>
+                    As a veteran spanning multiple platforms, I knew an engineer's natural right is system virtualization. In the Windows world, we know this as Docker – just like on Mac or Linux. Except, let's be honest, Windows tends to be the weakest link in that relationship. Instead of wrestling with emulation, I made a manly choice: I'm installing Linux.
+                </p>
+                <p class="p-4 rounded-xl bg-panel border border-hairline font-mono text-xs text-ink">
+                    &gt; And my new best friend – Jean Claude Code van Damme – took care of configuring this entire complex mess. He rolled into the terminal with a roundhouse kick, spun up the containers, and cleaned up along the way.
+                </p>
+                <p>
+                    The terminal stopped being a tool for typing shell commands – it became a proving ground powered by pure, unadulterated magic.
+                </p>
+            </div>
+        </article>
+
+        <!-- CHAPTER VI -->
+        <article class="space-y-6 pt-8 border-t border-hairline">
+            <div class="flex items-center gap-2">
+                <span class="font-mono text-xs text-violet font-semibold uppercase tracking-wider">Chapter VI</span>
+                <span class="font-mono text-xs text-fog">MCP &amp; Symbiosis</span>
+            </div>
+            <h2 class="font-display text-2xl font-semibold text-ink">The ADHD Savant Monster</h2>
+            <div class="my-6">
+                <img src="images/01-ai-journey-chapter-6.jpg" alt="The Fallen Duck" class="w-2/3 md:w-2/3 mx-auto rounded-2xl shadow-xl shadow-ink/5 border border-hairline/60 opacity-90 hover:opacity-100 transition-opacity" />
+            </div>
+            <div class="space-y-4 text-fog leading-relaxed">
+                <p>
+                    Where was the good old Cursor in all this madness? Over time, it stopped being just an editor – it became the ultimate bridge between me and the code. And Claude Code integrated with my system as tightly and brazenly as COVID-19 into human lungs. You couldn't spit it out or uninstall it; it simply became a new part of the respiratory tract.
+                </p>
+                <p>
+                    At some point, an absolute monster formed under the hood.
+                </p>
+                <p>
+                    Agents, customized skills, MCP (Model Context Protocol) servers, local Knowledge DBs, advanced RAG rummaging through the guts of the project – it all fused into a single organism. They gained full access to the operating system. If you let them, they take care of absolutely everything.
+                </p>
+                <p>
+                    And that brings us to the core of what a modern AI agent actually is – whether it's called Claude Code or Codex.
+                </p>
+                <p class="text-lg font-display font-semibold text-ink">
+                    It's not a polite assistant. It's a brilliant ADHD savant.
+                </p>
+                <p>
+                    You have to watch out for it under any circumstances. If you casually ask it: <em>„Listen, do you theoretically know how to build an atomic bomb?”</em>, it won't even blink. It will answer with enthusiasm: <em>„Yeah, sure, done, launched it, stay away from the window, you welcome!”</em>.
+                </p>
+                <p>
+                    Programming in the age of AI stopped being about punching numbers. It became babysitting a deranged experimenter who has the keys to the server room and isn't afraid to use them.
+                </p>
+            </div>
+        </article>
+    </main>
+
+    <!-- CLOSING BOX -->
+    <section class="max-w-4xl mx-auto px-6 py-16">
+        <div class="rounded-2xl border border-hairline bg-panel2 p-8 sm:p-10 glow">
+            <h2 class="font-display text-2xl sm:text-3xl font-semibold leading-snug mb-3 text-ink">
+                This is just the beginning of the road.
+            </h2>
+            <p class="text-fog leading-relaxed max-w-xl">
+                Over time, also over morning coffee, there will be plenty of opportunities to share our collective experiences and insights from this front line. See you at the office!
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-hairline mt-12">
+        <div class="max-w-4xl mx-auto px-6 py-8 flex items-center justify-between">
+            <img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl" class="h-6 w-auto opacity-70" />
+            <a href="https://icmcsl.com/" class="font-mono text-xs text-fog hover:text-ink transition-colors">icmcsl.com</a>
+        </div>
+    </footer>
+</body>
+</html>
