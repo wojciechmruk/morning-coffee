@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 2: The Birth of icmPulse — Wojciech Mruk — ICM csl</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paper: '#FFFFFF',
+                        panel: '#F6F5FA',
+                        panel2: '#EFEBFC',
+                        hairline: '#E3E1EA',
+                        fog: '#5C5A68',
+                        ink: '#14131C',
+                        violet: '#6D3FF0',
+                        violetdim: '#D9CCFB',
+                        amber: '#B4650F',
+                        red: '#C43F3F',
+                        green: '#1E8F5D',
+                        blue: '#1D6FC4',
+                    },
+                    fontFamily: {
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }</script>
+    <style>
+        body {
+            background-color: #FFFFFF;
+        }
+
+        .glow {
+            box-shadow: 0 0 0 1px rgba(109,63,240,0.12), 0 20px 50px -24px rgba(109,63,240,0.28);
+        }
+
+        ::selection {
+            background: #D9CCFB;
+            color: #14131C;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-paper text-ink font-body antialiased">
+
+    <!-- NAV -->
+    <header class="border-b border-hairline sticky top-0 bg-paper/90 backdrop-blur-md z-50">
+        <div class="max-w-4xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="images/02-logo.jpg" alt="icmPulse Logo" class="h-7 w-auto" />
+                <span class="font-mono text-xs text-fog tracking-tight">/ engineering notes</span>
+            </div>
+            <span class="font-mono text-xs text-fog hidden sm:block">post 02 / icmPulse</span>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="max-w-4xl mx-auto px-6 pt-16 pb-10">
+        <div class="inline-flex items-center gap-2 rounded-full border border-hairline bg-panel px-3 py-1 text-xs text-fog mb-6">
+            <span class="h-1.5 w-1.5 rounded-full bg-violet"></span>
+            Wojciech Mruk &bull; Employee Self-Service Engineering
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <!-- LEFT COLUMN: Text + Feature Quick-Links -->
+            <div>
+                <h1 class="font-display text-3xl sm:text-4xl font-semibold leading-[1.1] text-ink">
+                    Chapter 2: The Birth of icmPulse
+                    <span class="text-fog block mt-2 text-xl sm:text-2xl font-normal">(and the end of playing Indiana Jones)</span>
+                </h1>
+
+                <p class="mt-4 text-fog text-sm leading-relaxed">
+                    Woken up by a rooster at 7 AM, you suddenly remember you were supposed to submit a leave request... Instead of digging through dusty Excel sheets, meet the new era of our company information hub.
+                </p>
+
+                <!-- Navigation Boxes -->
+                <div class="mt-6 flex flex-wrap gap-2 text-xs font-mono">
+                    <a href="#timesheets" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet hover:text-violet transition-colors">#Timesheets</a>
+                    <a href="#holidays" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet hover:text-violet transition-colors">#LeavePlanner</a>
+                    <a href="#people" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet hover:text-violet transition-colors">#WhoIsIt?</a>
+                    <a href="#onboarding" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet hover:text-violet transition-colors">#Onboarding</a>
+                    <a href="#expenses" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet hover:text-violet transition-colors">#TravelExpenses</a>
+                    <a href="#wall" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet hover:text-violet transition-colors">#TheWall</a>
+                    <a href="#ai-assistant" class="px-2.5 py-1 rounded-md bg-panel border border-hairline text-ink hover:border-violet hover:text-violet transition-colors">#PulsAI</a>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Photo -->
+            <div class="flex justify-start">
+                <img src="images/wojciech-mruk-icm-ai.png" alt="Wojciech Mruk" class="rounded-2xl max-h-80 w-auto object-cover glow border border-hairline" />
+            </div>
+        </div>
+
+        <!-- CONCEPT & IDEA NOTE BOX -->
+        <div class="p-4 bg-yellow-200 border-2 border-yellow-400 rounded-xl space-y-2 text-xs text-yellow-950 shadow-sm my-4">
+            <div class="flex items-center gap-2 font-bold uppercase tracking-wider text-[11px] text-yellow-900">
+                <i class="fa-solid fa-lightbulb text-yellow-700 text-sm"></i>
+                <span>Internal Proposal & Concept Note</span>
+            </div>
+            <p class="leading-relaxed font-semibold">
+                The proposal below outlines an internal initiative (<strong>icmPulse</strong>) designed to streamline our daily employee workflows. It’s an idea to move away from scattered spreadsheets and unify our routine requests into one simple, modern interface.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- MAIN ARTICLE CONTENT -->
+    <main class="max-w-4xl mx-auto px-6 py-10 space-y-16">
+
+        <!-- INTRO SCENARIO -->
+        <article class="space-y-6">
+
+            <div class="space-y-4 text-fog leading-relaxed">
+                <p class="text-lg text-ink">
+                    Woken up by a rooster crowing at 7 AM, you suddenly remember you were supposed to submit a leave request today — sound familiar?
+                </p>
+                <p>
+                    Now you just need to dress up like Indiana Jones, boot up your computer, and set off on an expedition to find the right Excel spreadsheet with the current request template. The one that isn't "leave_form_FINAL_v3_reallyfinal.xlsx" from 2023. The one your manager will actually accept without asking "wait, is this the right version?"
+                </p>
+                <p>
+                    You finally find it. You fill it in. You email it to HR, CC your manager, CC yourself just in case, and pray to the productivity gods that nobody replies-all with "please use the new template" three minutes later.
+                </p>
+                <p>
+                    But even if you win that battle — the war isn't over. What if someone in your team has already booked the exact same slot? How many days of paid leave do you even have left this year? Is that number in your head accurate, or is it wishful thinking left over from January?
+                </p>
+                <p>
+                    We're a company of 30 people, not 3,000 — we shouldn't need a spreadsheet archaeology degree just to take a Friday off.
+                </p>
+                <p class="font-mono text-ink bg-panel p-4 rounded-xl border border-hairline">
+                    Out of precisely these small, daily absurdities came the idea for <strong class="text-violet">icmPulse</strong> (or simply <strong class="text-violet">Pulse</strong>).
+                </p>
+
+                <!-- NATYWNIE UKRYTE SZCZEGÓŁY HTML5 -->
+                <details class="bg-panel rounded-xl p-4 border border-hairline text-xs cursor-pointer group">
+                    <summary class="font-mono font-semibold text-violet flex items-center justify-between select-none">
+                        <span><i class="fa-solid fa-compact-disc mr-2"></i> Track & Album Reference (Click to Expand)</span>
+                        <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="mt-3 pt-3 border-t border-hairline text-fog space-y-1 font-mono">
+                        <p><strong class="text-ink">Song Title:</strong> "Wanna Be Startin' Somethin'"</p>
+                        <p><strong class="text-ink">Album:</strong> Thriller (1982)</p>
+                        <p><strong class="text-ink">Why this track?</strong> Exactly what a Monday morning without Pulse sounds like — chaos, rumors about who's on leave, and everybody startin' somethin'.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="my-8 space-y-3">
+                <img src="images/02-new-icm.jpg" alt="Behold icmPulse - Long Live icmPulse!" class="w-full rounded-2xl shadow-xl border border-hairline" />
+                <img src="images/02-icmpulse.jpg" alt="icmPulse Essential Portal Diagram" class="w-full rounded-2xl shadow-md border border-hairline" />
+                <span class="block font-mono text-xs text-center text-fog">Behold the essential employee portal! Long live icmPulse! (It beats an Excel sheet!)</span>
+            </div>
+        </article>
+
+        <!-- MODULE 01: TIMESHEETS -->
+        <section id="timesheets" class="space-y-6 pt-8 border-t border-hairline">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="font-mono text-xs text-violet font-semibold uppercase tracking-wider">Module 01</span>
+                    <span class="text-hairline">&bull;</span>
+                    <span class="font-mono text-xs text-fog">Timesheets & Attendance</span>
+                </div>
+                <!-- Jackson Link -->
+                <a href="https://en.wikipedia.org/wiki/Speed_Demon_(song)" target="_blank" rel="noopener" class="font-mono text-xs bg-panel border border-hairline hover:border-violet px-3 py-1 rounded-full text-violet transition-colors inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-bolt text-[10px]"></i> Speed Demon (Bad)
+                </a>
+            </div>
+
+            <h2 class="font-display text-2xl font-semibold text-ink">Timesheet: Only the Things That Matter</h2>
+
+            <div class="space-y-4 text-fog leading-relaxed">
+                <!-- THE STORY -->
+                <p>Do you remember how our colleague managed to injure his finger? He doesn't even remember how it happened... But I do. It was a Friday. You know the vibe: that specific, high-stakes moment when everyone simultaneously rushes to submit their timesheets. His finger probably slipped between the keys at the exact millisecond his other finger, twitching nervously like a pneumatic drill, decided to smash the same letter. A small thing... It didn't have to end this way... It’s too late for tears now, and we aren't here to point fingers (pun intended).</p>
+
+                <p class="font-semibold text-ink">But can we prevent similar incidents in the future?<br>Absolutely.</p>
+
+                <p>No more wrestling with spreadsheet cells, guessing project codes, or playing detective with your own workweek. We stripped away the bureaucratic noise and the Friday panic.</p>
+
+                <div class="my-6">
+                    <img src="images/02-timesheet.png" alt="Weekly Timesheet Module" class="w-full rounded-2xl shadow-lg border border-hairline" />
+                </div>
+
+                <!-- THE FEATURES -->
+                <ul class="list-disc list-inside space-y-2 font-mono text-xs text-ink bg-panel p-4 rounded-xl border border-hairline">
+                    <li><strong class="text-violet">One-Click Templates:</strong> Your most frequently used projects and tasks populate with a single click. Because you shouldn't need a PhD in Excel macros just to log 8 hours of work (and you definitely don't need two fully functional fingers).</li>
+                    <li><strong class="text-violet">Automatic Verification:</strong> The system acts as your intelligent safety net. It catches missing hours, overlapping entries, and invalid codes <em>before</em> you hit submit. The era of "please fix this" bounce-back emails is officially over.</li>
+                    <li><strong class="text-violet">Weekly Overview:</strong> A clear, functional view of your logged weekly hours, alongside total team hours for a specific client. No more guessing if the team is over or under budget.</li>
+                    <li><strong class="text-violet">Transparent Stats & Automated Reporting:</strong> Real-time visibility into your time allocation, paired with automated weekly reminders. You will never again face the dreaded "end-of-month timesheet avalanche."</li>
+                </ul>
+
+                <p class="font-semibold text-ink">Log your time, hit submit, and get back to the actual work.<br><span class="text-violet">Speed Demon mode: activated. Fingers: safe.</span></p>
+
+                <!-- NATYWNIE UKRYTE SZCZEGÓŁY HTML5 -->
+                <details class="bg-panel rounded-xl p-4 border border-hairline text-xs cursor-pointer group">
+                    <summary class="font-mono font-semibold text-violet flex items-center justify-between select-none">
+                        <span><i class="fa-solid fa-compact-disc mr-2"></i> Track & Album Reference (Click to Expand)</span>
+                        <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="mt-3 pt-3 border-t border-hairline text-fog space-y-1 font-mono">
+                        <p><strong class="text-ink">Song Title:</strong> "Speed Demon"</p>
+                        <p><strong class="text-ink">Album:</strong> Bad (1987)</p>
+                        <p><strong class="text-ink">Why this track?</strong> Reflects rapid, "speed demon" timesheet logging without administrative delays (and with zero finger casualties).</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- MODULE 02: HOLIDAYS -->
+        <section id="holidays" class="space-y-6 pt-8 border-t border-hairline">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="font-mono text-xs text-violet font-semibold uppercase tracking-wider">Module 02</span>
+                    <span class="text-hairline">&bull;</span>
+                    <span class="font-mono text-xs text-fog">Leave Requests & Absence Map</span>
+                </div>
+                <!-- Jackson Link -->
+                <a href="https://en.wikipedia.org/wiki/HIStory:_Past,_Present_and_Future,_Book_I" target="_blank" rel="noopener" class="font-mono text-xs bg-panel border border-hairline hover:border-violet px-3 py-1 rounded-full text-violet transition-colors inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-compact-disc text-[10px]"></i> HIStory (1995)
+                </a>
+            </div>
+
+            <h2 class="font-display text-2xl font-semibold text-ink">Leave Requests: Click, Fill, Submit and Forget</h2>
+
+            <div class="space-y-4 text-fog leading-relaxed">
+                <!-- THE STORY -->
+                <p>Let me share a <em>HIStory</em> — almost true, from one of my previous companies. It was mid-August. Three team members independently submitted leave requests for the same critical week. Nobody checked. Nobody knew. The first warning sign? A client call with the question: <em>"Where is your entire team?"</em> Cue the panic. Cue the awkward conversations. Cue the manager playing referee between three equally valid vacation plans.</p>
+
+                <p>It was a total <strong>HIStory-level chaos</strong> — the kind that becomes office legend. Nobody wanted to be the bad guy saying "you can't go." Nobody checked the spreadsheet (because there wasn't one). And so, history repeated itself.</p>
+
+                <p class="font-semibold text-ink">But what if you could see the future before it happens?<br>What if conflicts were impossible by design?</p>
+
+                <p>We propose centralized leave management. A lightweight digital form improves information flow and instantly reveals team availability for planned days off. No more guessing. No more conflicts. No more HIStory repeating itself.</p>
+
+                <div class="my-6">
+                    <img src="images/02-holidays.png" alt="Holidays & Absences Timeline" class="w-full rounded-2xl shadow-lg border border-hairline" />
+                </div>
+
+                <!-- THE FEATURES -->
+                <ul class="list-disc list-inside space-y-2 font-mono text-xs text-ink bg-panel p-4 rounded-xl border border-hairline">
+                    <li><strong class="text-violet">Visual Timeline:</strong> See who's out and when — color-coded blocks on a clear timeline. No more spreadsheet archaeology or "wait, who's on leave next Tuesday?"</li>
+                    <li><strong class="text-violet">Instant Team Availability:</strong> Before you even submit your request, you see who else is already booked. Conflicts? Prevented by design.</li>
+                    <li><strong class="text-violet">Lightweight Digital Form:</strong> Click, fill, submit, forget. Three steps max. Your manager gets notified automatically. No emails. No CC chains. No "did you get my request?" follow-ups.</li>
+                    <li><strong class="text-violet">Centralized Management:</strong> One source of truth for all leave requests. Approved, pending, rejected — all visible in real-time. No more "I thought you approved it" conversations.</li>
+                    <li><strong class="text-violet">Annual Overview:</strong> Track your remaining days, see public holidays, and plan ahead without the guesswork. Your leave balance, finally accurate.</li>
+                </ul>
+
+                <p class="font-semibold text-ink">On the HIStory album, Michael Jackson compiled his greatest hits. <br><span class="text-violet">Our leave calendar is also a history — but one we control, not one that controls us.</span></p>
+
+                <!-- NATYWNIE UKRYTE SZCZEGÓŁY HTML5 -->
+                <details class="bg-panel rounded-xl p-4 border border-hairline text-xs cursor-pointer group">
+                    <summary class="font-mono font-semibold text-violet flex items-center justify-between select-none">
+                        <span><i class="fa-solid fa-compact-disc mr-2"></i> Track & Album Reference (Click to Expand)</span>
+                        <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="mt-3 pt-3 border-t border-hairline text-fog space-y-1 font-mono">
+                        <p><strong class="text-ink">Album Title:</strong> HIStory: Past, Present and Future, Book I (1995)</p>
+                        <p><strong class="text-ink">Why this album?</strong> Annual leave tracking creates a complete historical timeline of team availability across the year — your team's own HIStory, minus the chaos.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- MODULE 03: PEOPLE -->
+        <section id="people" class="space-y-6 pt-8 border-t border-hairline">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="font-mono text-xs text-violet font-semibold uppercase tracking-wider">Module 03</span>
+                    <span class="text-hairline">&bull;</span>
+                    <span class="font-mono text-xs text-fog">People & Directory</span>
+                </div>
+                <!-- Jackson Links -->
+                <div class="flex gap-1.5">
+                    <a href="https://en.wikipedia.org/wiki/Who_Is_It_(Michael_Jackson_song)" target="_blank" rel="noopener" class="font-mono text-xs bg-panel border border-hairline hover:border-violet px-3 py-1 rounded-full text-violet transition-colors inline-flex items-center gap-1.5">
+                        <i class="fa-solid fa-music text-[10px]"></i> "Who Is It?" (Dangerous)
+                    </a>
+                    <a href="https://en.wikipedia.org/wiki/Say_Say_Say" target="_blank" rel="noopener" class="font-mono text-xs bg-panel border border-hairline hover:border-violet px-3 py-1 rounded-full text-violet transition-colors inline-flex items-center gap-1.5">
+                        <i class="fa-solid fa-music text-[10px]"></i> "Say Say Say"
+                    </a>
+                </div>
+            </div>
+
+            <h2 class="font-display text-2xl font-semibold text-ink">People Module & Profile Cards: "Who Is It?"</h2>
+
+            <div class="space-y-4 text-fog leading-relaxed">
+                <p>Remember that classic Michael Jackson song <em>"Who Is It?"</em>? If the King of Pop had <strong>icmPulse</strong>, he wouldn't need to ask the question at all.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 my-6">
+                    <img src="images/02-people.png" alt="People Directory Table" class="rounded-2xl shadow-md border border-hairline w-full object-cover" />
+                    <img src="images/people-details.png" alt="User Details Card" class="rounded-2xl shadow-md border border-hairline w-full object-cover" />
+                </div>
+
+                <ul class="list-disc list-inside space-y-1 font-mono text-xs text-ink bg-panel p-4 rounded-xl border border-hairline">
+                    <li>Real-time statuses: Instant team overview (<span class="text-green font-bold">Active</span>, <span class="text-amber font-bold">OnLeave</span>).</li>
+                    <li>Interactive Profile Card: Contact details, department, manager, and role instantly visible.</li>
+                </ul>
+
+                <!-- NATYWNIE UKRYTE SZCZEGÓŁY HTML5 -->
+                <details class="bg-panel rounded-xl p-4 border border-hairline text-xs cursor-pointer group">
+                    <summary class="font-mono font-semibold text-violet flex items-center justify-between select-none">
+                        <span><i class="fa-solid fa-compact-disc mr-2"></i> Track & Album Reference (Click to Expand)</span>
+                        <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="mt-3 pt-3 border-t border-hairline text-fog space-y-1 font-mono">
+                        <p><strong class="text-ink">Song 1:</strong> "Who Is It" — <span class="text-violet">Album: Dangerous (1991)</span></p>
+                        <p><strong class="text-ink">Song 2:</strong> "Say Say Say" (with Paul McCartney) — <span class="text-violet">Album: Pipes of Peace (1983)</span></p>
+                        <p><strong class="text-ink">Why these tracks?</strong> Solves internal identification issues so employees never wonder who handles which role.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- MODULE 04: ONBOARDING -->
+        <section id="onboarding" class="space-y-6 pt-8 border-t border-hairline">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="font-mono text-xs text-violet font-semibold uppercase tracking-wider">Module 04</span>
+                    <span class="text-hairline">&bull;</span>
+                    <span class="font-mono text-xs text-fog">Onboarding Checklist</span>
+                </div>
+                <!-- Jackson Link -->
+                <a href="https://en.wikipedia.org/wiki/Man_in_the_Mirror" target="_blank" rel="noopener" class="font-mono text-xs bg-panel border border-hairline hover:border-violet px-3 py-1 rounded-full text-violet transition-colors inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-compact-disc text-[10px]"></i> Man in the Mirror (Bad)
+                </a>
+            </div>
+
+            <h2 class="font-display text-2xl font-semibold text-ink">Onboarding: No Longer a Treasure Hunt for Your Own Laptop</h2>
+
+            <div class="space-y-4 text-fog leading-relaxed">
+                <p>Every new hire's first week used to look the same: a stack of forced-smile introductions, a login that doesn't work until Wednesday, and a mystery about who actually owns the Wi-Fi password. First days shouldn't feel like an escape room.</p>
+                <p>With icmPulse, day one gets a script. A single checklist walks every new joiner through equipment, accounts, and the people they'll actually need — no more "ask around and hope."</p>
+
+                <div class="my-6">
+                    <img src="images/02-onboarding.jpg" alt="Onboarding Checklist Module" class="w-full rounded-2xl shadow-lg border border-hairline" />
+                </div>
+
+                <ul class="list-disc list-inside space-y-1 font-mono text-xs text-ink bg-panel p-4 rounded-xl border border-hairline">
+                    <li>A single, trackable checklist: equipment, accounts, policies, and paperwork — all in one place, tick by tick.</li>
+                    <li>An assigned buddy and manager appear automatically, straight from the People module — no cold-emailing strangers.</li>
+                    <li>Day-30 and day-90 check-ins are scheduled on their own, so nobody gets forgotten after week one.</li>
+                </ul>
+
+                <!-- NATYWNIE UKRYTE SZCZEGÓŁY HTML5 -->
+                <details class="bg-panel rounded-xl p-4 border border-hairline text-xs cursor-pointer group">
+                    <summary class="font-mono font-semibold text-violet flex items-center justify-between select-none">
+                        <span><i class="fa-solid fa-compact-disc mr-2"></i> Track & Album Reference (Click to Expand)</span>
+                        <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="mt-3 pt-3 border-t border-hairline text-fog space-y-1 font-mono">
+                        <p><strong class="text-ink">Song Title:</strong> "Man in the Mirror"</p>
+                        <p><strong class="text-ink">Album:</strong> Bad (1987)</p>
+                        <p><strong class="text-ink">Why this track?</strong> Onboarding starts with looking at yourself — your own checklist, your own progress — instead of chasing everyone else for answers.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- MODULE 05: TRAVEL & EXPENSES -->
+        <section id="expenses" class="space-y-6 pt-8 border-t border-hairline">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="font-mono text-xs text-violet font-semibold uppercase tracking-wider">Module 05</span>
+                    <span class="text-hairline">&bull;</span>
+                    <span class="font-mono text-xs text-fog">Travel & Expense Claims</span>
+                </div>
+                <!-- Jackson Link -->
+                <a href="https://en.wikipedia.org/wiki/Stranger_in_Moscow" target="_blank" rel="noopener" class="font-mono text-xs bg-panel border border-hairline hover:border-violet px-3 py-1 rounded-full text-violet transition-colors inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-compact-disc text-[10px]"></i> Stranger in Moscow (HIStory)
+                </a>
+            </div>
+
+            <h2 class="font-display text-2xl font-semibold text-ink">Travel & Expenses: Making Peace With Receipts</h2>
+
+            <div class="space-y-4 text-fog leading-relaxed">
+                <p>You land after a business trip with a jacket pocket full of crumpled receipts, half of them in a currency you can't quite remember converting, and a vague sense that the per diem rules changed again while you were gone.</p>
+                <p>icmPulse turns that pocket lint into a two-minute job: snap a photo of the receipt, pick the trip, and the system pulls the right allowance rates automatically — no more guessing whether it's €153 or €135 a night.</p>
+
+                <div class="my-6">
+                    <img src="images/02-expenses.jpg" alt="Travel & Expenses Claim Module" class="w-full rounded-2xl shadow-lg border border-hairline" />
+                </div>
+
+                <ul class="list-disc list-inside space-y-1 font-mono text-xs text-ink bg-panel p-4 rounded-xl border border-hairline">
+                    <li>Mobile receipt capture: photograph it once, and it's attached, categorized, and ready for approval.</li>
+                    <li>Built-in policy rates: subsistence, mileage, and daily allowances calculated for you, not looked up in a PDF.</li>
+                    <li>A clear approval trail: submit, track status, get reimbursed — no more "did you get my email?" follow-ups.</li>
+                </ul>
+
+                <!-- NATYWNIE UKRYTE SZCZEGÓŁY HTML5 -->
+                <details class="bg-panel rounded-xl p-4 border border-hairline text-xs cursor-pointer group">
+                    <summary class="font-mono font-semibold text-violet flex items-center justify-between select-none">
+                        <span><i class="fa-solid fa-compact-disc mr-2"></i> Track & Album Reference (Click to Expand)</span>
+                        <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="mt-3 pt-3 border-t border-hairline text-fog space-y-1 font-mono">
+                        <p><strong class="text-ink">Song Title:</strong> "Stranger in Moscow"</p>
+                        <p><strong class="text-ink">Album:</strong> HIStory: Past, Present and Future, Book I (1995)</p>
+                        <p><strong class="text-ink">Why this track?</strong> Nobody should feel like a stranger in a foreign city just because they're also trying to remember the mileage rate.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- MODULE 06: THE WALL -->
+        <section id="wall" class="space-y-6 pt-8 border-t border-hairline">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="font-mono text-xs text-violet font-semibold uppercase tracking-wider">Module 06</span>
+                    <span class="text-hairline">&bull;</span>
+                    <span class="font-mono text-xs text-fog">Company Feed</span>
+                </div>
+                <!-- Jackson Link -->
+                <a href="https://en.wikipedia.org/wiki/Off_the_Wall" target="_blank" rel="noopener" class="font-mono text-xs bg-panel border border-hairline hover:border-violet px-3 py-1 rounded-full text-violet transition-colors inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-compact-disc text-[10px]"></i> Off The Wall (1979)
+                </a>
+            </div>
+
+            <h2 class="font-display text-2xl font-semibold text-ink">The Wall: Not Only Michael Jackson Had His "Off The Wall"</h2>
+
+            <div class="space-y-4 text-fog leading-relaxed">
+                <p>We can have our own Wall so we never miss important company moments! It's our central bulletin board to celebrate milestones, cheer team progress, and share key updates without inbox clutter.</p>
+
+                <div class="my-6">
+                    <img src="images/02-wall.png" alt="Company Wall Dashboard Feed" class="w-full rounded-2xl shadow-lg border border-hairline" />
+                </div>
+
+                <!-- NATYWNIE UKRYTE SZCZEGÓŁY HTML5 -->
+                <details class="bg-panel rounded-xl p-4 border border-hairline text-xs cursor-pointer group">
+                    <summary class="font-mono font-semibold text-violet flex items-center justify-between select-none">
+                        <span><i class="fa-solid fa-compact-disc mr-2"></i> Track & Album Reference (Click to Expand)</span>
+                        <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="mt-3 pt-3 border-t border-hairline text-fog space-y-1 font-mono">
+                        <p><strong class="text-ink">Song & Album:</strong> "Off the Wall" / Off the Wall (1979)</p>
+                        <p><strong class="text-ink">Why this album?</strong> Our social company wall where achievements, birthdays, and news are published.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- MODULE 07: AI CHAT ASSISTANT -->
+        <section id="ai-assistant" class="space-y-6 pt-8 border-t border-hairline">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="font-mono text-xs text-violet font-semibold uppercase tracking-wider">Module 07</span>
+                    <span class="text-hairline">&bull;</span>
+                    <span class="font-mono text-xs text-fog">AI Knowledge Assistant</span>
+                </div>
+                <!-- Jackson Link -->
+                <a href="https://en.wikipedia.org/wiki/Dangerous_(Michael_Jackson_album)" target="_blank" rel="noopener" class="font-mono text-xs bg-panel border border-hairline hover:border-violet px-3 py-1 rounded-full text-violet transition-colors inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-compact-disc text-[10px]"></i> Dangerous (1991)
+                </a>
+            </div>
+
+            <h2 class="font-display text-2xl font-semibold text-ink">PulsAI Chat: What If You Could Just Ask an AI Assistant?</h2>
+
+            <div class="space-y-4 text-fog leading-relaxed">
+                <p>Integrating an LLM assistant helps everyone find company policy info instantly.</p>
+
+                <div class="my-6">
+
+                    <!-- MAIN AI CHAT CONTAINER -->
+                    <div class="w-full max-w-4xl h-[700px] bg-white rounded-2xl shadow-xl border border-slate-200 flex flex-col overflow-hidden">
+
+                        <!-- CHAT HEADER -->
+                        <header class="px-6 py-4 bg-white border-b border-slate-200 flex items-center justify-between shrink-0">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-200">
+                                    <i class="fa-solid fa-sparkles text-lg"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h2 class="font-bold text-slate-900 text-base">PulsAI Assistant</h2>
+                                        <span class="text-[10px] font-bold tracking-wider uppercase bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full border border-emerald-200">RAG Active</span>
+                                    </div>
+                                    <p class="text-xs text-slate-500">Internal Knowledge Base & Employee Self-Service Bot</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <button title="Clear Conversation" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition">
+                                    <i class="fa-solid fa-rotate-right text-xs"></i>
+                                </button>
+                                <div class="h-4 w-px bg-slate-200"></div>
+                                <button title="Close Assistant" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition">
+                                    <i class="fa-solid fa-xmark text-sm"></i>
+                                </button>
+                            </div>
+                        </header>
+
+                        <!-- CHAT MESSAGES BODY -->
+                        <div class="flex-1 p-6 overflow-y-auto space-y-6 bg-slate-50/50">
+
+                            <!-- SYSTEM / BOT INTRO -->
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-sm">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                                <div class="max-w-2xl bg-white p-4 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm space-y-2 text-xs text-slate-700">
+                                    <p class="font-semibold text-slate-900">Hello Wojciech! 👋</p>
+                                    <p>I am <span class="font-bold text-indigo-600">PulsAI</span>, your internal company assistant. I can help you find policy documents, calculate travel allowances, or check leave balances instantly.</p>
+                                </div>
+                            </div>
+
+                            <!-- MOCK Q&A 1 (TRAVEL EXPENSE) -->
+                            <!-- User Prompt -->
+                            <div class="flex items-start gap-3 justify-end">
+                                <div class="max-w-xl bg-indigo-600 text-white p-4 rounded-2xl rounded-tr-none text-xs shadow-sm space-y-1">
+                                    <p>What are the daily allowance rates for a 2-day business trip to the UK?</p>
+                                    <span class="block text-[9px] text-indigo-200 text-right">10:14 AM</span>
+                                </div>
+                                <img src="images/wojciech-mruk-icm-ai.png" alt="User" class="w-8 h-8 rounded-lg object-cover border border-slate-300 shrink-0">
+                            </div>
+
+                            <!-- Bot Response -->
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-sm">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                                <div class="max-w-2xl bg-white p-4 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm space-y-3 text-xs text-slate-700">
+                                    <p>According to the official <span class="font-semibold text-slate-900">Travel & Expenses Policy (2026)</span>, here are the applicable UK rates:</p>
+
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 space-y-1.5 font-mono text-[11px]">
+                                        <div class="flex justify-between">
+                                            <span class="text-slate-500">Overnight Subsistence (GB Rate):</span>
+                                            <span class="font-bold text-slate-800">€153.00 / night</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-slate-500">5-10 Hour Daily Allowance:</span>
+                                            <span class="font-bold text-slate-800">€19.25</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-slate-500">Mileage Rate (Personal Vehicle):</span>
+                                            <span class="font-bold text-slate-800">80c / mile</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 pt-1">
+                                        <span class="text-[10px] text-slate-400 font-mono">Source:</span>
+                                        <a href="#expenses" class="text-[10px] text-indigo-600 hover:underline font-mono inline-flex items-center gap-1">
+                                            <i class="fa-solid fa-file-pdf"></i> Travel_Policy_2026.pdf
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MOCK Q&A 2 (LEAVE BALANCE) -->
+                            <!-- User Prompt -->
+                            <div class="flex items-start gap-3 justify-end">
+                                <div class="max-w-xl bg-indigo-600 text-white p-4 rounded-2xl rounded-tr-none text-xs shadow-sm space-y-1">
+                                    <p>How many annual leave days do I have left, and who is on leave next Monday?</p>
+                                    <span class="block text-[9px] text-indigo-200 text-right">10:16 AM</span>
+                                </div>
+                                <img src="images/wojciech-mruk-icm-ai.png" alt="User" class="w-8 h-8 rounded-lg object-cover border border-slate-300 shrink-0">
+                            </div>
+
+                            <!-- Bot Response -->
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-sm">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                                <div class="max-w-2xl bg-white p-4 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm space-y-2 text-xs text-slate-700">
+                                    <p>Here is your leave summary from <span class="font-semibold text-slate-900">icmPulse Leave Manager</span>:</p>
+
+                                    <ul class="list-disc list-inside space-y-1 bg-indigo-50/50 p-3 rounded-xl border border-indigo-100 font-medium text-slate-800">
+                                        <li>Your remaining annual allowance: <span class="text-indigo-600 font-bold">18 of 26 days</span>.</li>
+                                        <li>Next Monday (Aug 17) is a scheduled <span class="text-amber-700 font-bold">Bank Holiday</span>.</li>
+                                        <li>Team members out on Monday: <span class="font-bold">Darren Lennon</span> (On Leave).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- QUICK PROMPT SUGGESTIONS (CHIPS) -->
+                        <div class="px-6 py-2 bg-white border-t border-slate-100 flex flex-wrap gap-2 text-xs">
+                            <span class="text-[10px] uppercase tracking-wider font-bold text-slate-400 self-center mr-1">Suggested:</span>
+                            <button class="px-3 py-1 rounded-full bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 border border-slate-200 text-slate-600 transition text-[11px]">
+                                Submit timesheet reminder
+                            </button>
+                            <button class="px-3 py-1 rounded-full bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 border border-slate-200 text-slate-600 transition text-[11px]">
+                                How to report sick leave (L4)?
+                            </button>
+                            <button class="px-3 py-1 rounded-full bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 border border-slate-200 text-slate-600 transition text-[11px]">
+                                Who is the manager for Operations?
+                            </button>
+                        </div>
+
+                        <!-- CHAT INPUT FOOTER -->
+                        <footer class="p-4 bg-white border-t border-slate-200">
+                            <div class="relative flex items-center">
+                                <input type="text" placeholder="Ask PulsAI about policies, timesheets, or team status..." class="w-full bg-slate-50 border border-slate-300 text-xs text-slate-800 rounded-xl pl-4 pr-24 py-3 focus:outline-none focus:border-indigo-500 focus:bg-white transition shadow-inner">
+                                <div class="absolute right-2 flex items-center gap-1.5">
+                                    <button title="Attach document" class="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg transition">
+                                        <i class="fa-solid fa-paperclip text-sm"></i>
+                                    </button>
+                                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xs px-3.5 py-1.5 rounded-lg shadow-sm transition flex items-center gap-1.5">
+                                        <span>Send</span>
+                                        <i class="fa-solid fa-paper-plane text-[10px]"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center mt-2 px-1 text-[10px] text-slate-400">
+                                <span>AI results are based on internal verified documents.</span>
+                                <span>PulsAI v1.0</span>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+
+                <!-- NATYWNIE UKRYTE SZCZEGÓŁY HTML5 -->
+                <details class="bg-panel rounded-xl p-4 border border-hairline text-xs cursor-pointer group">
+                    <summary class="font-mono font-semibold text-violet flex items-center justify-between select-none">
+                        <span><i class="fa-solid fa-compact-disc mr-2"></i> Track & Album Reference (Click to Expand)</span>
+                        <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="mt-3 pt-3 border-t border-hairline text-fog space-y-1 font-mono">
+                        <p><strong class="text-ink">Album Title:</strong> Dangerous (1991)</p>
+                        <p><strong class="text-ink">Why this album?</strong> An AI knowledge assistant so sharp it's dangerous — retrieving travel rates and allowances instantly.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- SUMMARY CLOSING -->
+        <section class="pt-10 border-t border-hairline">
+            <div class="rounded-2xl border border-hairline bg-panel2 p-8 sm:p-10 glow">
+                <h2 class="font-display text-2xl sm:text-3xl font-semibold leading-snug mb-3 text-ink">
+                    Final Thoughts
+                </h2>
+                <p class="text-fog leading-relaxed text-base mb-4">
+                    I believe every adult should have a driver's license, and <strong>every mature company should have its own pulse</strong> — a central information hub and starting point for every employee.
+                </p>
+                <p class="text-fog leading-relaxed text-base">
+                    It's time to establish a great communication highway, move away from fragmented Excel forms, and step up to a level where we say: <em>"We have it, we love it, and it's ours."</em>
+                </p>
+                <span class="block mt-6 font-mono text-xs text-violet font-semibold uppercase tracking-wider">I'm eager to hear your thoughts, ideas, and suggestions!</span>
+            </div>
+        </section>
+
+        <!-- VIDEO PLAYER SECTION -->
+        <section class="my-10 p-6 bg-panel border border-hairline rounded-2xl glow space-y-4">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-violet/10 border border-violet/30 flex items-center justify-center text-violet">
+                        <i class="fa-solid fa-circle-play text-base"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-sm font-semibold text-ink">Project Demo / Showcase Video</h3>
+                        <p class="text-xs text-fog font-mono">Chapter 2 — icmPulse Interactive Walkthrough</p>
+                    </div>
+                </div>
+                <span class="font-mono text-[10px] bg-paper border border-hairline px-2.5 py-1 rounded-full text-violet font-semibold">
+                    MP4 VIDEO
+                </span>
+            </div>
+
+            <!-- NATYWNY PLAYER VIDEO HTML5 -->
+            <div class="relative rounded-xl overflow-hidden border border-hairline bg-ink shadow-lg">
+                <video controls poster="images/02-new-icm.jpg" class="w-full h-auto aspect-video object-cover">
+                    <source src="video/02-icmpulse-introduction.mp4" type="video/mp4">
+                    Twoja przeglądarka nie obsługuje elementu video.
+                </video>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-hairline mt-12">
+        <div class="max-w-4xl mx-auto px-6 py-8 flex items-center justify-between">
+            <img src="images/02-logo.jpg" alt="icmPulse Logo" class="h-6 w-auto opacity-70" />
+            <a href="https://icmcsl.com/" class="font-mono text-xs text-fog hover:text-ink transition-colors">icmcsl.com</a>
+        </div>
+    </footer>
+</body>
+</html>
