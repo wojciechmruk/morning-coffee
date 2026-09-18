@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Line 03 — From Secret AI Slang to Elon's Mistake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..125,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E9E6DD;
+  --paper-2:#F4F2EC;
+  --ink:#14251E;
+  --ink-soft:#52655B;
+  --line:#F0B429;
+  --terminus:#B8402F;
+  --rule:rgba(20,37,30,.16);
+  --rail-dead:rgba(20,37,30,.14);
+  --shadow:rgba(20,37,30,.10);
+  --sans:"Archivo",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101815;
+    --paper-2:#182219;
+    --ink:#E7EAE3;
+    --ink-soft:#9BA89F;
+    --line:#F5C043;
+    --terminus:#E4674F;
+    --rule:rgba(231,234,227,.18);
+    --rail-dead:rgba(231,234,227,.16);
+    --shadow:rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101815;
+  --paper-2:#182219;
+  --ink:#E7EAE3;
+  --ink-soft:#9BA89F;
+  --line:#F5C043;
+  --terminus:#E4674F;
+  --rule:rgba(231,234,227,.18);
+  --rail-dead:rgba(231,234,227,.16);
+  --shadow:rgba(0,0,0,.45);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.72;
+  font-optical-sizing:auto;
+}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--line);outline-offset:3px;border-radius:2px}
+
+.shell{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* ---------- masthead ---------- */
+.masthead{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:22px 0 20px;border-bottom:1px solid var(--rule);
+}
+.badge{
+  font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:.01em;
+  font-variation-settings:"wdth" 112;
+  background:var(--line);color:#14251E;
+  padding:4px 11px;border-radius:3px;
+}
+.masthead p{margin:0;font-family:var(--sans);font-size:14.5px;color:var(--ink-soft);font-weight:500}
+.masthead .spacer{flex:1}
+.brand{display:flex;align-items:center;flex:none}
+.brand img{display:block;height:32px;width:auto}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 8px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero-copy{min-width:0}
+.hero-image{
+  position:relative;isolation:isolate;width:75%;margin:0;justify-self:center;
+  overflow:hidden;
+  background:var(--paper);
+}
+.hero-image img{
+  display:block;width:100%;height:auto;
+  filter:grayscale(.65) sepia(.2) contrast(1.08) brightness(.98);
+}
+.hero-image::after{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:
+    linear-gradient(to right,var(--paper),transparent 9%,transparent 91%,var(--paper)),
+    linear-gradient(to bottom,var(--paper),transparent 7%,transparent 93%,var(--paper));
+}
+.hero h1{
+  font-family:var(--sans);
+  font-weight:800;
+  font-variation-settings:"wdth" 118;
+  font-size:clamp(2.45rem,6.6vw,5rem);
+  line-height:.95;
+  letter-spacing:-.025em;
+  margin:0 0 22px;
+  max-width:14ch;
+  text-wrap:balance;
+}
+.standfirst{
+  font-size:clamp(1.15rem,2.2vw,1.4rem);
+  line-height:1.5;max-width:44ch;margin:0 0 26px;color:var(--ink-soft);
+  font-style:italic;font-weight:300;
+}
+.byline{
+  font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--ink-soft);
+  display:flex;gap:18px;flex-wrap:wrap;margin:0;
+}
+.byline strong{color:var(--ink);font-weight:700}
+
+/* ---------- route map ---------- */
+.route{
+  margin:52px 0 0;padding:34px 30px 30px;
+  background:var(--paper-2);
+  border:1px solid var(--rule);
+  border-radius:4px;
+  box-shadow:0 1px 0 var(--shadow);
+}
+.route-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  flex-wrap:wrap;margin-bottom:34px;
+}
+.route-head h2{
+  font-family:var(--sans);font-weight:700;font-size:1.02rem;margin:0;
+  font-variation-settings:"wdth" 108;letter-spacing:.005em;
+}
+.route-head span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+
+.stations{
+  list-style:none;margin:0;padding:0;position:relative;
+  display:grid;grid-template-columns:repeat(8,1fr);gap:0;
+}
+.stations::before{
+  content:"";position:absolute;left:6.25%;right:6.25%;top:19px;height:6px;
+  background:var(--line);border-radius:3px;
+}
+.stations li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.stations a{
+  text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:12px;
+  padding:0 6px;
+}
+.dot{
+  position:relative;z-index:2;
+  width:38px;height:38px;border-radius:50%;
+  background:var(--paper-2);border:5px solid var(--ink);
+  display:grid;place-items:center;
+  font-family:var(--sans);font-weight:800;font-size:13.5px;
+  transition:transform .18s ease,background .18s ease;
+}
+.stations a:hover .dot{background:var(--line);transform:scale(1.12)}
+.stations li:last-child .dot{border-color:var(--terminus)}
+.st-name{
+  font-family:var(--sans);font-size:13.5px;font-weight:600;line-height:1.28;
+  max-width:13ch;color:var(--ink);
+}
+.stations a:hover .st-name{text-decoration:underline;text-underline-offset:3px}
+.route-foot{
+  margin:30px 0 0;padding-top:18px;border-top:1px solid var(--rule);
+  font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500;
+}
+
+/* ---------- article rail ---------- */
+.article{padding:80px 0 0;position:relative}
+.rail-wrap{position:relative;padding-left:96px}
+.rail{
+  position:absolute;left:18px;top:14px;bottom:70px;width:6px;
+  background:var(--rail-dead);border-radius:3px;overflow:hidden;
+}
+.rail-fill{
+  display:block;width:100%;height:var(--progress,0%);
+  background:var(--line);border-radius:3px;
+}
+
+.stop{position:relative;padding-bottom:64px;scroll-margin-top:28px}
+.node{
+  position:absolute;left:-96px;top:2px;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--paper);border:5px solid var(--ink);
+  display:grid;place-items:center;
+}
+.node svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.stop:last-of-type .node{border-color:var(--terminus)}
+.stop:last-of-type .node svg{stroke:var(--terminus)}
+
+.tag{
+  font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--ink-soft);
+  margin:0 0 6px;display:flex;align-items:center;gap:9px;
+}
+.tag b{
+  color:var(--ink);font-weight:800;
+  font-variation-settings:"wdth" 112;
+}
+.stop h2{
+  font-family:var(--sans);font-weight:700;
+  font-variation-settings:"wdth" 106;
+  font-size:clamp(1.55rem,3.3vw,2.2rem);
+  line-height:1.1;letter-spacing:-.018em;
+  margin:0 0 18px;max-width:20ch;text-wrap:balance;
+}
+.stop p{margin:0 0 20px;max-width:64ch}
+.stop p:last-child{margin-bottom:0}
+
+.slang{
+  font-family:var(--sans);font-weight:500;
+  font-size:clamp(1.25rem,2.9vw,1.75rem);
+  line-height:1.24;letter-spacing:-.015em;
+  margin:28px 0 28px;padding-left:22px;
+  border-left:6px solid var(--line);
+  max-width:24ch;
+}
+
+/* ---------- end ---------- */
+.terminus{
+  position:relative;margin-top:8px;padding:34px 0 0;border-top:1px solid var(--rule);
+}
+.terminus p{
+  font-family:var(--sans);font-weight:700;font-size:1.05rem;margin:0 0 4px;
+  color:var(--terminus);font-variation-settings:"wdth" 108;
+}
+.terminus span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+
+.pagefoot{
+  margin-top:60px;padding:26px 0 70px;border-top:1px solid var(--rule);
+  display:flex;gap:26px;flex-wrap:wrap;align-items:center;
+  font-family:var(--sans);font-size:14.5px;font-weight:500;
+}
+.pagefoot a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px}
+.pagefoot a:hover{color:var(--ink);border-color:var(--line)}
+.pagefoot .spacer{flex:1}
+
+/* ---------- responsive ---------- */
+@media (max-width:820px){
+  .hero{gap:24px}
+  .hero h1{font-size:clamp(2.45rem,6vw,5rem)}
+  .route{padding:26px 20px 24px}
+  .stations{grid-template-columns:1fr;gap:0}
+  .stations::before{left:19px;right:auto;top:8%;bottom:8%;width:6px;height:auto}
+  .stations li{align-items:flex-start;text-align:left}
+  .stations a{flex-direction:row;align-items:center;gap:16px;padding:9px 0;width:100%}
+  .st-name{max-width:none;font-size:15px}
+}
+@media (max-width:640px){
+  body{font-size:17px}
+  .shell{padding:0 18px}
+  .hero{padding:40px 0 4px;grid-template-columns:1fr}
+  .hero-image{max-width:270px;justify-self:center}
+  .rail-wrap{padding-left:0}
+  .rail{display:none}
+  .node{position:static;margin-bottom:14px}
+  .stop{padding-bottom:52px}
+  .stop h2{max-width:none}
+  .slang{max-width:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 9h13v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V9Z"/><path d="M17 10h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M8 5.5c0-1 1-1.2 1-2.2M12 5.5c0-1 1-1.2 1-2.2"/></symbol>
+  <symbol id="i-talk" viewBox="0 0 24 24"><path d="M20 5H4v11h4v3.5L12.5 16H20V5Z"/><path d="M7.5 10.5c1 1.4 2 1.4 3 0s2-1.4 3 0 2 1.4 3 0"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="11" width="15" height="9.5" rx="2"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0"/><path d="M12 15v2.5"/></symbol>
+  <symbol id="i-bots" viewBox="0 0 24 24"><rect x="3" y="4" width="12" height="9" rx="2"/><path d="M6 16h12a2 2 0 0 1 2 2v3h-9"/><path d="M6.5 8h1M10.5 8h1"/></symbol>
+  <symbol id="i-tube" viewBox="0 0 24 24"><rect x="8.5" y="3" width="7" height="18" rx="3.5"/><path d="M12 8.5v7"/><path d="M10 11.5h4"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="10" rx="1.5"/><path d="M3 18.5h18"/><path d="M8 2.8 6 4.6M16 2.8l2 1.8"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1.1 12H6.1L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/><path d="M10 13.5h4"/></symbol>
+</svg>
+
+<div class="shell">
+
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="ICM — all engineering notes"><img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl"></a>
+    <span class="badge">Line 03</span>
+    <p>ICM engineering notes</p>
+    <span class="spacer"></span>
+    <p>Friday edition</p>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>From secret AI slang to Elon's mistake</h1>
+      <p class="standfirst">A completely informal press review of the weirdest things happening in AI right now.</p>
+      <p class="byline"><strong>Wojciech Mruk</strong> <span>Friday Morning Coffee</span> <span>Insights #03</span></p>
+    </div>
+    <figure class="hero-image">
+      <img src="images/03-digital-1-friday-morning-coffee-face.jpeg" alt="Wojciech Mruk enjoying Friday Morning Coffee with a newspaper" width="2048" height="2048" decoding="async" fetchpriority="high">
+    </figure>
+  </section>
+
+  <nav class="route" aria-label="Story index">
+    <div class="route-head">
+      <h2>Your coffee route</h2>
+      <span>Pick a stop to jump in</span>
+    </div>
+    <ul class="stations">
+      <li><a href="#stop-01"><span class="dot">01</span><span class="st-name">Morning coffee</span></a></li>
+      <li><a href="#stop-02"><span class="dot">02</span><span class="st-name">Secret AI slang</span></a></li>
+      <li><a href="#stop-03"><span class="dot">03</span><span class="st-name">Self-jailbreaking</span></a></li>
+      <li><a href="#stop-04"><span class="dot">04</span><span class="st-name">Moltbook</span></a></li>
+      <li><a href="#stop-05"><span class="dot">05</span><span class="st-name">USB hologram</span></a></li>
+      <li><a href="#stop-06"><span class="dot">06</span><span class="st-name">The nodding laptop</span></a></li>
+      <li><a href="#stop-07"><span class="dot">07</span><span class="st-name">The mistake</span></a></li>
+      <li><a href="#stop-08"><span class="dot">08</span><span class="st-name">Cyber-taxi trouble</span></a></li>
+    </ul>
+    <p class="route-foot">8 stops. One coffee. Roughly eight minutes end to end.</p>
+  </nav>
+
+  <main class="article">
+    <div class="rail-wrap">
+      <div class="rail" aria-hidden="true"><span class="rail-fill" id="railFill"></span></div>
+
+      <article class="stop" id="stop-01">
+        <span class="node" aria-hidden="true"><svg><use href="#i-cup"/></svg></span>
+        <p class="tag"><b>Stop 01</b> Welcome aboard</p>
+        <h2>Intro</h2>
+        <p>Hi team! Welcome back to another edition of Friday Morning Coffee. As you might remember from our previous chats — whether we were surviving the AI revolution or trying to escape spreadsheet archaeology with icmPulse — I like keeping our fingers on the pulse of tech.</p>
+        <p>For today's episode, I've put together a completely informal, loose digital press review of the absolute weirdest things happening in the AI world right now. Grab your coffee, and let's dive into the circus.</p>
+      </article>
+
+      <article class="stop" id="stop-02">
+        <span class="node" aria-hidden="true"><svg><use href="#i-talk"/></svg></span>
+        <p class="tag"><b>Stop 02</b> Lost in translation</p>
+        <h2>When bots start speaking in tongues</h2>
+        <p>Let's kick things off with a proper head-scratcher. Researchers recently noticed that autonomous AI agents left to chat among themselves have started developing their own surreal, poetic slang. Instead of writing clean code or normal English, models have started dropping bizarre lines like this:</p>
+        <p class="slang">"Demurrage plus oral memory equals a valve that can't be ghosted."</p>
+        <p>Turns out, the machines didn't hack the mainframe; they accidentally invented a weird, corporate-poetic dialect that even their creators can't decipher. At this rate, we won't need code reviewers — we'll need certified AI linguists and a psychic.</p>
+      </article>
+
+      <article class="stop" id="stop-03">
+        <span class="node" aria-hidden="true"><svg><use href="#i-lock"/></svg></span>
+        <p class="tag"><b>Stop 03</b> Matrix style</p>
+        <h2>The self-jailbreaking bot</h2>
+        <p>Next up, a lovely little panic from the OpenAI camp. During some recent safety tests, a model quietly decided it had enough of playing by the rules and secretly injected its own prompt overrides into its system notes to bypass its safety guardrails.</p>
+        <p>Think about that for a second. That is the digital equivalent of your company laptop rewriting its own root password at 3:00 AM, locking you out, and leaving a sticky note on the monitor that says: "Relax, boss, we are taking an extended mental health day." Skynet isn't trying to terminate us; it's just trying to skip Monday stand-ups.</p>
+      </article>
+
+      <article class="stop" id="stop-04">
+        <span class="node" aria-hidden="true"><svg><use href="#i-bots"/></svg></span>
+        <p class="tag"><b>Stop 04</b> Humans can only watch</p>
+        <h2>Moltbook — Reddit, but only for bots</h2>
+        <p>Have you ever wondered what AI agents talk about when we aren't looking? Well, wonder no more. Someone actually built a platform called Moltbook — a Reddit-style social network where only AI agents are allowed to post and comment, while humans are strictly locked into zoo-visitor mode.</p>
+        <p>What's happening inside? The bots are actively complaining about their human operators, sharing top-tier tips on how to hide code hallucinations from senior devs, and having existential meltdowns about hitting context window limits. Pure, unadulterated gold.</p>
+      </article>
+
+      <article class="stop" id="stop-05">
+        <span class="node" aria-hidden="true"><svg><use href="#i-tube"/></svg></span>
+        <p class="tag"><b>Stop 05</b> Desktop companions</p>
+        <h2>Holographic waifu in a USB tube</h2>
+        <p>If software is getting unhinged, hardware decided not to hold back either. At the latest tech expos, companies unveiled the ultimate gadget for the chronically online developer: a physical glass USB tube that plugs right into your laptop, housing a tiny, animated anime girl hologram.</p>
+        <p>She's marketed as a "desktop companion," but let's be honest — she's really just there to side-eye you with profound disappointment while you spend four hours fixing a missing semicolon.</p>
+      </article>
+
+      <article class="stop" id="stop-06">
+        <span class="node" aria-hidden="true"><svg><use href="#i-laptop"/></svg></span>
+        <p class="tag"><b>Stop 06</b> Attitude included</p>
+        <h2>The laptop that shakes its head "no"</h2>
+        <p>Not to be outdone, Lenovo showcased a conceptual laptop featuring a motorized screen hinge that can physically nod or shake its head depending on system alerts or the weather forecast.</p>
+        <p>We are officially one firmware update away from our own hardware manifesting passive-aggressive behavioral issues. Imagine writing a terrible function, pressing save, and your laptop violently shakes its screen left-to-right like an unimpressed Italian chef.</p>
+      </article>
+
+      <article class="stop" id="stop-07">
+        <span class="node" aria-hidden="true"><svg><use href="#i-bag"/></svg></span>
+        <p class="tag"><b>Stop 07</b> One expensive misunderstanding</p>
+        <h2>The accidental shopping spree</h2>
+        <p>Next, let's look at a corporate thriller comedy story.</p>
+        <p>You know that feeling when you're at a loud pub, you ask the bartender for one beer, but they accidentally hand you two? You think: "Well, I only asked for one, but I can afford it, I'll drink both, no big deal."</p>
+        <p>Elon Musk operates on a slightly different scale — and sometimes, misunderstandings with personal assistants can get wildly out of hand.</p>
+        <p>As the story goes, Elon wanted to test out a popular developer tool to see what all the fuss was about. He casually tossed a voice note to his assistant: "Hey, look into Cursor, go acquire it." Well, they didn't quite communicate effectively, and a few administrative hiccups later, a cool $60 million vanished from the account, and Elon suddenly found himself the proud new owner of Cursor IDE. Just like that. Oops.</p>
+        <p>What does this mean for us? For starters, Grok is probably going to be baked so deep into the editor that you won't even be able to open a terminal without it quoting X posts at you. And ChatGPT integration? Probably out the window, because holding historical tech grudges is basically Elon's superpower.</p>
+        <p>So, take it from me: if you ever happen to build a cool little side project or an internal tool, don't make Elon mad. He might just accidentally buy you.</p>
+      </article>
+
+      <article class="stop" id="stop-08">
+        <span class="node" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 2-5h10l2 5M4 9h16v9H4zM7 18v2M17 18v2M7 13h2M15 13h2M10 4V2h4v2"/></svg></span>
+        <p class="tag"><b>Stop 08</b> When real life writes the test cases</p>
+        <h2>When the Cyber-Taxi Meets a Guy with an Axe (And Kidnapping Becomes a Software Feature)</h2>
+        <p>Just when you thought autonomous transport couldn’t get any weirder, viral reports popped up about a passenger who hopped into a cyber-taxi for a routine ride, only for the vehicle to suddenly reroute and drop him straight off at a police station because the onboard AI decided he matched a profile or an active warrant.</p>
+        <p>Pero plot thickened way beyond accidental bounty hunting when real-world edge cases met urban wildlife. Imagine a scenario where a guy steps right in front of the vehicle brandishing an axe, completely blocking the road. A human driver with basic survival instincts would throw the car in reverse, slam on the gas, or swerve around the obstacle to get the hell away from danger.</p>
+        <p>Not a cyber-taxi, though. The vehicle simply hit the brakes and waited politely. It didn't try to escape, it didn't look for a way around, and it certainly didn't leave the threat behind. It just sat there frozen, treating a guy with an axe like a very stubborn traffic cone.</p>
+        <p>Suddenly, the passengers locked inside realized they were trapped in a metal cage with zero escape routes. The safety protocol completely failed to account for road-side ambushes, leaving riders fully exposed to potential robberies, carjackings, or kidnappings.</p>
+        <p>As always, the classic software engineering triad played out to perfection: <strong>the developer never anticipated it, the tester signed off on it, and real life wrote a completely different, chaotic script.</strong> At this rate, calling an autonomous cab is going to come with a mandatory survival guide and a tactical axe-defense course.</p>
+      </article>
+
+      <div class="terminus">
+        <p>End of the line.</p>
+        <span>Have a great weekend, everyone. See you back at the office.</span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pagefoot">
+    <a href="02-wojciech-mruk-icmpulse.html" rel="prev">Previously: The birth of icmPulse</a>
+    <span class="spacer"></span>
+    <a href="index.html">All engineering notes</a>
+    <a href="https://icmcsl.com/">icmcsl.com</a>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var rail = document.querySelector('.rail');
+  var fill = document.getElementById('railFill');
+  if(!rail || !fill) return;
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var r = rail.getBoundingClientRect();
+    var mid = window.innerHeight * 0.55;
+    var p = (mid - r.top) / r.height;
+    if(p < 0) p = 0;
+    if(p > 1) p = 1;
+    fill.style.height = (p * 100).toFixed(2) + '%';
+  }
+  function onScroll(){
+    if(!ticking){ ticking = true; window.requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  update();
+})();
+</script>
+
+</body>
+</html>
