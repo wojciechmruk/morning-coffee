@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Line 04 — What if AI was built on Irish?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..125,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF;
+  --paper-2:#F0F7FF;
+  --ink:#0F172A;
+  --ink-soft:#475569;
+  --line:#0284C7;
+  --terminus:#0369A1;
+  --rule:rgba(2,132,199,.15);
+  --rail-dead:rgba(2,132,199,.12);
+  --shadow:rgba(2,132,199,.08);
+  --success:#16a34a;
+  --danger:#dc2626;
+  --sans:"Archivo",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.72;
+}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--line);outline-offset:3px;border-radius:2px}
+
+.shell{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* ---------- masthead ---------- */
+.masthead{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:22px 0 20px;border-bottom:1px solid var(--rule);
+}
+.badge{
+  font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:.01em;
+  font-variation-settings:"wdth" 112;
+  background:var(--line);color:#FFFFFF;
+  padding:4px 11px;border-radius:3px;
+}
+.masthead p{margin:0;font-family:var(--sans);font-size:14.5px;color:var(--ink-soft);font-weight:500}
+.masthead .spacer{flex:1}
+.brand{display:flex;align-items:center;flex:none}
+.brand img{display:block;height:32px;width:auto}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 8px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero-copy{min-width:0}
+.hero-image{
+  position:relative;isolation:isolate;width:85%;margin:0;justify-self:center;
+  overflow:hidden;
+  background:var(--paper);
+  border-radius:12px;
+}
+.hero-image img{
+  display:block;width:100%;height:auto;
+  border-radius:12px;
+}
+.hero h1{
+  font-family:var(--sans);
+  font-weight:800;
+  font-variation-settings:"wdth" 118;
+  font-size:clamp(2.45rem,5.5vw,4.2rem);
+  line-height:.98;
+  letter-spacing:-.025em;
+  margin:0 0 22px;
+  color:var(--ink);
+  text-wrap:balance;
+}
+.standfirst{
+  font-size:clamp(1.15rem,2.2vw,1.35rem);
+  line-height:1.5;max-width:44ch;margin:0 0 26px;color:var(--ink-soft);
+  font-style:italic;font-weight:300;
+}
+.byline{
+  font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--ink-soft);
+  display:flex;gap:18px;flex-wrap:wrap;margin:0;
+}
+.byline strong{color:var(--ink);font-weight:700}
+
+/* ---------- route map ---------- */
+.route{
+  margin:52px 0 0;padding:34px 30px 30px;
+  background:var(--paper-2);
+  border:1px solid var(--rule);
+  border-radius:6px;
+  box-shadow:0 2px 8px var(--shadow);
+}
+.route-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  flex-wrap:wrap;margin-bottom:34px;
+}
+.route-head h2{
+  font-family:var(--sans);font-weight:700;font-size:1.02rem;margin:0;
+  font-variation-settings:"wdth" 108;letter-spacing:.005em;color:var(--line);
+}
+.route-head span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+
+.stations{
+  list-style:none;margin:0;padding:0;position:relative;
+  display:grid;grid-template-columns:repeat(6,1fr);gap:0;
+}
+.stations::before{
+  content:"";position:absolute;left:8%;right:8%;top:19px;height:6px;
+  background:var(--line);border-radius:3px;
+}
+.stations li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.stations a{
+  text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:12px;
+  padding:0 6px;
+}
+.dot{
+  position:relative;z-index:2;
+  width:38px;height:38px;border-radius:50%;
+  background:var(--paper-2);border:4px solid var(--line);
+  display:grid;place-items:center;
+  font-family:var(--sans);font-weight:800;font-size:13.5px;color:var(--line);
+  transition:transform .18s ease,background .18s ease, color .18s ease;
+}
+.stations a:hover .dot{background:var(--line);color:#FFFFFF;transform:scale(1.12)}
+.stations li:last-child .dot{border-color:var(--terminus);color:var(--terminus)}
+.st-name{
+  font-family:var(--sans);font-size:13.5px;font-weight:600;line-height:1.28;
+  max-width:13ch;color:var(--ink);
+}
+.stations a:hover .st-name{text-decoration:underline;text-underline-offset:3px;color:var(--line)}
+.route-foot{
+  margin:30px 0 0;padding-top:18px;border-top:1px solid var(--rule);
+  font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500;
+}
+
+/* ---------- article rail ---------- */
+.article{padding:80px 0 0;position:relative}
+.rail-wrap{position:relative;padding-left:96px}
+.rail{
+  position:absolute;left:18px;top:14px;bottom:70px;width:6px;
+  background:var(--rail-dead);border-radius:3px;overflow:hidden;
+}
+.rail-fill{
+  display:block;width:100%;height:var(--progress,0%);
+  background:var(--line);border-radius:3px;
+}
+
+.stop{position:relative;padding-bottom:64px;scroll-margin-top:28px}
+.node{
+  position:absolute;left:-96px;top:2px;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--paper);border:4px solid var(--line);
+  display:grid;place-items:center;
+}
+.node svg{width:19px;height:19px;stroke:var(--line);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.stop:last-of-type .node{border-color:var(--terminus)}
+.stop:last-of-type .node svg{stroke:var(--terminus)}
+
+.tag{
+  font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--ink-soft);
+  margin:0 0 6px;display:flex;align-items:center;gap:9px;
+}
+.tag b{
+  color:var(--line);font-weight:800;
+  font-variation-settings:"wdth" 112;
+}
+.stop h2{
+  font-family:var(--sans);font-weight:700;
+  font-variation-settings:"wdth" 106;
+  font-size:clamp(1.55rem,3.3vw,2.2rem);
+  line-height:1.1;letter-spacing:-.018em;
+  margin:0 0 18px;max-width:22ch;text-wrap:balance;color:var(--ink);
+}
+.stop p{margin:0 0 20px;max-width:64ch}
+.stop p:last-child{margin-bottom:0}
+
+.slang{
+  font-family:var(--sans);font-weight:600;
+  font-size:clamp(1.05rem,2.2vw,1.35rem);
+  line-height:1.3;letter-spacing:-.015em;
+  margin:24px 0 24px;padding:16px 20px;
+  background:var(--paper-2);
+  border-left:5px solid var(--line);
+  border-radius:0 8px 8px 0;
+  color:var(--ink);
+  max-width:34ch;
+}
+
+/* ---------- TOOLTIPS (TECHNICAL TERMS) ---------- */
+.tech-term {
+  position: relative;
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.9em;
+  color: var(--line);
+  border-bottom: 2px dashed var(--line);
+  cursor: help;
+  padding: 0 2px;
+  background: rgba(2, 132, 199, 0.06);
+  border-radius: 3px;
+}
+
+.tech-term .tooltip-text {
+  visibility: hidden;
+  width: 250px;
+  background-color: var(--ink);
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 10px 12px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  pointer-events: none;
+}
+
+.tech-term .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--ink) transparent transparent transparent;
+}
+
+/* FIX: tooltip also on focus/active for touch devices */
+.tech-term:hover .tooltip-text,
+.tech-term:focus .tooltip-text,
+.tech-term:active .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ---------- CODE SNIPPET ---------- */
+.code-box {
+  background: var(--ink);
+  color: #F8FAFC;
+  font-family: monospace;
+  font-size: 13px;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 18px 0;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+.code-box .kw { color: #38BDF8; font-weight: bold; }
+.code-box .comment { color: #94A3B8; font-style: italic; }
+
+/* ---------- QUIZ ENGINE STYLES ---------- */
+.quiz-container {
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 28px;
+  margin-top: 24px;
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.quiz-option-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 14px 18px;
+  margin: 10px 0;
+  background: #FFFFFF;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.quiz-option-btn:hover:not(:disabled) {
+  border-color: var(--line);
+  background: #E0F2FE;
+}
+
+.quiz-option-btn.correct {
+  background: #DCFCE7 !important;
+  border-color: var(--success) !important;
+  color: #14532D !important;
+  font-weight: 700;
+}
+
+.quiz-option-btn.incorrect {
+  background: #FEE2E2 !important;
+  border-color: var(--danger) !important;
+  color: #7F1D1D !important;
+}
+
+.quiz-feedback-box {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.5;
+  display: none;
+}
+
+.quiz-next-btn {
+  margin-top: 18px;
+  padding: 10px 20px;
+  background: var(--line);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.quiz-next-btn:hover {
+  background: var(--terminus);
+}
+
+/* ---------- end ---------- */
+.terminus{
+  position:relative;margin-top:8px;padding:34px 0 0;border-top:1px solid var(--rule);
+}
+.terminus p{
+  font-family:var(--sans);font-weight:700;font-size:1.05rem;margin:0 0 4px;
+  color:var(--terminus);font-variation-settings:"wdth" 108;
+}
+.terminus span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+
+.pagefoot{
+  margin-top:60px;padding:26px 0 70px;border-top:1px solid var(--rule);
+  display:flex;gap:26px;flex-wrap:wrap;align-items:center;
+  font-family:var(--sans);font-size:14.5px;font-weight:500;
+}
+.pagefoot a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px}
+.pagefoot a:hover{color:var(--line);border-color:var(--line)}
+.pagefoot .spacer{flex:1}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr;gap:24px}
+  .hero h1{font-size:clamp(2.2rem,6vw,4rem)}
+  .hero-image{max-width:320px}
+  .route{padding:26px 20px 24px}
+  .stations{grid-template-columns:1fr;gap:0}
+  .stations::before{left:19px;right:auto;top:8%;bottom:8%;width:6px;height:auto}
+  .stations li{align-items:flex-start;text-align:left}
+  .stations a{flex-direction:row;align-items:center;gap:16px;padding:9px 0;width:100%}
+  .st-name{max-width:none;font-size:15px}
+}
+@media (max-width:640px){
+  body{font-size:17px}
+  .shell{padding:0 18px}
+  .hero{padding:40px 0 4px}
+  .rail-wrap{padding-left:0}
+  .rail{display:none}
+  .node{position:static;margin-bottom:14px}
+  .stop{padding-bottom:52px}
+  .stop h2{max-width:none}
+  .slang{max-width:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 9h13v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V9Z"/><path d="M17 10h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M8 5.5c0-1 1-1.2 1-2.2M12 5.5c0-1 1-1.2 1-2.2"/></symbol>
+  <symbol id="i-lightning" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 0-4.9 6 3.5 3.5 0 0 0-3.1 3.5 3.5 3.5 0 0 0 2 3.1 4.5 4.5 0 0 0 8 3.4 4.5 4.5 0 0 0 8-3.4 3.5 3.5 0 0 0 2-3.1 3.5 3.5 0 0 0-3.1-3.5A5 5 0 0 0 12 2z"/></symbol>
+  <symbol id="i-beer" viewBox="0 0 24 24"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M9 2v20"/><path d="M5 6h12v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+</svg>
+
+<div class="shell">
+
+  <!-- MASTHEAD WITH LOGO -->
+  <!-- FIX: unified numbering — removed duplicate "Post 04" vs "Insights #04" -->
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="ICM csl homepage"><img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl logo"></a>
+    <span class="badge">Post 04</span>
+    <p>ICM engineering notes</p>
+    <span class="spacer"></span>
+    <p>Friday Morning Coffee #04</p>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>What if Artificial Intelligence was built on Irish logic? 🇮🇪🤖</h1>
+      <p class="standfirst">Story, bud! Grab your cuppa, settle in, and let's explore why Gaeilge is secretly the most tech-native language on the planet.</p>
+      <p class="byline"><strong>Wojciech Mruk</strong> <span>Friday Morning Coffee</span> <span>Insights #04</span></p>
+    </div>
+    <figure class="hero-image">
+      <img src="images/04-friday-morning-coffee-face-irish.jpg" alt="Wojciech Mruk enjoying Friday Morning Coffee" width="2048" height="2048" decoding="async" fetchpriority="high">
+    </figure>
+  </section>
+
+  <!-- ROUTE MAP -->
+  <nav class="route" aria-label="Newsletter stations">
+    <div class="route-head">
+      <h2>Your Coffee Route</h2>
+      <span>Pick a stop to jump in</span>
+    </div>
+    <ul class="stations">
+      <li><a href="#stop-01"><span class="dot">01</span><span class="st-name">The Cuppa</span></a></li>
+      <li><a href="#stop-02"><span class="dot">02</span><span class="st-name">VSO Execution</span></a></li>
+      <li><a href="#stop-03"><span class="dot">03</span><span class="st-name">Contextual LLMs</span></a></li>
+      <li><a href="#stop-04"><span class="dot">04</span><span class="st-name">Pointer Systems</span></a></li>
+      <li><a href="#stop-05"><span class="dot">05</span><span class="st-name">Low-Resource AI</span></a></li>
+      <li><a href="#stop-06"><span class="dot">06</span><span class="st-name">AI Evaluator</span></a></li>
+    </ul>
+    <!-- FIX: "six minutes" -> "eight minutes" because quiz takes longer -->
+    <p class="route-foot">6 stops. One coffee. Roughly eight minutes end to end.</p>
+  </nav>
+
+  <main class="article">
+    <div class="rail-wrap">
+      <div class="rail" aria-hidden="true"><span class="rail-fill" id="railFill"></span></div>
+
+      <!-- STOP 1 -->
+      <article class="stop" id="stop-01">
+        <span class="node" aria-hidden="true"><svg><use href="#i-cup"/></svg></span>
+        <p class="tag"><b>Stop 01</b> Grab a mug</p>
+        <h2>Grand Morning, Team!</h2>
+        <p>Living and working in Ireland, we see <em>Gaeilge</em> on road signs, Irish Rail platforms, and government letters we pretend not to understand until the second notice. Most people assume it's just an ancient Celtic language kept alive by Gaeltacht school trips and exam stress.</p>
+        <p>But if you look at it through the lens of modern software engineering, cloud architecture, and <span class="tech-term" tabindex="0">LLMs<span class="tooltip-text">Large Language Models — AI systems like ChatGPT trained on massive text datasets to process and generate natural language.</span></span>... <strong>Irish is surprisingly tech-native.</strong> Sure look, ChatGPT acts way more like a lad from Connemara than a Silicon Valley engineer. Let me prove it to you over this morning's coffee.</p>
+      </article>
+
+      <!-- STOP 2 -->
+      <article class="stop" id="stop-02">
+        <span class="node" aria-hidden="true"><svg><use href="#i-lightning"/></svg></span>
+        <p class="tag"><b>Stop 02</b> VSO Syntax</p>
+        <h2>The Action-First Execution Pipeline</h2>
+        <p>In English or Dutch, you write: <code>Subject + Verb + Object</code> ("I write code"). Standard, human-centric, slightly defensive.</p>
+        <p>In Irish, the grammar strictly enforces <strong>Verb-Subject-Object (VSO)</strong>: <em>"Scríobhaimse an cód"</em>. Action first, then Actor, then Target.</p>
+        
+        <div class="code-box">
+          <span class="comment">// Standard English execution: Subject -> Action -> Target</span><br>
+          <span class="kw">User</span>.execute(Action.WRITE, Target.CODE);<br><br>
+          <span class="comment">// Irish VSO execution pipeline: Action -> Actor -> Target</span><br>
+          <span class="kw">scríobh</span>(actor: <span class="kw">mé</span>, target: <span class="kw">an_cód</span>);
+        </div>
+
+        <p class="slang">"Ah here, don't tell me who you are mate — execute the function first and we'll sort out who did it later!"</p>
+        <p>In pure IT terms, Irish operates natively like an <span class="tech-term" tabindex="0">Event-Driven Pipeline<span class="tooltip-text">An architecture where system actions are triggered directly by events, evaluating the 'what happened' immediately without waiting for actor state.</span></span>. It front-loads the execution without waiting to resolve actor context. Now we're sucking diesel!</p>
+      </article>
+
+      <!-- STOP 3 -->
+      <article class="stop" id="stop-03">
+        <span class="node" aria-hidden="true"><svg><use href="#i-chat"/></svg></span>
+        <p class="tag"><b>Stop 03</b> No Boolean Flags</p>
+        <h2>No "Yes" or "No": Context-Aware LLM Logic</h2>
+        <p>Did you know Irish doesn't actually have simple words for "Yes" or "No"? (Though you might hear formal books mention <em>sea / ní hea</em>, nobody uses them in daily conversation).</p>
+        <p>If <span class="tech-term" tabindex="0">yer man<span class="tooltip-text">Local Irish slang meaning 'that guy / that person'.</span></span> asks you in the pub on Friday: <em>"Did you deploy the build?"</em>, you don't say "Yes". You repeat the verb in context: <em>"I deployed."</em></p>
+        <p>Or better yet, if he asks: <em>"Will you fix that bug over the weekend?"</em>, you reply with the ultimate Irish context response: <strong>"I will, yeah."</strong></p>
+        <p class="slang">"I will, yeah" = Boolean FALSE, wrapped in layers of local sarcasm that requires full context evaluation.</p>
+        <p>This is exactly how <span class="tech-term" tabindex="0">Transformers<span class="tooltip-text">The deep learning architecture behind modern AI models that evaluates word relationships using contextual attention windows.</span></span> operate! AI doesn't just evaluate raw <span class="tech-term" tabindex="0">Boolean<span class="tooltip-text">A binary data type that can only hold one of two values: true or false.</span></span> flags; it evaluates entire contextual prompt windows. OpenAI spent billions discovering what Irish speakers knew all along.</p>
+      </article>
+
+      <!-- STOP 4 -->
+      <article class="stop" id="stop-04">
+        <span class="node" aria-hidden="true"><svg><use href="#i-brain"/></svg></span>
+        <p class="tag"><b>Stop 04</b> State Management</p>
+        <h2>Pointer Systems ("On Me" Architecture)</h2>
+        <p>In English, you say: <em>"I am angry"</em> or <em>"I am hungry"</em>, mutating your object memory directly. In Irish, states are not inherent properties of your base instance. They are temporary attributes attached to you:</p>
+        
+        <!-- FIX: added tooltips for Irish phrases -->
+        <ul>
+          <li><code>"Tá fearg orm"</code> → <strong>"Anger is ON me."</strong> <span class="tech-term" tabindex="0">(Irish)<span class="tooltip-text">Literally "There is anger on me" — state is expressed as a temporary attribute, not a permanent property.</span></span></li>
+          <li><code>"Tá ocras orm"</code> → <strong>"Hunger is ON me."</strong> <span class="tech-term" tabindex="0">(Irish)<span class="tooltip-text">Same pattern: hunger is "on" you, not inside you. The "on me" structure mirrors a pointer reference.</span></span></li>
+          <li><code>"Tá áthas orm"</code> → <strong>"Joy is ON me."</strong> <span class="tech-term" tabindex="0">(Irish)<span class="tooltip-text">Joy is an external attribute attached to your session — like a decorator wrapping your object.</span></span></li>
+        </ul>
+
+        <p class="slang">"Look at the state of it! It's grand though, the Garbage Collector will detach it later."</p>
+        <p>This is literally how <span class="tech-term" tabindex="0">Pointers<span class="tooltip-text">A variable that stores the memory address of another value rather than the value itself.</span></span> and <span class="tech-term" tabindex="0">Decorators<span class="tooltip-text">A design pattern that allows adding new functionality to an existing object dynamically without altering its structure.</span></span> work. Emotional state isn't hardcoded into your base object state; it’s an external parameter attached to your current session. When the process finishes (or you get a tea), the <span class="tech-term" tabindex="0">Garbage Collector<span class="tooltip-text">An automatic memory management feature that reclaims memory occupied by objects no longer in use.</span></span> detaches the attribute cleanly without mutating <strong>base object state</strong>.</p>
+      </article>
+
+      <!-- STOP 5 -->
+      <article class="stop" id="stop-05">
+        <span class="node" aria-hidden="true"><svg><use href="#i-beer"/></svg></span>
+        <p class="tag"><b>Stop 05</b> Low-Data Engineering</p>
+        <h2>Low-Resource AI & The Ultimate Frontier</h2>
+        <!-- FIX: *eclipsis* -> <em>eclipsis</em> (was Markdown leftover) -->
+        <p>From an <span class="tech-term" tabindex="0">NLP<span class="tooltip-text">Natural Language Processing — a field of AI focused on enabling computers to understand, interpret, and generate human language.</span></span> perspective, Irish is a <strong>Low-Resource Language</strong>. Training AI models on Irish is tough: there are no massive web-scraping datasets, native speaker training corpora are small, and Irish morphology has complex initial mutations (<em>eclipsis</em> and <em>lenition</em>).</p>
+        <p>Engineers at Trinity College Dublin (the ABAIR project) are using state-of-the-art synthetic data generation and cross-lingual transfer learning to optimize models on tiny token budgets.</p>
+        <p>Sure look, next time your code compiles on the first try, remember: you might just be thinking in ancient Irish logic without knowing it.</p>
+      </article>
+
+      <!-- STOP 6 (10-QUESTION STEP-BY-STEP QUIZ) -->
+      <article class="stop" id="stop-06">
+        <span class="node" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+        <p class="tag"><b>Stop 06</b> Interactive Check</p>
+        <h2>How AI Views Irish Logic — 10-Step Evaluator</h2>
+        <p>Test your knowledge step-by-step before your coffee gets cold!</p>
+
+        <div class="quiz-container">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; font-family:var(--sans); font-size:12px; font-weight:700; color:var(--line);">
+            <span>AI_EVALUATOR_TASK</span>
+            <span id="quiz-step-counter">QUESTION 01 / 10</span>
+          </div>
+
+          <p id="quiz-question-text" style="font-family: var(--sans); font-weight: 700; font-size: 15px; margin-top:0; color:var(--ink);">Loading question...</p>
+
+          <div id="quiz-options-box">
+            <!-- Dynamic button options -->
+          </div>
+
+          <div id="quiz-feedback-box" class="quiz-feedback-box">
+            <div id="quiz-feedback-content"></div>
+            <button id="quiz-next-btn" class="quiz-next-btn" onclick="nextQuizQuestion()">NEXT QUESTION →</button>
+          </div>
+
+          <div id="quiz-final-box" style="display:none; text-align:center; padding:10px 0;">
+            <h3 style="font-family:var(--sans); font-size:20px; color:var(--ink); margin-bottom:8px;">Evaluation Complete!</h3>
+            <p id="quiz-final-score" style="font-family:var(--sans); font-size:14px; color:var(--line); font-weight:700; margin-bottom:16px;"></p>
+            <button class="quiz-next-btn" onclick="restartQuiz()">RE-INITIALIZE EVALUATOR</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- FIX: added translations for Slán go fóill and Sláinte -->
+      <div class="terminus">
+        <p>Slán go fóill (Bye for now) & Sláinte (Cheers)! 🍻</p>
+        <span>Go raibh maith agat (Thank you) for reading. Have a brilliant weekend, enjoy quiet servers, and see you on Monday! Sound!</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- FIX: added aria-label for accessibility -->
+  <footer class="pagefoot">
+    <a href="#" aria-label="Back to top">← Back to top</a>
+    <span class="spacer"></span>
+    <a href="https://icmcsl.com/">icmcsl.com</a>
+  </footer>
+
+</div>
+
+<script>
+// Rail progress indicator
+(function(){
+  var rail = document.querySelector('.rail');
+  var fill = document.getElementById('railFill');
+  if(!rail || !fill) return;
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var r = rail.getBoundingClientRect();
+    var mid = window.innerHeight * 0.55;
+    var p = (mid - r.top) / r.height;
+    if(p < 0) p = 0;
+    if(p > 1) p = 1;
+    fill.style.height = (p * 100).toFixed(2) + '%';
+  }
+  function onScroll(){
+    if(!ticking){ ticking = true; window.requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  update();
+})();
+
+// 10-Question Interactive Sequential Quiz
+// FIX: questions 5, 8, 9, 10 replaced with ones that derive from the article
+const quizDataset = [
+  {
+    // FIX: Scríobhaimse -> scríobhaimse (lowercase per Irish grammar)
+    q: "1. How does an AI execution engine interpret the Irish sentence 'scríobhaimse an cód'?",
+    opts: [
+      "Syntax Error: Subject missing at index 0.",
+      "Command Pattern: Verb executes instantly as a direct pipeline action.",
+      "Low-priority string variable."
+    ],
+    correct: 1,
+    explain: "LOG: VSO syntax front-loads the verb action direct to the pipeline execution node without waiting for subject resolution."
+  },
+  {
+    q: "2. What does the Irish phrase 'I will, yeah' translate to in AI contextual state evaluation?",
+    opts: [
+      "Boolean TRUE = Process will execute immediately.",
+      "Boolean FALSE = Contextual sarcasm overrides literal token value.",
+      "Null pointer exception."
+    ],
+    correct: 1,
+    explain: "LOG: Sarcasm detected! In Irish context-aware logic, 'I will, yeah' evaluates prompt tone to return FALSE."
+  },
+  {
+    q: "3. In Irish state management, how is 'Tá fearg orm' (Anger is on me) handled in memory?",
+    opts: [
+      "User.IsAngry = true (Mutate core entity state)",
+      "Attach temporary 'Anger' attribute pointer to session without mutating base object.",
+      "Delete object from memory."
+    ],
+    correct: 1,
+    explain: "LOG: Pointers & Decorators pattern confirmed. State is attached dynamically to the session instance."
+  },
+  {
+    q: "4. Why is Irish classified as a 'Low-Resource Language' in NLP AI training?",
+    opts: [
+      "Limited training corpora and complex initial mutations (eclipsis/lenition).",
+      "Irish cannot be converted into binary UTF-8.",
+      "GPUs refuse to process Celtic syntax."
+    ],
+    correct: 0,
+    explain: "LOG: Scarcity of digital tokens requires synthetic data generation and cross-lingual transfer learning."
+  },
+  // FIX: replaced old Q5 (AST) with a question grounded in Stop 02
+  {
+    q: "5. In the article's English-vs-Irish code comparison, how does the Irish VSO pipeline differ from standard English execution?",
+    opts: [
+      "It front-loads the action before resolving the actor context.",
+      "It compiles the subject before any verb is parsed.",
+      "It stores the object as a global variable."
+    ],
+    correct: 0,
+    explain: "LOG: Irish VSO acts like an Event-Driven Pipeline — the verb (action) executes first, actor context is resolved later."
+  },
+  {
+    q: "6. What happens when 'Tá ocras orm' (Hunger is on me) finishes execution?",
+    opts: [
+      "The Garbage Collector cleanly detaches the attribute reference.",
+      "The memory leak crashes the server.",
+      "State mutates into a permanent property."
+    ],
+    correct: 0,
+    explain: "LOG: Clean unallocation! Temporary memory references are freed without modifying base class structure."
+  },
+  {
+    q: "7. Why do Large Language Models struggle with binary answers in Irish?",
+    opts: [
+      "Irish lacks simple binary Yes/No words and requires full verb context.",
+      "LLMs only understand English.",
+      "Binary flags are blocked by Irish firewalls."
+    ],
+    correct: 0,
+    explain: "LOG: Transformer attention windows re-evaluate full context rather than returning raw binary flags."
+  },
+  // FIX: replaced old Q8 (Functional Programming) with a question grounded in Stop 03
+  {
+    q: "8. According to the article, why is 'I deployed' preferred over 'Yes' in Irish conversation?",
+    opts: [
+      "Because Irish repeats the verb in context instead of using a Boolean flag.",
+      "Because 'Yes' is considered rude in Irish pubs.",
+      "Because the verb carries the answer's tense and subject."
+    ],
+    correct: 0,
+    explain: "LOG: Context-aware logic! Irish answers by re-evaluating the verb state rather than returning a raw Boolean."
+  },
+  // FIX: replaced old Q9 (prepositional pronouns) with a question grounded in Stop 04
+  {
+    q: "9. What does the 'orm' in 'Tá fearg orm' literally translate to?",
+    opts: [
+      "'On me' — the state is attached to the session, not the base object.",
+      "'Inside me' — the state is a permanent property.",
+      "'Without me' — the state is external and detached."
+    ],
+    correct: 0,
+    explain: "LOG: 'Orm' = 'on me'. The state is a temporary pointer reference, exactly like a decorator on a session object."
+  },
+  // FIX: replaced old Q10 (verdict) with a question grounded in Stop 05
+  {
+    q: "10. What are engineers at Trinity College Dublin (ABAIR project) doing to train Irish AI models?",
+    opts: [
+      "Using synthetic data generation and cross-lingual transfer learning.",
+      "Manually typing every Irish sentence into the model.",
+      "Translating all Irish text into English first."
+    ],
+    correct: 0,
+    explain: "LOG: Low-resource engineering! Synthetic data + cross-lingual transfer optimizes models on tiny token budgets."
+  }
+];
+
+let currentQIdx = 0;
+let quizScore = 0;
+
+function renderQuizStep() {
+  const qData = quizDataset[currentQIdx];
+  document.getElementById('quiz-step-counter').innerText = `QUESTION ${String(currentQIdx + 1).padStart(2, '0')} / 10`;
+  document.getElementById('quiz-question-text').innerText = qData.q;
+  
+  const optsBox = document.getElementById('quiz-options-box');
+  optsBox.innerHTML = '';
+  
+  const feedbackBox = document.getElementById('quiz-feedback-box');
+  feedbackBox.style.display = 'none';
+
+  qData.opts.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-option-btn';
+    btn.innerText = opt;
+    btn.onclick = () => selectQuizOption(btn, idx);
+    optsBox.appendChild(btn);
+  });
+}
+
+function selectQuizOption(selectedBtn, idx) {
+  const qData = quizDataset[currentQIdx];
+  const allBtns = document.querySelectorAll('.quiz-option-btn');
+  
+  allBtns.forEach(btn => btn.disabled = true);
+
+  const feedbackBox = document.getElementById('quiz-feedback-box');
+  const feedbackContent = document.getElementById('quiz-feedback-content');
+
+  if (idx === qData.correct) {
+    quizScore++;
+    selectedBtn.classList.add('correct');
+    feedbackBox.style.background = '#DCFCE7';
+    feedbackBox.style.color = '#14532D';
+    feedbackBox.style.border = '1px solid #16a34a';
+    feedbackContent.innerHTML = `<strong>Correct!</strong> ${qData.explain}`;
+  } else {
+    selectedBtn.classList.add('incorrect');
+    allBtns[qData.correct].classList.add('correct');
+    feedbackBox.style.background = '#FEE2E2';
+    feedbackBox.style.color = '#7F1D1D';
+    feedbackBox.style.border = '1px solid #dc2626';
+    feedbackContent.innerHTML = `<strong>Incorrect!</strong> ${qData.explain}`;
+  }
+
+  feedbackBox.style.display = 'block';
+}
+
+function nextQuizQuestion() {
+  currentQIdx++;
+  if (currentQIdx < quizDataset.length) {
+    renderQuizStep();
+  } else {
+    showQuizFinal();
+  }
+}
+
+function showQuizFinal() {
+  document.getElementById('quiz-question-text').style.display = 'none';
+  document.getElementById('quiz-options-box').style.display = 'none';
+  document.getElementById('quiz-feedback-box').style.display = 'none';
+  document.getElementById('quiz-step-counter').style.display = 'none';
+
+  const finalBox = document.getElementById('quiz-final-box');
+  document.getElementById('quiz-final-score').innerText = `SYSTEM EVALUATION SCORE: ${quizScore} / 10`;
+  finalBox.style.display = 'block';
+}
+
+function restartQuiz() {
+  currentQIdx = 0;
+  quizScore = 0;
+  document.getElementById('quiz-question-text').style.display = 'block';
+  document.getElementById('quiz-options-box').style.display = 'block';
+  document.getElementById('quiz-step-counter').style.display = 'block';
+  document.getElementById('quiz-final-box').style.display = 'none';
+  renderQuizStep();
+}
+
+// Initializing Quiz
+renderQuizStep();
+</script>
+
+</body>
+</html>
