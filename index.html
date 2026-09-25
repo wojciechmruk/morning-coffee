@@ -4,198 +4,523 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Engineering Notes — Wojciech Mruk — ICM csl</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        paper: '#FFFFFF',
-                        panel: '#F6F5FA',
-                        panel2: '#EFEBFC',
-                        hairline: '#E3E1EA',
-                        fog: '#5C5A68',
-                        ink: '#14131C',
-                        violet: '#6D3FF0',
-                        violetdim: '#D9CCFB',
-                        amber: '#B4650F',
-                        red: '#C43F3F',
-                        green: '#1E8F5D',
-                        blue: '#1D6FC4',
-                    },
-                    fontFamily: {
-                        display: ['"Space Grotesk"', 'sans-serif'],
-                        body: ['Inter', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'monospace'],
-                    }
-                }
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..125,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #FFFFFF;
+            --paper-2: #F8F7F5;
+            --ink: #0F172A;
+            --ink-soft: #475569;
+            --line-blue: #0284C7;
+            --line-gold: #F0B429;
+            --line-violet: #6D3FF0;
+            --rule: rgba(2, 132, 199, 0.12);
+            --shadow: rgba(2, 132, 199, 0.06);
+            --sans: "Archivo", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+            --serif: "Newsreader", Georgia, "Times New Roman", serif;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --paper: #0F172A;
+                --paper-2: #1E293B;
+                --ink: #E2E8F0;
+                --ink-soft: #94A3B8;
+                --rule: rgba(2, 132, 199, 0.2);
+                --shadow: rgba(2, 132, 199, 0.15);
             }
         }
-    </script>
-    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: #FFFFFF;
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--serif);
+            font-size: 18px;
+            line-height: 1.72;
+            overflow-x: hidden;
         }
 
-        .glow {
-            box-shadow: 0 0 0 1px rgba(109,63,240,0.12), 0 20px 50px -24px rgba(109,63,240,0.28);
+        img {
+            max-width: 100%;
+            display: block;
         }
 
-        ::selection {
-            background: #D9CCFB;
-            color: #14131C;
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--line-blue);
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+
+        .shell {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            padding: 28px 0 26px;
+            border-bottom: 1px solid var(--rule);
+            margin-bottom: 48px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: none;
+        }
+
+        .brand img {
+            height: 32px;
+            width: auto;
+        }
+
+        .brand-text {
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--ink-soft);
+            text-transform: uppercase;
+        }
+
+        header .spacer {
+            flex: 1;
+        }
+
+        .masthead-note {
+            font-family: var(--sans);
+            font-size: 12.5px;
+            color: var(--ink-soft);
+            font-weight: 500;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            padding: 24px 0 56px;
+            margin-bottom: 48px;
+        }
+
+        .hero h1 {
+            font-family: var(--sans);
+            font-weight: 800;
+            font-variation-settings: "wdth" 118;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin: 0 0 20px;
+            color: var(--ink);
+            text-wrap: balance;
+        }
+
+        .hero-tagline {
+            font-family: var(--sans);
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-weight: 500;
+            font-variation-settings: "wdth" 108;
+            color: var(--ink-soft);
+            margin: 0;
+            max-width: 52ch;
+        }
+
+        /* ========== LINES SECTION ========== */
+        .lines-intro {
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--line-blue);
+            margin: 0 0 32px;
+        }
+
+        .lines-grid {
+            display: grid;
+            gap: 28px;
+            margin-bottom: 60px;
+        }
+
+        /* ========== POST CARD ========== */
+        .line {
+            position: relative;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--rule);
+            background: var(--paper-2);
+            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 1px 3px var(--shadow);
+            overflow: hidden;
+        }
+
+        .line::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 6px;
+            height: 100%;
+            background: currentColor;
+            opacity: 0;
+            transition: opacity 0.28s ease;
+        }
+
+        .line:hover {
+            border-color: currentColor;
+            box-shadow: 0 8px 24px var(--shadow);
+            transform: translateY(-2px);
+        }
+
+        .line:hover::before {
+            opacity: 1;
+        }
+
+        .line.line-blue {
+            color: var(--line-blue);
+        }
+
+        .line.line-gold {
+            color: var(--line-gold);
+        }
+
+        .line.line-violet {
+            color: var(--line-violet);
+        }
+
+        /* Line number and date */
+        .line-meta {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 18px;
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .line-number {
+            font-size: 18px;
+            font-weight: 800;
+            font-variation-settings: "wdth" 125;
+        }
+
+        .line-date {
+            color: var(--ink-soft);
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        /* Line title */
+        .line h2 {
+            font-family: var(--sans);
+            font-weight: 800;
+            font-variation-settings: "wdth" 118;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+            margin: 0 0 16px;
+            color: var(--ink);
+        }
+
+        .line a {
+            position: relative;
+            display: inline-block;
+        }
+
+        .line a::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: currentColor;
+            opacity: 0.6;
+            transition: width 0.28s ease;
+        }
+
+        .line:hover a::after {
+            width: 100%;
+        }
+
+        /* Line description */
+        .line-description {
+            font-family: var(--serif);
+            font-size: clamp(1rem, 1.5vw, 1.05rem);
+            line-height: 1.64;
+            color: var(--ink-soft);
+            margin: 0 0 26px;
+            max-width: 62ch;
+        }
+
+        /* Line tags and cta */
+        .line-footer {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 18px;
+            padding-top: 22px;
+            border-top: 1px solid var(--rule);
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .line-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 5px 12px;
+            border: 1px solid var(--rule);
+            border-radius: 4px;
+            background: var(--paper);
+            color: var(--ink-soft);
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.18s ease;
+        }
+
+        .line:hover .tag {
+            border-color: currentColor;
+            background: var(--paper-2);
+        }
+
+        .line-cta {
+            margin-left: auto;
+            color: currentColor;
+            font-weight: 700;
+            font-variation-settings: "wdth" 110;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .line:hover .line-cta {
+            transform: translateX(4px);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            border-top: 1px solid var(--rule);
+            padding: 40px 0;
+            margin-top: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        footer img {
+            height: 28px;
+            width: auto;
+            opacity: 0.7;
+        }
+
+        footer a {
+            font-family: var(--sans);
+            font-size: 13px;
+            color: var(--ink-soft);
+            font-weight: 500;
+            transition: color 0.18s ease;
+        }
+
+        footer a:hover {
+            color: var(--ink);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 640px) {
+            .line {
+                padding: 28px 20px;
+            }
+
+            .line-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+
+            .line-cta {
+                margin-left: 0;
+            }
+
+            .line-meta {
+                gap: 12px;
+            }
+
+            header {
+                margin-bottom: 32px;
+            }
+
+            .hero {
+                padding: 16px 0 40px;
+                margin-bottom: 32px;
+            }
         }
     </style>
 </head>
-<body class="bg-paper text-ink font-body antialiased min-h-screen flex flex-col justify-between">
-
-    <header class="border-b border-hairline">
-        <div class="max-w-4xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl" class="h-7 w-auto" />
-                <span class="font-mono text-xs text-fog tracking-tight">/ engineering notes</span>
+<body>
+    <div class="shell">
+        <header>
+            <div class="brand">
+                <img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl" />
+                <div class="brand-text">ICM csl</div>
             </div>
-            <span class="font-mono text-xs text-fog hidden sm:block">engineering notes</span>
-        </div>
-    </header>
+            <div class="spacer"></div>
+            <span class="masthead-note">Engineering Notes by Wojciech Mruk</span>
+        </header>
 
-    <!-- HERO SECTION -->
-    <section class="max-w-4xl mx-auto px-6 pt-16 pb-8 w-full">
-        <div class="inline-flex items-center gap-2 rounded-full border border-hairline bg-panel px-3 py-1 text-xs text-fog mb-6">
-            <span class="h-1.5 w-1.5 rounded-full bg-violet"></span>
-            Wojciech Mruk &bull; Personal AI & Engineering Front-line Notes
-        </div>
-        <h1 class="font-display text-4xl sm:text-5xl font-semibold leading-[1.1] text-ink">
-            Engineering Notes
-            <span class="text-fog block mt-2 text-2xl sm:text-3xl font-normal">Evolution, AI-Augmented Workflows & System Modernization</span>
-        </h1>
-        <p class="mt-4 text-fog text-base leading-relaxed max-w-2xl">
-            A collection of personal front-line notes on modernizing software, AI tools integration, and building internal engineering solutions at ICM csl.
-        </p>
-    </section>
+        <section class="hero">
+            <h1>Engineering Notes</h1>
+            <p class="hero-tagline">Evolution, AI-Augmented Workflows &amp; System Modernization</p>
+        </section>
 
-    <!-- POSTS INDEX -->
-    <main class="max-w-4xl mx-auto px-6 py-8 w-full space-y-6">
+        <div class="lines-intro">📍 Active Lines</div>
 
-        <h2 class="font-mono text-xs text-violet font-semibold uppercase tracking-wider">Chapters & Articles</h2>
-
-        <div class="grid gap-6">
-
-            <!-- POST 04 -->
-            <article class="bg-panel rounded-2xl p-6 sm:p-8 border border-hairline hover:border-violet transition-all group glow">
-                <div class="flex items-center justify-between gap-4 mb-3 font-mono text-xs">
-                    <span class="text-violet font-bold">Post 04</span>
-                    <span class="text-fog">Gaeilge &amp; IT / Friday Morning Coffee</span>
+        <main class="lines-grid">
+            <!-- LINE 04 -->
+            <article class="line line-blue">
+                <div class="line-meta">
+                    <span class="line-number">04</span>
+                    <span class="line-date">Friday Morning Coffee</span>
                 </div>
-                <h3 class="font-display text-2xl font-semibold text-ink group-hover:text-violet transition-colors">
-                    <a href="04-wojciech-mruk-irish-ai.html" class="focus:outline-none">
+                <h2>
+                    <a href="04-wojciech-mruk-irish-ai.html">
                         What if Artificial Intelligence was built on Irish logic? 🇮🇪🤖
                     </a>
-                </h3>
-                <p class="mt-2 text-fog text-sm leading-relaxed">
+                </h2>
+                <p class="line-description">
                     Exploring why Irish (Gaeilge) is secretly the most tech-native language: VSO execution pipelines, context-aware LLM logic without booleans, pointer systems, and low-resource AI engineering.
                 </p>
-                <div class="mt-6 flex flex-wrap gap-4 items-center justify-between pt-4 border-t border-hairline text-xs font-mono">
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2.5 py-0.5 rounded bg-paper border border-hairline text-fog">#Gaeilge</span>
-                        <span class="px-2.5 py-0.5 rounded bg-paper border border-hairline text-fog">#LLM</span>
-                        <span class="px-2.5 py-0.5 rounded bg-paper border border-hairline text-fog">#FridayCoffee</span>
+                <div class="line-footer">
+                    <div class="line-tags">
+                        <span class="tag">#Gaeilge</span>
+                        <span class="tag">#LLM</span>
+                        <span class="tag">#NLP</span>
                     </div>
-                    <a href="04-wojciech-mruk-irish-ai.html" class="text-violet font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                        Read Post 04 &rarr;
+                    <a href="04-wojciech-mruk-irish-ai.html" class="line-cta">
+                        Read Line 04
+                        <span>→</span>
                     </a>
                 </div>
             </article>
 
-            <!-- POST 03 -->
-            <article class="bg-panel rounded-2xl p-6 sm:p-8 border border-hairline hover:border-violet transition-all group glow">
-                <div class="flex items-center justify-between gap-4 mb-3 font-mono text-xs">
-                    <span class="text-violet font-bold">Post 03</span>
-                    <span class="text-fog">Digital Press / Friday Morning Coffee</span>
+            <!-- LINE 03 -->
+            <article class="line line-gold">
+                <div class="line-meta">
+                    <span class="line-number">03</span>
+                    <span class="line-date">Digital Press</span>
                 </div>
-                <h3 class="font-display text-2xl font-semibold text-ink group-hover:text-violet transition-colors">
-                    <a href="03-wojciech-mruk-digital-press.html" class="focus:outline-none">
+                <h2>
+                    <a href="03-wojciech-mruk-digital-press.html">
                         From Secret AI Slang to Elon's Mistake
                     </a>
-                </h3>
-                <p class="mt-2 text-fog text-sm leading-relaxed">
+                </h2>
+                <p class="line-description">
                     Eight stops through the weird side of AI: secret bot slang, Moltbook, holographic companions, one very expensive misunderstanding, and cyber-taxi trouble. Grab your coffee and hop aboard.
                 </p>
-                <div class="mt-6 flex flex-wrap gap-4 items-center justify-between pt-4 border-t border-hairline text-xs font-mono">
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2.5 py-0.5 rounded bg-paper border border-hairline text-fog">#AI</span>
-                        <span class="px-2.5 py-0.5 rounded bg-paper border border-hairline text-fog">#DigitalPress</span>
-                        <span class="px-2.5 py-0.5 rounded bg-paper border border-hairline text-fog">#MorningCoffee</span>
+                <div class="line-footer">
+                    <div class="line-tags">
+                        <span class="tag">#AI</span>
+                        <span class="tag">#Culture</span>
+                        <span class="tag">#Tech</span>
                     </div>
-                    <a href="03-wojciech-mruk-digital-press.html" class="text-violet font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                        Read Post 03 &rarr;
+                    <a href="03-wojciech-mruk-digital-press.html" class="line-cta">
+                        Read Line 03
+                        <span>→</span>
                     </a>
                 </div>
             </article>
 
-            <!-- POST 02 -->
-            <article class="bg-panel rounded-2xl p-6 sm:p-8 border border-hairline hover:border-violet transition-all group glow">
-                <div class="flex items-center justify-between gap-4 mb-3 font-mono text-xs">
-                    <span class="text-violet font-bold">Post 02</span>
-                    <span class="text-fog">icmPulse</span>
+            <!-- LINE 02 -->
+            <article class="line line-violet">
+                <div class="line-meta">
+                    <span class="line-number">02</span>
+                    <span class="line-date">icmPulse</span>
                 </div>
-                <h3 class="font-display text-2xl font-semibold text-ink group-hover:text-violet transition-colors">
-                    <a href="02-wojciech-mruk-icmpulse.html" class="focus:outline-none">
+                <h2>
+                    <a href="02-wojciech-mruk-icmpulse.html">
                         Chapter 2: The Birth of icmPulse (and the end of playing Indiana Jones)
                     </a>
-                </h3>
-                <p class="mt-2 text-fog text-sm leading-relaxed">
+                </h2>
+                <p class="line-description">
                     Moving away from fragmented Excel sheets to a unified employee self-service portal: timesheets, leave requests, directory, and AI assistant.
                 </p>
-                <div class="mt-6 flex items-center justify-between pt-4 border-t border-hairline text-xs font-mono">
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2.5 py-0.5 rounded bg-paper border border-hairline text-fog">#icmPulse</span>
-                        <span class="px-2.5 py-0.5 rounded bg-paper border border-hairline text-fog">#ESS</span>
-                        <span class="px-2.5 py-0.5 rounded bg-paper border border-hairline text-fog">#MichaelJackson</span>
+                <div class="line-footer">
+                    <div class="line-tags">
+                        <span class="tag">#icmPulse</span>
+                        <span class="tag">#ESS</span>
+                        <span class="tag">#Internal</span>
                     </div>
-                    <a href="02-wojciech-mruk-icmpulse.html" class="text-violet font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                        Read Post 02 &rarr;
+                    <a href="02-wojciech-mruk-icmpulse.html" class="line-cta">
+                        Read Line 02
+                        <span>→</span>
                     </a>
                 </div>
             </article>
 
-            <!-- POST 01 -->
-            <article class="bg-panel rounded-2xl p-6 sm:p-8 border border-hairline hover:border-violet transition-all group glow">
-                <div class="flex items-center justify-between gap-4 mb-3 font-mono text-xs">
-                    <span class="text-violet font-bold">Post 01</span>
-                    <span class="text-fog">AI Journey</span>
+            <!-- LINE 01 -->
+            <article class="line line-blue">
+                <div class="line-meta">
+                    <span class="line-number">01</span>
+                    <span class="line-date">AI Journey</span>
                 </div>
-                <h3 class="font-display text-2xl font-semibold text-ink group-hover:text-violet transition-colors">
-                    <a href="01-wojciech-mruk-ai-start.html" class="focus:outline-none">
+                <h2>
+                    <a href="01-wojciech-mruk-ai-start.html">
                         From Rubber Duck to ADHD Savant
                     </a>
-                </h3>
-                <p class="mt-2 text-fog text-sm leading-relaxed">
+                </h2>
+                <p class="line-description">
                     AI is not just ChatGPT. It's a whole map of labs, models, and mediums. A personal story of navigating the AI revolution from 2022 to terminal agents.
                 </p>
-                <div class="mt-6 flex items-center justify-between pt-4 border-t border-hairline text-xs font-mono">
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2.5 py-0.5 rounded bg-paper border border-hairline text-fog">#AI</span>
-                        <span class="px-2.5 py-0.5 rounded bg-paper border border-hairline text-fog">#ClaudeCode</span>
-                        <span class="px-2.5 py-0.5 rounded bg-paper border border-hairline text-fog">#Cursor</span>
+                <div class="line-footer">
+                    <div class="line-tags">
+                        <span class="tag">#AI</span>
+                        <span class="tag">#ClaudeCode</span>
+                        <span class="tag">#Evolution</span>
                     </div>
-                    <a href="01-wojciech-mruk-ai-start.html" class="text-violet font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                        Read Post 01 &rarr;
+                    <a href="01-wojciech-mruk-ai-start.html" class="line-cta">
+                        Read Line 01
+                        <span>→</span>
                     </a>
                 </div>
             </article>
+        </main>
+    </div>
 
-        </div>
-    </main>
-
-    <footer class="border-t border-hairline mt-12">
-        <div class="max-w-4xl mx-auto px-6 py-8 flex items-center justify-between">
-            <img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl" class="h-6 w-auto opacity-70" />
-            <a href="https://icmcsl.com/" class="font-mono text-xs text-fog hover:text-ink transition-colors">icmcsl.com</a>
-        </div>
+    <footer class="shell">
+        <img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl" />
+        <a href="https://icmcsl.com/">icmcsl.com</a>
     </footer>
 </body>
 </html>
