@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Line 05 — The Company Shed and the Seven Stray Bullets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..125,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF;
+  --paper-2:#F0F7FF;
+  --ink:#0F172A;
+  --ink-soft:#475569;
+  --line:#0284C7;
+  --terminus:#0369A1;
+  --rule:rgba(2,132,199,.15);
+  --rail-dead:rgba(2,132,199,.12);
+  --shadow:rgba(2,132,199,.08);
+  --success:#16a34a;
+  --danger:#dc2626;
+  --sans:"Archivo",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.72;
+}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--line);outline-offset:3px;border-radius:2px}
+
+.shell{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* ---------- masthead ---------- */
+.masthead{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:22px 0 20px;border-bottom:1px solid var(--rule);
+}
+.badge{
+  font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:.01em;
+  font-variation-settings:"wdth" 112;
+  background:var(--line);color:#FFFFFF;
+  padding:4px 11px;border-radius:3px;
+}
+.masthead p{margin:0;font-family:var(--sans);font-size:14.5px;color:var(--ink-soft);font-weight:500}
+.masthead .spacer{flex:1}
+.brand{display:flex;align-items:center;flex:none}
+.brand img{display:block;height:32px;width:auto}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 8px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero-copy{min-width:0}
+.hero-image{
+  position:relative;isolation:isolate;width:85%;margin:0;justify-self:center;
+  overflow:hidden;
+  background:var(--paper);
+  border-radius:12px;
+}
+.hero-image img{
+  display:block;width:100%;height:auto;
+  border-radius:12px;
+}
+.hero h1{
+  font-family:var(--sans);
+  font-weight:800;
+  font-variation-settings:"wdth" 118;
+  font-size:clamp(2.45rem,5.5vw,4.2rem);
+  line-height:.98;
+  letter-spacing:-.025em;
+  margin:0 0 22px;
+  color:var(--ink);
+  text-wrap:balance;
+}
+.standfirst{
+  font-size:clamp(1.15rem,2.2vw,1.35rem);
+  line-height:1.5;max-width:44ch;margin:0 0 26px;color:var(--ink-soft);
+  font-style:italic;font-weight:300;
+}
+.byline{
+  font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--ink-soft);
+  display:flex;gap:18px;flex-wrap:wrap;margin:0;
+}
+.byline strong{color:var(--ink);font-weight:700}
+
+/* ---------- route map ---------- */
+.route{
+  margin:52px 0 0;padding:34px 30px 30px;
+  background:var(--paper-2);
+  border:1px solid var(--rule);
+  border-radius:6px;
+  box-shadow:0 2px 8px var(--shadow);
+}
+.route-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  flex-wrap:wrap;margin-bottom:34px;
+}
+.route-head h2{
+  font-family:var(--sans);font-weight:700;font-size:1.02rem;margin:0;
+  font-variation-settings:"wdth" 108;letter-spacing:.005em;color:var(--line);
+}
+.route-head span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+
+.stations{
+  list-style:none;margin:0;padding:0;position:relative;
+  display:grid;grid-template-columns:repeat(6,1fr);gap:0;
+}
+.stations::before{
+  content:"";position:absolute;left:8%;right:8%;top:19px;height:6px;
+  background:var(--line);border-radius:3px;
+}
+.stations li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.stations a{
+  text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:12px;
+  padding:0 6px;
+}
+.dot{
+  position:relative;z-index:2;
+  width:38px;height:38px;border-radius:50%;
+  background:var(--paper-2);border:4px solid var(--line);
+  display:grid;place-items:center;
+  font-family:var(--sans);font-weight:800;font-size:13.5px;color:var(--line);
+  transition:transform .18s ease,background .18s ease, color .18s ease;
+}
+.stations a:hover .dot{background:var(--line);color:#FFFFFF;transform:scale(1.12)}
+.stations li:last-child .dot{border-color:var(--terminus);color:var(--terminus)}
+.st-name{
+  font-family:var(--sans);font-size:13.5px;font-weight:600;line-height:1.28;
+  max-width:13ch;color:var(--ink);
+}
+.stations a:hover .st-name{text-decoration:underline;text-underline-offset:3px;color:var(--line)}
+.route-foot{
+  margin:30px 0 0;padding-top:18px;border-top:1px solid var(--rule);
+  font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500;
+}
+
+/* ---------- article rail ---------- */
+.article{padding:80px 0 0;position:relative}
+.rail-wrap{position:relative;padding-left:96px}
+.rail{
+  position:absolute;left:18px;top:14px;bottom:70px;width:6px;
+  background:var(--rail-dead);border-radius:3px;overflow:hidden;
+}
+.rail-fill{
+  display:block;width:100%;height:var(--progress,0%);
+  background:var(--line);border-radius:3px;
+}
+
+.stop{position:relative;padding-bottom:64px;scroll-margin-top:28px}
+.node{
+  position:absolute;left:-96px;top:2px;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--paper);border:4px solid var(--line);
+  display:grid;place-items:center;
+}
+.node svg{width:19px;height:19px;stroke:var(--line);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.stop:last-of-type .node{border-color:var(--terminus)}
+.stop:last-of-type .node svg{stroke:var(--terminus)}
+
+.tag{
+  font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--ink-soft);
+  margin:0 0 6px;display:flex;align-items:center;gap:9px;
+}
+.tag b{
+  color:var(--line);font-weight:800;
+  font-variation-settings:"wdth" 112;
+}
+.stop h2{
+  font-family:var(--sans);font-weight:700;
+  font-variation-settings:"wdth" 106;
+  font-size:clamp(1.55rem,3.3vw,2.2rem);
+  line-height:1.1;letter-spacing:-.018em;
+  margin:0 0 18px;max-width:22ch;text-wrap:balance;color:var(--ink);
+}
+.stop p{margin:0 0 20px;max-width:64ch}
+.stop p:last-child{margin-bottom:0}
+
+.slang{
+  font-family:var(--sans);font-weight:600;
+  font-size:clamp(1.05rem,2.2vw,1.35rem);
+  line-height:1.3;letter-spacing:-.015em;
+  margin:24px 0 24px;padding:16px 20px;
+  background:var(--paper-2);
+  border-left:5px solid var(--line);
+  border-radius:0 8px 8px 0;
+  color:var(--ink);
+  max-width:34ch;
+}
+
+/* ---------- TOOLTIPS (TECHNICAL TERMS) ---------- */
+.tech-term {
+  position: relative;
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.9em;
+  color: var(--line);
+  border-bottom: 2px dashed var(--line);
+  cursor: help;
+  padding: 0 2px;
+  background: rgba(2, 132, 199, 0.06);
+  border-radius: 3px;
+}
+
+.tech-term .tooltip-text {
+  visibility: hidden;
+  width: 250px;
+  background-color: var(--ink);
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 10px 12px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  pointer-events: none;
+}
+
+.tech-term .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--ink) transparent transparent transparent;
+}
+
+/* FIX: tooltip also on focus/active for touch devices */
+.tech-term:hover .tooltip-text,
+.tech-term:focus .tooltip-text,
+.tech-term:active .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ---------- CODE SNIPPET ---------- */
+.code-box {
+  background: var(--ink);
+  color: #F8FAFC;
+  font-family: monospace;
+  font-size: 13px;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 18px 0;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+.code-box .kw { color: #38BDF8; font-weight: bold; }
+.code-box .comment { color: #94A3B8; font-style: italic; }
+
+/* ---------- QUIZ ENGINE STYLES ---------- */
+.quiz-container {
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 28px;
+  margin-top: 24px;
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.quiz-option-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 14px 18px;
+  margin: 10px 0;
+  background: #FFFFFF;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.quiz-option-btn:hover:not(:disabled) {
+  border-color: var(--line);
+  background: #E0F2FE;
+}
+
+.quiz-option-btn.correct {
+  background: #DCFCE7 !important;
+  border-color: var(--success) !important;
+  color: #14532D !important;
+  font-weight: 700;
+}
+
+.quiz-option-btn.incorrect {
+  background: #FEE2E2 !important;
+  border-color: var(--danger) !important;
+  color: #7F1D1D !important;
+}
+
+.quiz-feedback-box {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.5;
+  display: none;
+}
+
+.quiz-next-btn {
+  margin-top: 18px;
+  padding: 10px 20px;
+  background: var(--line);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.quiz-next-btn:hover {
+  background: var(--terminus);
+}
+
+/* ---------- end ---------- */
+.terminus{
+  position:relative;margin-top:8px;padding:34px 0 0;border-top:1px solid var(--rule);
+}
+.terminus p{
+  font-family:var(--sans);font-weight:700;font-size:1.05rem;margin:0 0 4px;
+  color:var(--terminus);font-variation-settings:"wdth" 108;
+}
+.terminus span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+
+.pagefoot{
+  margin-top:60px;padding:26px 0 70px;border-top:1px solid var(--rule);
+  display:flex;gap:26px;flex-wrap:wrap;align-items:center;
+  font-family:var(--sans);font-size:14.5px;font-weight:500;
+}
+.pagefoot a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px}
+.pagefoot a:hover{color:var(--line);border-color:var(--line)}
+.pagefoot .spacer{flex:1}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr;gap:24px}
+  .hero h1{font-size:clamp(2.2rem,6vw,4rem)}
+  .hero-image{max-width:320px}
+  .route{padding:26px 20px 24px}
+  .stations{grid-template-columns:1fr;gap:0}
+  .stations::before{left:19px;right:auto;top:8%;bottom:8%;width:6px;height:auto}
+  .stations li{align-items:flex-start;text-align:left}
+  .stations a{flex-direction:row;align-items:center;gap:16px;padding:9px 0;width:100%}
+  .st-name{max-width:none;font-size:15px}
+}
+@media (max-width:640px){
+  body{font-size:17px}
+  .shell{padding:0 18px}
+  .hero{padding:40px 0 4px}
+  .rail-wrap{padding-left:0}
+  .rail{display:none}
+  .node{position:static;margin-bottom:14px}
+  .stop{padding-bottom:52px}
+  .stop h2{max-width:none}
+  .slang{max-width:none}
+}
+
+.hero{grid-template-columns:1fr}
+.stop ul,.stop ol{margin:0 0 20px;padding-left:1.3em;max-width:64ch}
+.stop li{margin-bottom:8px}
+.stop li::marker{color:var(--line);font-weight:700}
+.slang.wide{max-width:none}
+.tbl{overflow-x:auto;margin:22px 0;border:1px solid var(--rule);border-radius:10px}
+.tbl table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:14px;line-height:1.45}
+.tbl th{background:var(--line);color:#fff;text-align:left;padding:10px 14px;font-weight:700}
+.tbl td{padding:10px 14px;border-top:1px solid var(--rule);vertical-align:top}
+.tbl tr:nth-child(even) td{background:var(--paper-2)}
+.code-box pre{margin:0;font:inherit;white-space:pre}
+@media (min-width:821px){
+  .stations{grid-template-columns:repeat(11,1fr)}
+  .stations::before{left:4.5%;right:4.5%}
+  .st-name{font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 9h13v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V9Z"/><path d="M17 10h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M8 5.5c0-1 1-1.2 1-2.2M12 5.5c0-1 1-1.2 1-2.2"/></symbol>
+  <symbol id="i-lightning" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 0-4.9 6 3.5 3.5 0 0 0-3.1 3.5 3.5 3.5 0 0 0 2 3.1 4.5 4.5 0 0 0 8 3.4 4.5 4.5 0 0 0 8-3.4 3.5 3.5 0 0 0 2-3.1 3.5 3.5 0 0 0-3.1-3.5A5 5 0 0 0 12 2z"/></symbol>
+  <symbol id="i-beer" viewBox="0 0 24 24"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M9 2v20"/><path d="M5 6h12v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 16.5 14 18.5 21 12 17 5.5 21 7.5 14 2 9.5 9 9"/></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></symbol><symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 22V3"/><path d="M5 4h13l-2 4 2 4H5"/></symbol><symbol id="i-map" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></symbol>
+</svg>
+
+<div class="shell">
+
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="ICM csl homepage"><img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl logo"></a>
+    <span class="badge">Post 05</span>
+    <p>ICM engineering notes</p>
+    <span class="spacer"></span>
+    <p>Friday Morning Coffee #05</p>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>The Company Shed and the Seven Stray Bullets 🤠☕</h1>
+      <p class="standfirst">A Wild West guide to finding the current version of anything.</p>
+      <p class="byline"><strong>Wojciech Mruk</strong> <span>Friday Morning Coffee</span> <span>Insights #05</span></p>
+    </div>
+    <!-- Optional hero photo (restore 2-column hero by removing the ".hero{grid-template-columns:1fr}" override):
+    <figure class="hero-image"><img src="images/05-friday-morning-coffee-face-wildwest.jpg" alt="Wojciech Mruk enjoying Friday Morning Coffee" width="2048" height="2048"></figure> -->
+  </section>
+
+  <nav class="route" aria-label="Newsletter stations">
+    <div class="route-head">
+      <h2>Your Coffee Route</h2>
+      <span>Pick a stop to jump in</span>
+    </div>
+    <ul class="stations">
+      <li><a href="#stop-01"><span class="dot">01</span><span class="st-name">Saddle up</span></a></li>
+      <li><a href="#stop-02"><span class="dot">02</span><span class="st-name">The shed</span></a></li>
+      <li><a href="#stop-03"><span class="dot">03</span><span class="st-name">General store</span></a></li>
+      <li><a href="#stop-04"><span class="dot">04</span><span class="st-name">Wanted poster</span></a></li>
+      <li><a href="#stop-05"><span class="dot">05</span><span class="st-name">Town library</span></a></li>
+      <li><a href="#stop-06"><span class="dot">06</span><span class="st-name">Sheriff&#x27;s logbook</span></a></li>
+      <li><a href="#stop-07"><span class="dot">07</span><span class="st-name">Other roads</span></a></li>
+      <li><a href="#stop-08"><span class="dot">08</span><span class="st-name">Price list</span></a></li>
+      <li><a href="#stop-09"><span class="dot">09</span><span class="st-name">Town map</span></a></li>
+      <li><a href="#stop-10"><span class="dot">10</span><span class="st-name">Wagon train</span></a></li>
+      <li><a href="#stop-11"><span class="dot">11</span><span class="st-name">Sunset</span></a></li>
+    </ul>
+    <p class="route-foot">11 stops. One big pot of coffee. Roughly fifteen minutes end to end.</p>
+  </nav>
+
+  <main class="article">
+    <div class="rail-wrap">
+      <div class="rail" aria-hidden="true"><span class="rail-fill" id="railFill"></span></div>
+
+      <article class="stop" id="stop-01">
+        <span class="node" aria-hidden="true"><svg><use href="#i-cup"/></svg></span>
+        <p class="tag"><b>Stop 01</b> Welcome aboard</p>
+        <h2>Saddle up</h2>
+        <p>Hi everyone,</p>
+        <p><strong>WANTED: the current version of that form or procedure. Dead or alive.</strong></p>
+        <p>Last seen in <code>leave_request_v3_FINAL2_really.xlsx</code>? In a Teams message from six months ago? Or in the head of the colleague who's on holiday and took the whole map with him?</p>
+        <p>Our company has always had a bit of a Wild West spirit. We value freedom, flexibility and riding off without a ten-page rulebook. That's a strength, but sometimes our tools and habits haven't kept up with the size of the town. So today we're doing something different: a proper tour of the general store. How other companies keep their knowledge from dying in inboxes, which tools they use (most of them free), and a small, reversible plan for us. Saddle up, and grab a bigger mug than usual.</p>
+      </article>
+
+      <article class="stop" id="stop-02">
+        <span class="node" aria-hidden="true"><svg><use href="#i-chat"/></svg></span>
+        <p class="tag"><b>Stop 02</b> We know this feeling</p>
+        <h2>The shed at the edge of town</h2>
+        <p>Let's start with an honest look at what we have today. Before we ride to the store, we should name the problem.</p>
+        <p>Recently, I was browsing our shared drives and thought of the classic household junk drawer: old cables, mysterious screws and chargers for devices nobody owns anymore. Or a garden shed where you know the perfect tool is somewhere… but finding it takes half a day. Our network drive can feel like that: an abandoned mining town, folders added over the years by prospectors long gone, <code>New folder (2)</code> and <code>to-sort-FINAL</code> swinging on their hinges in the wind, and sometimes nobody left to ask what a file was even for.</p>
+        <p>In a lot of companies, a project lives in an email thread. "Re: Re: RE: FWD: contract_v3_final_popr" isn't an anecdote, it's the document management system. Who has the latest version? Whoever replied last. Unless they opened yesterday's attachment.</p>
+        <p>Every frontier town has its outlaws. We have three, and you'll know them all.</p>
+        <p><strong>Outlaw #1: the 11 a.m. coffee ambush (context dies in conversations).</strong> Some of our best ideas start in the saloon over coffee. But when tasks are handed out in passing, they gallop off in all directions. The other day, I was handed seven informal tasks on the move. Seven tasks. From a six-shooter. Somebody reloaded. I'm still trying to reconstruct what all of them were, and I suspect a few bullets are still roaming free. A decision made in a hallway is a decision nobody else can see, and searching starts with "I can't remember who said that."</p>
+        <p><strong>Outlaw #2: the version lottery.</strong> One sheet for holidays, one for timesheets, one for projects, and three people working on three copies of the same file. Someone overwrites the report before anyone notices it was outdated, like a claim jumper who didn't know the claim was already staked. Suddenly Friday afternoon is gone, spent assembling an Excel jigsaw puzzle.</p>
+        <p><strong>Outlaw #3: bus factor = 1.</strong> One person knows how the backup is configured and where the licence keys live. That person's holiday is a wall (and no stagecoach is coming). Add the <strong>password rodeo</strong>, a login in Teams, a password on WhatsApp and a sticky note on the monitor for backup, and you've got a lawless town. An approved password manager is a much safer place to lock up shared credentials.</p>
+        <p>A fair note: email and Teams are not the enemy. Email is the Pony Express: wonderful at delivering a message, terrible as a filing cabinet. The trouble starts when a stream of conversations has to be a task tracker, a decision log, a knowledge base and an archive all at once. Those are different jobs, and it's worth separating them. As an old engineering rule says:</p>
+        <p class="slang wide"><em>If documentation exists only in people's heads, it isn't documentation. It's risk.</em></p>
+      </article>
+
+      <article class="stop" id="stop-03">
+        <span class="node" aria-hidden="true"><svg><use href="#i-brain"/></svg></span>
+        <p class="tag"><b>Stop 03</b> how other companies do it</p>
+        <h2>The general store</h2>
+        <p>Broadly speaking, companies have split into a few camps, and each solves the same problem: how to make decisions and knowledge outlive the conversation that produced them. Over the past decade, three pillars have emerged. They aren't random goods on a shelf. They're three answers to three different questions:</p>
+        <div class="tbl"><table><thead><tr><th>Question</th><th>Pillar</th><th>Examples</th></tr></thead><tbody><tr><td>"What needs doing, by whom, and by when?"</td><td>Tasks and projects (the sheriff's office)</td><td>Jira, Trello, Asana, Linear, Plane, OpenProject</td></tr><tr><td>"How does it work, and where is it written down?"</td><td>Knowledge base / wiki (the town library)</td><td>Confluence, Notion, BookStack, Wiki.js, Outline</td></tr><tr><td>"What changed, and why this way and not another?"</td><td>Code and change history (the sheriff's logbook)</td><td>Git + well-kept commits and decision records</td></tr></tbody></table></div>
+        <p>For us, I'd add a fourth shelf: <strong>"What needs approving?"</strong>, meaning leave, timesheets, requests and forms. Think of it as the land office, where the paperwork gets stamped. That's where <strong>ICM Pulse</strong> comes in, once we decide to roll it out. If other admin paperwork turns up along the way, it will probably find its home there too.</p>
+        <p>And here's the key observation: no company "rolled out Jira" and watched its problems evaporate. A tool doesn't fix anything by itself. A badge doesn't make a sheriff, the habit does. The tool just <em>enforces a habit</em>: writing things down where everyone can find them. So the one rule I'll repeat all the way to the end:</p>
+        <p><strong>One home for each type of information, available without asking.</strong></p>
+      </article>
+
+      <article class="stop" id="stop-04">
+        <span class="node" aria-hidden="true"><svg><use href="#i-star"/></svg></span>
+        <p class="tag"><b>Stop 04</b> Jira: the story of one ticket</p>
+        <h2>The wanted poster</h2>
+        <p>In the Wild West, a wanted poster had a face, a bounty and a sheriff on the case. A good ticket is the same: an ID, a priority, an owner and a deadline. The difference is easiest to feel through an example. Imagine a client reports: "the invoice shows the wrong amount." Here's how the same situation plays out in two worlds.</p>
+        <p><strong>World 1: our inbox.</strong> The client emails Ann. Ann replies "I'll look into it," files the thread into her archive and… that's it. Two weeks later the issue rides back into town as an escalation. Nobody knows when the problem was first reported, who picked it up, or why it stalled. The single source of truth is Ann's mailbox. (Sorry, Ann. You're a composite character. You are all Ann.)</p>
+        <p><strong>World 2: a board.</strong> The same report is now a poster on the sheriff's wall, a ticket, say <code>FIN-231</code>: type <em>Bug</em>, priority <em>High</em>, assigned to Ann, with a due date, the client's description and an <em>invoicing</em> label. Ann drags it from <em>Backlog</em> to <em>In progress</em> and comments: "VAT rounding bug on invoices from the first half of the year." A week later the status reads <em>In testing</em>. A month later, anyone can replay the ticket's full history: what happened, when, and why. And crucially, people who never knew about the outlaw can see the poster too, because the board is on the wall of the town square, not in one person's saddlebag.</p>
+        <p><strong>What do we take from this?</strong> We don't need to copy Jira wholesale. The idea is what matters: every commitment gets a <em>visible body</em> (an ID, an owner, a status, a deadline) instead of sinking to the bottom of an inbox. This is where our seven bullets should land. Seven posters, seven sheriffs, zero strays.</p>
+      </article>
+
+      <article class="stop" id="stop-05">
+        <span class="node" aria-hidden="true"><svg><use href="#i-book"/></svg></span>
+        <p class="tag"><b>Stop 05</b> Confluence: a wiki that survives</p>
+        <h2>The town library</h2>
+        <p>The second pillar is knowledge: how something is configured, what we agreed with a client, what the procedure is. This is Confluence territory, and the territory of its many counterparts.</p>
+        <p>Every frontier town had one building where the maps, the land deeds and the rules were kept. Ours is the wiki: the place you go <em>instead of</em> asking the old-timer at the saloon who happens to remember everything. (Which, not coincidentally, is exactly the bus factor problem.)</p>
+        <p>A typical well-run company looks like this: the IT team writes a page called "New employee onboarding." Everything sits in one place: accounts, VPN, mailbox, the printer (yes, the printer too). An employee who rides in six months later doesn't ask anyone "how did that VPN thing work again?" They open the page, read it, and get on with their day. When the procedure changes, someone edits the relevant section, and the version history shows exactly what changed and who changed it.</p>
+        <p>The key habit is <strong>link, don't copy.</strong> Instead of keeping five versions of a procedure in five places, there is one page that other pages, tickets and client emails all link to. Knowledge lives once, not five times, like a single well in the middle of town instead of five muddy puddles.</p>
+        <p><strong>The test of a good wiki:</strong> a new hire should be able to answer three questions in ten minutes. How do I connect to the VPN? Where is the invoice template? What do I do when the server goes down? If it takes longer, or requires "catching someone" at the saloon, the library isn't working yet.</p>
+      </article>
+
+      <article class="stop" id="stop-06">
+        <span class="node" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+        <p class="tag"><b>Stop 06</b> Git: the oldest documentation</p>
+        <h2>The sheriff's logbook</h2>
+        <p>A good sheriff kept a logbook: who rode in, who rode out, what was decided. Not because he loved paperwork, but because six months later somebody would ask, "Why did we let him go?"</p>
+        <p>Developers have kept exactly this kind of logbook for years without ever calling it documentation. It's the change history in a repository, and it may be the best example the rest of the company can borrow. In Git, every change is a <em>commit</em>: a short message, an author, a date, and the full history of what changed and why. Nobody asks "who overwrote the server config?" The answer is sitting in the log. (Git deserves a whole separate issue, so stay tuned.)</p>
+        <p>Mature teams also keep <strong>ADRs</strong> (Architecture Decision Records): short files that read "we chose X because Y; we rejected Z because…" That's precisely where the answer lives to the question asked a year later: <em>"why didn't we go with the approach you proposed back then?"</em></p>
+        <p>And here's the most interesting part: this mechanism requires no IT department. You can keep a logbook for contract templates, price lists or job postings the same way. All it takes is a repository and the habit of writing down what changed.</p>
+        <p><strong>A rule worth stealing:</strong> every significant decision gets a short record in a fixed place. What we agreed, when, why, and what we rejected. One ADR takes fifteen minutes to write and saves hours of re-litigating a year later.</p>
+      </article>
+
+      <article class="stop" id="stop-07">
+        <span class="node" aria-hidden="true"><svg><use href="#i-lightning"/></svg></span>
+        <p class="tag"><b>Stop 07</b> Trello, Notion and friends</p>
+        <h2>Other roads out of town</h2>
+        <p>Jira and Confluence aren't the only trails. Plenty of companies, smaller ones especially, took the path of least resistance:</p>
+        <ul><li><strong>Trello</strong> is three columns on a board: to do, doing, done. It's the pocket notebook of the West. Its simplicity is such that boards have survived in many companies for years, despite the missing reports and advanced features.</li><li><strong>Notion</strong> went further: a wiki and a database in one, blurring the line between "document" and "table." The general store that sells everything, from horseshoes to hats.</li><li><strong>Asana</strong> and <strong>Linear</strong> stay firmly in the tasks camp but compete on polish. The well-groomed horses of the frontier.</li><li><strong>Basecamp</strong> makes a bold claim: a project is a to-do list plus communication plus documents, closed into one place. A one-stop wagon.</li></ul>
+        <p>There's also one more road, and few people say it out loud: <strong>email + discipline.</strong> Companies with one client and two employees ride it happily. It works, until the town grows. Then they land exactly where Stop 02 began, and start shopping for a tool.</p>
+        <p><strong>What does this survey teach us?</strong> There is no single right trail. There is one clearly wrong one: making no choice at all. A company that never decided where knowledge lives <em>has</em> decided. It's just that the decision was chaos. A town that never chose a sheriff has chosen one anyway: whoever's fastest on the draw.</p>
+      </article>
+
+      <article class="stop" id="stop-08">
+        <span class="node" aria-hidden="true"><svg><use href="#i-beer"/></svg></span>
+        <p class="tag"><b>Stop 08</b> free plans, honestly</p>
+        <h2>The price list</h2>
+        <p>Before you ride to the general store, check your purse. Good news: we can self-host whatever we like, so we don't need to pay a per-seat subscription for everything, and most of the goods on this shelf are free. Free as in a free horse, though: no price tag, but somebody has to feed it. Here are the most interesting options and their trade-offs, minus the marketing:</p>
+        <div class="tbl"><table><thead><tr><th>Tool</th><th>Where it fits us</th><th>Free tier</th><th>Trade-offs</th></tr></thead><tbody><tr><td><strong>Plane</strong></td><td>Jira-style tasks and projects: board, cycles, project modules</td><td>Open source, self-hosted for free; the cloud edition has a free tier for small teams</td><td>Self-hosting needs a server and someone to look after it (backups included)</td></tr><tr><td><strong>OpenProject</strong></td><td>Project management with Gantt charts, time tracking and a wiki</td><td>Community edition on our own server, no user limit</td><td>A denser interface; the Enterprise edition holds features Community lacks</td></tr><tr><td><strong>BookStack</strong></td><td>A classic wiki: books → chapters → pages. Ideal for procedures and onboarding</td><td>Open source, self-hosted for free</td><td>A less polished editor than Notion; no databases</td></tr><tr><td><strong>Wiki.js</strong></td><td>A modern wiki with a Markdown editor and strong search</td><td>Open source, self-hosted for free</td><td>Initial setup is less friendly to non-technical users</td></tr><tr><td><strong>Outline</strong></td><td>A wiki close to Notion in feel: fast, backlinks, excellent editor</td><td>Open source; full functionality wants an SSO provider</td><td>Needs a few more moving parts than BookStack</td></tr><tr><td><strong>Trello</strong></td><td>The simplest kanban boards, for "right now" task lists</td><td>Free plan with unlimited cards, up to 10 boards per workspace</td><td>Reporting and automations are limited on the free plan</td></tr><tr><td><strong>Git + a file repo</strong></td><td>History for templates, price lists, procedures and ADRs</td><td>Self-hosted GitLab CE or Gitea for free, or GitHub Free in the cloud</td><td>A higher entry barrier for non-technical people than a wiki</td></tr></tbody></table></div>
+        <p>If you'd rather stay in the cloud, Jira and Confluence both have free plans for small teams (up to 10 users at the time of writing). As always, prices on the shelf change often, so check the current terms before you buy.</p>
+      </article>
+
+      <article class="stop" id="stop-09">
+        <span class="node" aria-hidden="true"><svg><use href="#i-map"/></svg></span>
+        <p class="tag"><b>Stop 09</b> how to organise knowledge</p>
+        <h2>The town map</h2>
+        <p>The tool is half the battle. The other half is convention: where things live and what they're called. The key is separating three kinds of content that we currently throw into a single saddlebag:</p>
+        <ul><li><strong>Tasks</strong> have an owner, a status and a deadline. They live briefly, like a posse that rides out and returns.</li><li><strong>Knowledge</strong>, meaning procedures, how-tos and decisions, lives long and gets updated.</li><li><strong>The archive</strong>, meaning contracts, invoices and formal documents, never changes. It just has to be findable.</li></ul>
+        <p>Or, as a map of the town: the saloon is for talking (Teams, email). The library is for knowing (the wiki). The sheriff's office is for the work (the board). The vault is for the gold (the archive). The wiki becomes the town's <em>brain</em>, and the drive becomes the <em>vault</em>:</p>
+        <div class="code-box"><pre><span class="comment">Wiki (BookStack / Outline) — the town library</span>
+
+Company/
+├── 01-Onboarding/
+│   ├── first-day.md
+│   └── accounts-and-access.md
+├── 02-Procedures/
+│   ├── invoicing.md
+│   └── server-outage.md
+├── 03-Clients/
+│   ├── acme/
+│   │   ├── contacts.md
+│   │   └── agreements-2026.md
+│   └── beta-corp/
+├── 04-Decisions-ADR/
+│   ├── ADR-001-self-hosting.md
+│   └── ADR-002-task-tool.md
+└── 05-Templates/
+    ├── proposal.md
+    └── acceptance-report.md</pre></div>
+        <div class="code-box"><pre><span class="comment">Network drive (archive only) — the vault</span>
+
+\\server\archive\
+├── 2026/
+│   ├── contracts/
+│   │   └── acme-contract-2026-03.pdf
+│   ├── invoices/
+│   └── acceptance-reports/
+└── _certificates-and-licences/</pre></div>
+        <p><strong>The rule: the wiki explains how, the drive holds what.</strong> If a file has versions, the wiki (or Git) describes it. Never <code>final_v3</code>.</p>
+        <p>Three naming rules keep the map readable, so nobody gets lost between the saloon and the bank:</p>
+        <ol><li><strong>Numeric prefixes.</strong> <code>01-</code>, <code>02-</code>, <code>03-</code> force an order that survives alphabetical sorting, for folders and wiki pages alike.</li><li><strong>ISO dates.</strong> <code>2026-03-14</code>, never "14.03" or "March 14." They sort identically on every system and are never ambiguous.</li><li><strong>Tags instead of subfolders.</strong> Cap nesting at three levels. Everything else is context carried by tags (<code>#invoicing</code> <code>#acme</code> <code>#outage</code>) for filtering in search.</li></ol>
+        <p>And a template for pages that don't rot. Every wiki page starts with three fields:</p>
+        <div class="code-box"><pre><span class="comment">Owner:          (a person, not "the team")</span>
+Last reviewed:  (a date)
+Status:         current / needs review / archived (Boot Hill)</pre></div>
+        <p>Without these, any wiki turns into a ghost town within two years: tumbleweeds rolling through stale instructions that nobody dares to touch.</p>
+      </article>
+
+      <article class="stop" id="stop-10">
+        <span class="node" aria-hidden="true"><svg><use href="#i-flag"/></svg></span>
+        <p class="tag"><b>Stop 10</b> what we can do</p>
+        <h2>The wagon train</h2>
+        <p>A concrete plan to start with: free, reversible, and without a revolution. And here's the first rule of the trail: <strong>don't move the whole wagon train. Start with one wagon.</strong> Three steps we can complete within a month without pausing day-to-day work.</p>
+        <p><strong>Step 1 · Weeks 1–2: one tool for tasks (the sheriff's office).</strong><br>Plane (first choice) or OpenProject, hosted on our own machine, because that freedom is the point. We start with a single "Company" project and three columns: To do, In progress, Done. Nothing gets migrated wholesale. We begin with live work only, and the seven bullets from the coffee ambush are the first seven posters on the wall.</p>
+        <p><strong>Step 2 · Weeks 2–3: a wiki with ten pages (the town library).</strong><br>BookStack (for simplicity) or Outline (for comfort). The ten most-asked-about topics: onboarding, VPN, invoicing, templates, outages. Every page gets an owner and a last-reviewed date. This alone should cut the number of questions landing in inboxes.</p>
+        <p><strong>Step 3 · Weeks 3–4: decisions and a tidy vault.</strong><br>Start the <code>04-Decisions-ADR</code> folder and the naming convention. From today, every significant decision goes into the logbook in a fixed place, and the network drive becomes an archive of source documents only. Forms and requests stay on their own shelf at the land office, waiting for ICM Pulse.</p>
+        <p>Five rules of the trail, without which none of this works:</p>
+        <ol><li><strong>One home per type of information.</strong> Email stops being a warehouse. It stays the Pony Express.</li><li><strong>Write where everyone can see</strong>, not wherever happened to be convenient.</li><li><strong>Every page and every task has an owner.</strong> "Someone" means nobody.</li><li><strong>Migrate in slices.</strong> We don't haul ten years of history across the prairie. We archive it on Boot Hill and move on.</li><li><strong>A quarterly review:</strong> thirty minutes to check page statuses and clear out the tumbleweeds.</li></ol>
+        <p>One honest caveat: "free" doesn't mean "effortless." Self-hosting means someone owns backups, updates and recovery. Plan for that person before the wagons roll.</p>
+      </article>
+
+      <article class="stop" id="stop-11">
+        <span class="node" aria-hidden="true"><svg><use href="#i-cup"/></svg></span>
+        <p class="tag"><b>Stop 11</b> the best time was yesterday</p>
+        <h2>Ride into the sunset</h2>
+        <p>This isn't about our current style being "bad." It worked while we were a small town and everyone knew everything about everyone. But every town that grows hits the same moment: more knowledge than one head can hold. The ones that commit to a system at that moment make a leap. The ones that wait pay for it later, in escalations, in lost context, and in the nerves of the people who "hold it all together."</p>
+        <p>The best time to build a sheriff's office was before the first stagecoach got robbed. The second best time is today.</p>
+        <p>The good news: we don't need a digital revolution. We don't need to buy licences, and we don't need to hire gunslingers or consultants. We have a server, we have a posse, and we now have a concrete plan for the first three steps. The rest is habit, and habits start with the first decision we write down. The goal isn't more process. It's fewer lost bullets.</p>
+        <p><strong>Over to you.</strong> Does this match how you feel about our current setup? Would you start with tasks, the wiki, or somewhere else entirely? Disagree with any of it? Say so. That's exactly what this newsletter is for. Reply to this email, grab me at the coffee machine, or drop a comment, and I'll collect the best answers for the next issue.</p>
+      </article>
+
+      <div class="terminus">
+        <p>Stay curious. May your files be current and your coffee warm. Happy trails! ☕</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pagefoot">
+    <a href="#" aria-label="Back to top">← Back to top</a>
+    <span class="spacer"></span>
+    <a href="https://icmcsl.com/">icmcsl.com</a>
+  </footer>
+
+</div>
+
+<script>
+// Rail progress indicator
+(function(){
+  var rail = document.querySelector('.rail');
+  var fill = document.getElementById('railFill');
+  if(!rail || !fill) return;
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var r = rail.getBoundingClientRect();
+    var mid = window.innerHeight * 0.55;
+    var p = (mid - r.top) / r.height;
+    if(p < 0) p = 0;
+    if(p > 1) p = 1;
+    fill.style.height = (p * 100).toFixed(2) + '%';
+  }
+  function onScroll(){
+    if(!ticking){ ticking = true; window.requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  update();
+})();
+
+</script>
+</body>
+</html>
