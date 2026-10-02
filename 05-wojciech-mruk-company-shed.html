@@ -458,13 +458,16 @@ a{color:inherit}
       <div class="rail" aria-hidden="true"><span class="rail-fill" id="railFill"></span></div>
 
       <article class="stop" id="stop-01">
-        <span class="node" aria-hidden="true"><svg><use href="#i-cup"/></svg></span>
-        <p class="tag"><b>Stop 01</b> Welcome aboard</p>
-        <h2>Saddle up</h2>
-        <p>Hi everyone,</p>
-        <p><strong>WANTED: the current version of that form or procedure. Dead or alive.</strong></p>
-        <p>Last seen in <code>leave_request_v3_FINAL2_really.xlsx</code>? In a Teams message from six months ago? Or in the head of the colleague who's on holiday and took the whole map with him?</p>
-        <p>Our company has always had a bit of a Wild West spirit. We value freedom, flexibility and riding off without a ten-page rulebook. That's a strength, but sometimes our tools and habits haven't kept up with the size of the town. So today we're doing something different: a proper tour of the general store. How other companies keep their knowledge from dying in inboxes, which tools they use (most of them free), and a small, reversible plan for us. Saddle up, and grab a bigger mug than usual.</p>
+          <span class="node" aria-hidden="true"><svg><use href="#i-cup" /></svg></span>
+          <p class="tag"><b>Stop 01</b> Welcome aboard</p>
+          <h2>Saddle up</h2>
+          <p>Hi everyone,</p>
+          <p class="slang wide" style="border-left-color: var(--terminus); background: var(--paper-2);">
+              <em><strong>A quick note before we start:</strong> This is NOT about introducing heavy corporate bureaucracy or overengineering our process. We want to stay <strong>lean, simple, and flexible</strong>. The goal isn't more rules — it's just fewer lost bullets and less time wasted looking for files.</em>
+          </p>
+          <p><strong>WANTED: the current version of that form or procedure. Dead or alive.</strong></p>
+          <p>Last seen in <code>leave_request_v3_FINAL2_really.xlsx</code>? In a Teams message from six months ago? Or in the head of the colleague who's on holiday and took the whole map with him?</p>
+          <p>Our company has always had a bit of a Wild West spirit. We value freedom, flexibility and riding off without a ten-page rulebook. That's a strength, but sometimes our tools and habits haven't kept up with the size of the town. So today we're doing something different: a proper tour of the general store. How other companies keep their knowledge from dying in inboxes, which tools they use (most of them free), and a small, reversible plan for us. Saddle up, and grab a bigger mug than usual.</p>
       </article>
 
       <article class="stop" id="stop-02">
@@ -494,13 +497,30 @@ a{color:inherit}
       </article>
 
       <article class="stop" id="stop-04">
-        <span class="node" aria-hidden="true"><svg><use href="#i-star"/></svg></span>
-        <p class="tag"><b>Stop 04</b> Jira: the story of one ticket</p>
-        <h2>The wanted poster</h2>
-        <p>In the Wild West, a wanted poster had a face, a bounty and a sheriff on the case. A good ticket is the same: an ID, a priority, an owner and a deadline. The difference is easiest to feel through an example. Imagine a client reports: "the invoice shows the wrong amount." Here's how the same situation plays out in two worlds.</p>
-        <p><strong>World 1: our inbox.</strong> The client emails Ann. Ann replies "I'll look into it," files the thread into her archive and… that's it. Two weeks later the issue rides back into town as an escalation. Nobody knows when the problem was first reported, who picked it up, or why it stalled. The single source of truth is Ann's mailbox. (Sorry, Ann. You're a composite character. You are all Ann.)</p>
-        <p><strong>World 2: a board.</strong> The same report is now a poster on the sheriff's wall, a ticket, say <code>FIN-231</code>: type <em>Bug</em>, priority <em>High</em>, assigned to Ann, with a due date, the client's description and an <em>invoicing</em> label. Ann drags it from <em>Backlog</em> to <em>In progress</em> and comments: "VAT rounding bug on invoices from the first half of the year." A week later the status reads <em>In testing</em>. A month later, anyone can replay the ticket's full history: what happened, when, and why. And crucially, people who never knew about the outlaw can see the poster too, because the board is on the wall of the town square, not in one person's saddlebag.</p>
-        <p><strong>What do we take from this?</strong> We don't need to copy Jira wholesale. The idea is what matters: every commitment gets a <em>visible body</em> (an ID, an owner, a status, a deadline) instead of sinking to the bottom of an inbox. This is where our seven bullets should land. Seven posters, seven sheriffs, zero strays.</p>
+          <span class="node" aria-hidden="true"><svg><use href="#i-star" /></svg></span>
+          <p class="tag"><b>Stop 04</b> Jira: the story of one ticket</p>
+          <h2>The wanted poster</h2>
+          <p>In the Wild West, a wanted poster had a face, a bounty and a sheriff on the case. A good ticket is the same: an ID, a priority, an owner and a deadline. The difference is easiest to feel through an example. Imagine a client reports: "the invoice shows the wrong amount." Here's how the same situation plays out in two worlds.</p>
+          <p><strong>World 1: our inbox.</strong> The client emails Ann. Ann replies "I'll look into it," files the thread into her archive and… that's it. Two weeks later the issue rides back into town as an escalation. Nobody knows when the problem was first reported, who picked it up, or why it stalled. The single source of truth is Ann's mailbox. (Sorry, Ann. You're a composite character. You are all Ann.)</p>
+          <p><strong>World 2: a board.</strong> The same report is now a poster on the sheriff's wall, a ticket, say <code>FIN-231</code>: type <em>Bug</em>, priority <em>High</em>, assigned to Ann, with a due date, the client's description and an <em>invoicing</em> label. Ann drags it from <em>Backlog</em> to <em>In progress</em> and comments: "VAT rounding bug on invoices from the first half of the year." A week later the status reads <em>In testing</em>. A month later, anyone can replay the ticket's full history: what happened, when, and why. And crucially, people who never knew about the outlaw can see the poster too, because the board is on the wall of the town square, not in one person's saddlebag.</p>
+
+          <figure class="hero-image" style="width: 100%; margin: 24px 0;">
+              <img src="images/05-jira.jpg" alt="Jira Kanban Board view" style="border: 1px solid var(--rule); border-radius: 8px;">
+              <figcaption style="font-family: var(--sans); font-size: 13px; color: var(--ink-soft); margin-top: 8px; text-align: center;">
+                  The Sheriff's Wall: Tasks grouped into clear columns (To Do, In Progress, Done) instead of buried in email folders.
+              </figcaption>
+          </figure>
+
+          <p>When you click into a task (like our <code>KAN-13</code> example below), everything is explicitly spelled out: exact technical scope, acceptance criteria, responsible engineer, and direct links to requirements. No back-and-forth email detective work required.</p>
+
+          <figure class="hero-image" style="width: 100%; margin: 24px 0;">
+              <img src="images/05-jira-details.jpg" alt="Jira Ticket Details view" style="border: 1px solid var(--rule); border-radius: 8px;">
+              <figcaption style="font-family: var(--sans); font-size: 13px; color: var(--ink-soft); margin-top: 8px; text-align: center;">
+                  Inside the Wanted Poster: Clear description, acceptance criteria, assignee, and direct links to documentation.
+              </figcaption>
+          </figure>
+
+          <p><strong>What do we take from this?</strong> We don't need to copy Jira wholesale. The idea is what matters: every commitment gets a <em>visible body</em> (an ID, an owner, a status, a deadline) instead of sinking to the bottom of an inbox. This is where our seven bullets should land. Seven posters, seven sheriffs, zero strays.</p>
       </article>
 
       <article class="stop" id="stop-05">
@@ -526,13 +546,43 @@ a{color:inherit}
       </article>
 
       <article class="stop" id="stop-07">
-        <span class="node" aria-hidden="true"><svg><use href="#i-lightning"/></svg></span>
-        <p class="tag"><b>Stop 07</b> Trello, Notion and friends</p>
-        <h2>Other roads out of town</h2>
-        <p>Jira and Confluence aren't the only trails. Plenty of companies, smaller ones especially, took the path of least resistance:</p>
-        <ul><li><strong>Trello</strong> is three columns on a board: to do, doing, done. It's the pocket notebook of the West. Its simplicity is such that boards have survived in many companies for years, despite the missing reports and advanced features.</li><li><strong>Notion</strong> went further: a wiki and a database in one, blurring the line between "document" and "table." The general store that sells everything, from horseshoes to hats.</li><li><strong>Asana</strong> and <strong>Linear</strong> stay firmly in the tasks camp but compete on polish. The well-groomed horses of the frontier.</li><li><strong>Basecamp</strong> makes a bold claim: a project is a to-do list plus communication plus documents, closed into one place. A one-stop wagon.</li></ul>
-        <p>There's also one more road, and few people say it out loud: <strong>email + discipline.</strong> Companies with one client and two employees ride it happily. It works, until the town grows. Then they land exactly where Stop 02 began, and start shopping for a tool.</p>
-        <p><strong>What does this survey teach us?</strong> There is no single right trail. There is one clearly wrong one: making no choice at all. A company that never decided where knowledge lives <em>has</em> decided. It's just that the decision was chaos. A town that never chose a sheriff has chosen one anyway: whoever's fastest on the draw.</p>
+          <span class="node" aria-hidden="true"><svg><use href="#i-lightning" /></svg></span>
+          <p class="tag"><b>Stop 07</b> Trello, Notion and friends</p>
+          <h2>Other roads out of town</h2>
+          <p>Jira and Confluence aren't the only trails. Plenty of companies, smaller ones especially, took the path of least resistance:</p>
+
+          <ul style="list-style: none; padding-left: 0;">
+              <li style="margin-bottom: 16px; display: flex; align-items: flex-start; gap: 12px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--line)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 4px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><rect x="7" y="7" width="3" height="9" /><rect x="14" y="7" width="3" height="5" /></svg>
+                  <div>
+                      <strong><a href="https://trello.com" target="_blank" rel="noopener">Trello</a></strong> is three columns on a board: to do, doing, done. It's the pocket notebook of the West. Its simplicity is such that boards have survived in many companies for years, despite the missing reports and advanced features.
+                  </div>
+              </li>
+
+              <li style="margin-bottom: 16px; display: flex; align-items: flex-start; gap: 12px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--line)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 4px;"><path d="M4 4v16h16V4H4z" /><path d="M9 8h6" /><path d="M9 12h6" /><path d="M9 16h4" /></svg>
+                  <div>
+                      <strong><a href="https://www.notion.so" target="_blank" rel="noopener">Notion</a></strong> went further: a wiki and a database in one, blurring the line between "document" and "table." The general store that sells everything, from horseshoes to hats.
+                  </div>
+              </li>
+
+              <li style="margin-bottom: 16px; display: flex; align-items: flex-start; gap: 12px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--line)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 4px;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>
+                  <div>
+                      <strong><a href="https://asana.com" target="_blank" rel="noopener">Asana</a></strong> and <strong><a href="https://linear.app" target="_blank" rel="noopener">Linear</a></strong> stay firmly in the tasks camp but compete on polish. The well-groomed horses of the frontier.
+                  </div>
+              </li>
+
+              <li style="margin-bottom: 16px; display: flex; align-items: flex-start; gap: 12px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--line)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 4px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+                  <div>
+                      <strong><a href="https://basecamp.com" target="_blank" rel="noopener">Basecamp</a></strong> makes a bold claim: a project is a to-do list plus communication plus documents, closed into one place. A one-stop wagon.
+                  </div>
+              </li>
+          </ul>
+
+          <p>There's also one more road, and few people say it out loud: <strong>email + discipline.</strong> Companies with one client and two employees ride it happily. It works, until the town grows. Then they land exactly where Stop 02 began, and start shopping for a tool.</p>
+          <p><strong>What does this survey teach us?</strong> There is no single right trail. There is one clearly wrong one: making no choice at all. A company that never decided where knowledge lives <em>has</em> decided. It's just that the decision was chaos. A town that never chose a sheriff has chosen one anyway: whoever's fastest on the draw.</p>
       </article>
 
       <article class="stop" id="stop-08">
@@ -571,15 +621,28 @@ Company/
 └── 05-Templates/
     ├── proposal.md
     └── acceptance-report.md</pre></div>
-        <div class="code-box"><pre><span class="comment">Network drive (archive only) — the vault</span>
 
-\\server\archive\
-├── 2026/
-│   ├── contracts/
-│   │   └── acme-contract-2026-03.pdf
-│   ├── invoices/
-│   └── acceptance-reports/
-└── _certificates-and-licences/</pre></div>
+        <div class="code-box">
+            <pre><span class="comment">Network drive — the documentation vault (\\icmserver3\helpdocs)</span>
+
+\\icmserver3\helpdocs\
+├── 01-projects-docs/                 <span class="comment"># Project & system user manuals, how-to PDFs</span>
+│   ├── CSM/                          <span class="comment"># Customer Support Management</span>
+│   │   ├── csm-user-manual.pdf
+│   │   └── csm-troubleshooting-guide.docx
+│   ├── DAS/                          <span class="comment"># Data Acquisition System</span>
+│   │   ├── das-configuration-how-to.pdf
+│   │   └── das-sensor-setup.pdf
+│   ├── DCD/                          <span class="comment"># Data Collection Device</span>
+│   │   └── dcd-quick-start-guide.pdf
+│   └── ICM-Pulse/
+│       └── icm-pulse-admin-guide.pdf
+├── 02-resources/                     <span class="comment"># Technical diagrams & hardware specs</span>
+│   ├── hardware-manuals/
+│   └── network-diagrams/
+└── 03-certificates-and-licences/    <span class="comment"># SSL certs, software keys, proofs</span></pre>
+        </div>
+
         <p><strong>The rule: the wiki explains how, the drive holds what.</strong> If a file has versions, the wiki (or Git) describes it. Never <code>final_v3</code>.</p>
         <p>Three naming rules keep the map readable, so nobody gets lost between the saloon and the bank:</p>
         <ol><li><strong>Numeric prefixes.</strong> <code>01-</code>, <code>02-</code>, <code>03-</code> force an order that survives alphabetical sorting, for folders and wiki pages alike.</li><li><strong>ISO dates.</strong> <code>2026-03-14</code>, never "14.03" or "March 14." They sort identically on every system and are never ambiguous.</li><li><strong>Tags instead of subfolders.</strong> Cap nesting at three levels. Everything else is context carried by tags (<code>#invoicing</code> <code>#acme</code> <code>#outage</code>) for filtering in search.</li></ol>
