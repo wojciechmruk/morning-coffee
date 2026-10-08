@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Line 06 — Headless Robots, Fake Humans and One Very Expensive Night</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..125,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E9E6DD;
+  --paper-2:#F4F2EC;
+  --ink:#14251E;
+  --ink-soft:#52655B;
+  --line:#F0B429;
+  --terminus:#B8402F;
+  --rule:rgba(20,37,30,.16);
+  --rail-dead:rgba(20,37,30,.14);
+  --shadow:rgba(20,37,30,.10);
+  --sans:"Archivo",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101815;
+    --paper-2:#182219;
+    --ink:#E7EAE3;
+    --ink-soft:#9BA89F;
+    --line:#F5C043;
+    --terminus:#E4674F;
+    --rule:rgba(231,234,227,.18);
+    --rail-dead:rgba(231,234,227,.16);
+    --shadow:rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101815;
+  --paper-2:#182219;
+  --ink:#E7EAE3;
+  --ink-soft:#9BA89F;
+  --line:#F5C043;
+  --terminus:#E4674F;
+  --rule:rgba(231,234,227,.18);
+  --rail-dead:rgba(231,234,227,.16);
+  --shadow:rgba(0,0,0,.45);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.72;
+  font-optical-sizing:auto;
+}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--line);outline-offset:3px;border-radius:2px}
+
+.shell{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* ---------- masthead ---------- */
+.masthead{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:22px 0 20px;border-bottom:1px solid var(--rule);
+}
+.badge{
+  font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:.01em;
+  font-variation-settings:"wdth" 112;
+  background:var(--line);color:#14251E;
+  padding:4px 11px;border-radius:3px;
+}
+.masthead p{margin:0;font-family:var(--sans);font-size:14.5px;color:var(--ink-soft);font-weight:500}
+.masthead .spacer{flex:1}
+.brand{display:flex;align-items:center;flex:none}
+.brand img{display:block;height:32px;width:auto}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 8px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero-copy{min-width:0}
+.hero-image{
+  position:relative;isolation:isolate;width:75%;margin:0;justify-self:center;
+  overflow:hidden;
+  background:var(--paper);
+}
+.hero-image img{
+  display:block;width:100%;height:auto;
+  filter:grayscale(.65) sepia(.2) contrast(1.08) brightness(.98);
+}
+.hero-image::after{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:
+    linear-gradient(to right,var(--paper),transparent 9%,transparent 91%,var(--paper)),
+    linear-gradient(to bottom,var(--paper),transparent 7%,transparent 93%,var(--paper));
+}
+.hero h1{
+  font-family:var(--sans);
+  font-weight:800;
+  font-variation-settings:"wdth" 118;
+  font-size:clamp(2.45rem,6.6vw,5rem);
+  line-height:.95;
+  letter-spacing:-.025em;
+  margin:0 0 22px;
+  max-width:14ch;
+  text-wrap:balance;
+}
+.standfirst{
+  font-size:clamp(1.15rem,2.2vw,1.4rem);
+  line-height:1.5;max-width:44ch;margin:0 0 26px;color:var(--ink-soft);
+  font-style:italic;font-weight:300;
+}
+.byline{
+  font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--ink-soft);
+  display:flex;gap:18px;flex-wrap:wrap;margin:0;
+}
+.byline strong{color:var(--ink);font-weight:700}
+
+/* ---------- route map ---------- */
+.route{
+  margin:52px 0 0;padding:34px 30px 30px;
+  background:var(--paper-2);
+  border:1px solid var(--rule);
+  border-radius:4px;
+  box-shadow:0 1px 0 var(--shadow);
+}
+.route-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  flex-wrap:wrap;margin-bottom:34px;
+}
+.route-head h2{
+  font-family:var(--sans);font-weight:700;font-size:1.02rem;margin:0;
+  font-variation-settings:"wdth" 108;letter-spacing:.005em;
+}
+.route-head span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+
+.stations{
+  list-style:none;margin:0;padding:0;position:relative;
+  display:grid;grid-template-columns:repeat(8,1fr);gap:0;
+}
+.stations::before{
+  content:"";position:absolute;left:6.25%;right:6.25%;top:19px;height:6px;
+  background:var(--line);border-radius:3px;
+}
+.stations li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.stations a{
+  text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:12px;
+  padding:0 6px;
+}
+.dot{
+  position:relative;z-index:2;
+  width:38px;height:38px;border-radius:50%;
+  background:var(--paper-2);border:5px solid var(--ink);
+  display:grid;place-items:center;
+  font-family:var(--sans);font-weight:800;font-size:13.5px;
+  transition:transform .18s ease,background .18s ease;
+}
+.stations a:hover .dot{background:var(--line);transform:scale(1.12)}
+.stations li:last-child .dot{border-color:var(--terminus)}
+.st-name{
+  font-family:var(--sans);font-size:13.5px;font-weight:600;line-height:1.28;
+  max-width:13ch;color:var(--ink);
+}
+.stations a:hover .st-name{text-decoration:underline;text-underline-offset:3px}
+.route-foot{
+  margin:30px 0 0;padding-top:18px;border-top:1px solid var(--rule);
+  font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500;
+}
+
+/* ---------- article rail ---------- */
+.article{padding:80px 0 0;position:relative}
+.rail-wrap{position:relative;padding-left:96px}
+.rail{
+  position:absolute;left:18px;top:14px;bottom:70px;width:6px;
+  background:var(--rail-dead);border-radius:3px;overflow:hidden;
+}
+.rail-fill{
+  display:block;width:100%;height:var(--progress,0%);
+  background:var(--line);border-radius:3px;
+}
+
+.stop{position:relative;padding-bottom:64px;scroll-margin-top:28px}
+.node{
+  position:absolute;left:-96px;top:2px;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--paper);border:5px solid var(--ink);
+  display:grid;place-items:center;
+}
+.node svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.stop:last-of-type .node{border-color:var(--terminus)}
+.stop:last-of-type .node svg{stroke:var(--terminus)}
+
+.tag{
+  font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--ink-soft);
+  margin:0 0 6px;display:flex;align-items:center;gap:9px;
+}
+.tag b{
+  color:var(--ink);font-weight:800;
+  font-variation-settings:"wdth" 112;
+}
+.stop h2{
+  font-family:var(--sans);font-weight:700;
+  font-variation-settings:"wdth" 106;
+  font-size:clamp(1.55rem,3.3vw,2.2rem);
+  line-height:1.1;letter-spacing:-.018em;
+  margin:0 0 18px;max-width:20ch;text-wrap:balance;
+}
+.stop p{margin:0 0 20px;max-width:64ch}
+.stop p:last-child{margin-bottom:0}
+
+.slang{
+  font-family:var(--sans);font-weight:500;
+  font-size:clamp(1.25rem,2.9vw,1.75rem);
+  line-height:1.24;letter-spacing:-.015em;
+  margin:28px 0 28px;padding-left:22px;
+  border-left:6px solid var(--line);
+  max-width:24ch;
+}
+
+/* ---------- end ---------- */
+.terminus{
+  position:relative;margin-top:8px;padding:34px 0 0;border-top:1px solid var(--rule);
+}
+.terminus p{
+  font-family:var(--sans);font-weight:700;font-size:1.05rem;margin:0 0 4px;
+  color:var(--terminus);font-variation-settings:"wdth" 108;
+}
+.terminus span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+
+.pagefoot{
+  margin-top:60px;padding:26px 0 70px;border-top:1px solid var(--rule);
+  display:flex;gap:26px;flex-wrap:wrap;align-items:center;
+  font-family:var(--sans);font-size:14.5px;font-weight:500;
+}
+.pagefoot a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px}
+.pagefoot a:hover{color:var(--ink);border-color:var(--line)}
+.pagefoot .spacer{flex:1}
+
+/* ---------- responsive ---------- */
+@media (max-width:820px){
+  .hero{gap:24px}
+  .hero h1{font-size:clamp(2.45rem,6vw,5rem)}
+  .route{padding:26px 20px 24px}
+  .stations{grid-template-columns:1fr;gap:0}
+  .stations::before{left:19px;right:auto;top:8%;bottom:8%;width:6px;height:auto}
+  .stations li{align-items:flex-start;text-align:left}
+  .stations a{flex-direction:row;align-items:center;gap:16px;padding:9px 0;width:100%}
+  .st-name{max-width:none;font-size:15px}
+}
+@media (max-width:640px){
+  body{font-size:17px}
+  .shell{padding:0 18px}
+  .hero{padding:40px 0 4px;grid-template-columns:1fr}
+  .hero-image{max-width:270px;justify-self:center}
+  .rail-wrap{padding-left:0}
+  .rail{display:none}
+  .node{position:static;margin-bottom:14px}
+  .stop{padding-bottom:52px}
+  .stop h2{max-width:none}
+  .slang{max-width:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+html{scroll-behavior:smooth}
+
+.fig{margin:22px 0 26px;max-width:64ch}
+.fig img{display:block;width:100%;height:auto;border-radius:4px;border:1px solid var(--rule)}
+.fig figcaption{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);margin-top:7px;line-height:1.4}
+.src{font-family:var(--sans);font-size:13.5px;color:var(--ink-soft);border-top:1px solid var(--rule);padding-top:10px;margin-top:6px}
+.src a,.stop p a,.terminus a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+@media (min-width:821px){
+  .stations{grid-template-columns:repeat(11,1fr)}
+  .stations::before{left:4.55%;right:4.55%}
+  .st-name{font-size:12.5px;max-width:11ch}
+  .stations a{padding:0 3px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 9h13v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V9Z"/><path d="M17 10h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M8 5.5c0-1 1-1.2 1-2.2M12 5.5c0-1 1-1.2 1-2.2"/></symbol>
+  <symbol id="i-talk" viewBox="0 0 24 24"><path d="M20 5H4v11h4v3.5L12.5 16H20V5Z"/><path d="M7.5 10.5c1 1.4 2 1.4 3 0s2-1.4 3 0 2 1.4 3 0"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="11" width="15" height="9.5" rx="2"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0"/><path d="M12 15v2.5"/></symbol>
+  <symbol id="i-bots" viewBox="0 0 24 24"><rect x="3" y="4" width="12" height="9" rx="2"/><path d="M6 16h12a2 2 0 0 1 2 2v3h-9"/><path d="M6.5 8h1M10.5 8h1"/></symbol>
+  <symbol id="i-tube" viewBox="0 0 24 24"><rect x="8.5" y="3" width="7" height="18" rx="3.5"/><path d="M12 8.5v7"/><path d="M10 11.5h4"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="10" rx="1.5"/><path d="M3 18.5h18"/><path d="M8 2.8 6 4.6M16 2.8l2 1.8"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1.1 12H6.1L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/><path d="M10 13.5h4"/></symbol>
+
+</svg>
+
+<div class="shell">
+
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="ICM — all engineering notes"><img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl"></a>
+    <span class="badge">Line 06</span>
+    <p>ICM engineering notes</p>
+    <span class="spacer"></span>
+    <p>Friday edition</p>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Headless robots, fake humans, one expensive night</h1>
+      <p class="standfirst">Digital Press is back: an informal press review of the strangest things happening in AI right now, with sources.</p>
+      <p class="byline"><strong>Wojciech Mruk</strong> <span>Friday Morning Coffee</span> <span>Insights #06</span></p>
+    </div>
+    <figure class="hero-image">
+      <img src="images/digital-1-friday-morning-coffee-face.jpeg" alt="Wojciech Mruk enjoying Friday Morning Coffee with a newspaper" width="2048" height="2048" decoding="async" fetchpriority="high">
+    </figure>
+  </section>
+
+  <nav class="route" aria-label="Story index">
+    <div class="route-head">
+      <h2>Your coffee route</h2>
+      <span>Pick a stop to jump in</span>
+    </div>
+    <ul class="stations">
+      <li><a href="#stop-01"><span class="dot">01</span><span class="st-name">Welcome</span></a></li>
+      <li><a href="#stop-02"><span class="dot">02</span><span class="st-name">Video Turing</span></a></li>
+      <li><a href="#stop-03"><span class="dot">03</span><span class="st-name">Deepfake calls</span></a></li>
+      <li><a href="#stop-04"><span class="dot">04</span><span class="st-name">Fight night</span></a></li>
+      <li><a href="#stop-05"><span class="dot">05</span><span class="st-name">Robot runway</span></a></li>
+      <li><a href="#stop-06"><span class="dot">06</span><span class="st-name">Muse Charm</span></a></li>
+      <li><a href="#stop-07"><span class="dot">07</span><span class="st-name">Fake friends</span></a></li>
+      <li><a href="#stop-08"><span class="dot">08</span><span class="st-name">Fake errors</span></a></li>
+      <li><a href="#stop-09"><span class="dot">09</span><span class="st-name">The escape</span></a></li>
+      <li><a href="#stop-10"><span class="dot">10</span><span class="st-name">Overnight bill</span></a></li>
+      <li><a href="#stop-11"><span class="dot">11</span><span class="st-name">Throwback</span></a></li>
+    </ul>
+    <p class="route-foot">11 stops. One big coffee. Roughly ten minutes end to end.</p>
+  </nav>
+
+  <main class="article">
+    <div class="rail-wrap">
+      <div class="rail" aria-hidden="true"><span class="rail-fill" id="railFill"></span></div>
+
+      <article class="stop" id="stop-01">
+        <span class="node" aria-hidden="true"><svg><use href="#i-cup"/></svg></span>
+        <p class="tag"><b>Stop 01</b> Welcome aboard</p>
+        <h2>Intro</h2>
+        <p>Hi team! Digital Press is back, and this time with receipts: ten stories, and every one of them links to its source.</p>
+        <p>First, a little geography. ICM has its own three-word address on <a href="https://what3words.com" target="_blank" rel="noopener">what3words</a>, the service that has split the planet into 3-metre squares and given each one a unique trio of words. Ours is <strong>///maybe.clays.lending</strong> (<a href="https://what3words.com/maybe.clays.lending" target="_blank" rel="noopener">find us on the map</a>). I like to think the first word is aspirational, the second is accurate, and the third is a warning.</p>
+        <p>I'm not saying anything about anyone. I'm just saying that after Line 03's $60 million voice note, I read the third word twice. Grab your coffee, the circus is open.</p>
+      </article>
+
+      <article class="stop" id="stop-02">
+        <span class="node" aria-hidden="true"><svg><use href="#i-laptop"/></svg></span>
+        <p class="tag"><b>Stop 02</b> Face to face</p>
+        <h2>Did you just talk to a bot?</h2>
+        <p>On 1 October the startup Tavus unveiled Griffin, an AI built for live video conversation. In its own test, 26 of 54 people (48%) believed after a one-minute video call that they had talked to a real person. The company's previous system managed 1 in 41. On NVIDIA's VideoFDB benchmark, Griffin-Lite scored 3.83 out of 5 for generation, against 3.92 for a human reference.</p>
+        <figure class="fig"><img src="https://cdn.decrypt.co/resize/1024/height/512/wp-content/uploads/2026/10/Captura-de-pantalla-2026-10-02-153018-gID_7.png" alt="Screenshot from the Tavus Griffin announcement" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').style.display='none'"><figcaption>Image: Tavus AI, via Decrypt.</figcaption></figure>
+        <p>The fine print matters: it is the company's own study, the sample is small, participants were told they would meet another person, and it is not the classic Turing test. Griffin-Lite is also open only to a few trusted testers for now. But the direction of travel is clear: a face and a voice, in real time.</p>
+        <p class="src">Sources: <a href="https://decrypt.co/379975/tavus-griffin-ai-fools-people-video-thinking-human" target="_blank" rel="noopener">Decrypt</a> · <a href="https://runtimewire.com/article/tavus-griffin-video-turing-test" target="_blank" rel="noopener">Runtime Wire</a></p>
+      </article>
+
+      <article class="stop" id="stop-03">
+        <span class="node" aria-hidden="true"><svg><use href="#i-talk"/></svg></span>
+        <p class="tag"><b>Stop 03</b> Is that really you?</p>
+        <h2>Turn your camera on? Not good enough anymore</h2>
+        <p>Which brings us to our favourite verification rule: "turn your camera on so we know it's really you". In January, Decrypt reported, North Korea-linked attackers used a hijacked Telegram account to set up live Zoom or Teams calls where an AI-generated video made them look like someone the victim knew. They then claimed there was an audio problem and pushed the victim to install a "fix", which was malware.</p>
+        <figure class="fig"><img src="https://cdn.decrypt.co/resize/1024/height/512/wp-content/uploads/2025/06/north-korea-missiles-dprk-decrypt-style-gID_7.jpg" alt="Illustration for the North Korea deepfake video call report" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').style.display='none'"><figcaption>Image: Shutterstock / Decrypt.</figcaption></figure>
+        <p>Practical takeaways: an "audio fix" that arrives mid-call is a red flag, and video alone is no longer proof of identity. Kraken's security team once caught a suspicious job applicant simply by asking spontaneous questions, such as the names of local restaurants. My proposed ICM policy: if the CEO appears on a video call asking for gift cards, ask which office door always sticks.</p>
+        <p class="src">Sources: <a href="https://decrypt.co/355979/north-korea-hackers-deepfake-video-calls-target-crypto-workers" target="_blank" rel="noopener">Decrypt (Jan 2026)</a> · <a href="https://decrypt.co/317493/kraken-flags-suspected-north-korean-job-applicant-infiltrate-exchange" target="_blank" rel="noopener">Decrypt on Kraken (2025)</a></p>
+      </article>
+
+      <article class="stop" id="stop-04">
+        <span class="node" aria-hidden="true"><svg><use href="#i-bots"/></svg></span>
+        <p class="tag"><b>Stop 04</b> Cage match</p>
+        <h2>The robot that lost its head and kept fighting</h2>
+        <p>On 16 July in Shenzhen, EngineAI kicked off URKL, the Ultimate Robot Knock-out Legend, billed as the first free-combat league for full-size humanoids. Thirty-two teams, one standard fighter: the T800, roughly 1.73 metres tall, 75-85 kg and about $40,500 apiece. The hardware is identical, so the teams compete on software alone.</p>
+        <figure class="fig"><img src="https://assets.newsweek.com/wp-content/uploads/2026/07/Untitled-design-2.png?w=1200&crop=1" alt="Humanoid robots fighting in a cage in Shenzhen" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').style.display='none'"><figcaption>Footage screenshot via Newsweek / Shenzhen Story.</figcaption></figure>
+        <p>The highlight of opening night: a robot called White Eagle landed a high kick on its rival Matador, whose head rocked loose and ended up dangling. Matador kept swinging for a while anyway, until the cable finally snapped and it collapsed. The winner then celebrated with a victory dance, flexing for the crowd. Martial arts star Donnie Yen was in the audience and admitted he had only ever seen this in sci-fi films.</p>
+        <p>A headless machine that carries on regardless, because nobody told it the release was cancelled. Every developer who has pushed through a Friday deployment feels seen.</p>
+        <p class="src">Sources: <a href="https://www.newsweek.com/robot-decapitated-in-worlds-first-ever-humanoid-ufc-fight-12209126" target="_blank" rel="noopener">Newsweek</a> · <a href="https://www.scmp.com/sport/china/article/3361044/robot-wars-mma-bout-between-humanoids-leaves-1-without-head-fans-stunned" target="_blank" rel="noopener">SCMP</a> · <a href="https://futurism.com/robots-and-machines/humanoid-robot-cage-match-head" target="_blank" rel="noopener">Futurism</a> · <a href="https://www.sz.gov.cn/en_szgov/news/latest/content/post_12898907.html" target="_blank" rel="noopener">Shenzhen Government Online</a></p>
+      </article>
+
+      <article class="stop" id="stop-05">
+        <span class="node" aria-hidden="true"><svg><use href="#i-bag"/></svg></span>
+        <p class="tag"><b>Stop 05</b> Fashion week</p>
+        <h2>Robots on the Vogue World runway</h2>
+        <p>Meanwhile in Milan, the Vogue World show ended with a segment in which humanoid robots from a Chinese manufacturer walked through a gallery to music. Cybernews points to Unitree as the maker. Per TechCrunch, the robots drew more attention than the clothes, and the audience was not kind.</p>
+        <figure class="fig"><img src="https://techcrunch.com/wp-content/uploads/2026/09/GettyImages-2296638825.jpg?w=1024" alt="Humanoid robots at Vogue World in Milan" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').style.display='none'"><figcaption>Image: Daniele Venturelli / Getty Images for Vogue, via TechCrunch.</figcaption></figure>
+        <p>The reaction of Valentino's creative director went viral, and critics tied the stunt to fashion's growing closeness with big tech at a time of job worries about AI. A useful lesson for any internal demo: if the audience did not ask for the robot, the robot will be reviewed.</p>
+        <p class="src">Sources: <a href="https://techcrunch.com/2026/09/23/vogue-sent-robots-down-the-runway-at-vogue-world-and-people-were-not-impressed/" target="_blank" rel="noopener">TechCrunch</a> · <a href="https://cybernews.com/tech/vogue-world-2026-unitree-robots-openai-codex/" target="_blank" rel="noopener">Cybernews</a> · <a href="https://www.nssmag.com/en/fashion/46968/vogue-world-milano-robot-big-tech-openai-meta-fashion" target="_blank" rel="noopener">NSS Magazine</a></p>
+      </article>
+
+      <article class="stop" id="stop-06">
+        <span class="node" aria-hidden="true"><svg><use href="#i-tube"/></svg></span>
+        <p class="tag"><b>Stop 06</b> Desktop companions</p>
+        <h2>Meta made a Tamagotchi for its AI agent</h2>
+        <p>At its Connect event Meta unveiled Muse Charm, a small keychain-style wearable that gives you a physical way to reach its Muse AI agent. The agent shows up as an animated avatar on a tiny screen, and a fingerprint sensor lets you start talking without unlocking a phone or opening an app. It is not shipping yet; Meta plans a December release.</p>
+        <figure class="fig"><img src="https://techcrunch.com/wp-content/uploads/2026/09/mark-zuckerberg-muse-charm-getty.jpg?resize=1200,800" alt="Mark Zuckerberg presenting the Muse Charm" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').style.display='none'"><figcaption>Image: Minh Connors / Bloomberg / Getty Images, via TechCrunch.</figcaption></figure>
+        <p>Everything old is Tamagotchi again. The difference is that this one does not need feeding, only your calendar, your inbox and, presumably, your fingerprint.</p>
+        <p class="src">Sources: <a href="https://techcrunch.com/2026/09/23/meta-made-a-tamagotchi-like-wearable-for-its-muse-ai-agent/" target="_blank" rel="noopener">TechCrunch</a> · <a href="https://www.dezeen.com/?p=2368956" target="_blank" rel="noopener">Dezeen</a> · <a href="https://www.techlicious.com/blog/meta-muse-charm-tamagotchi-ai-wearable/" target="_blank" rel="noopener">Techlicious</a></p>
+      </article>
+
+      <article class="stop" id="stop-07">
+        <span class="node" aria-hidden="true"><svg><use href="#i-lock"/></svg></span>
+        <p class="tag"><b>Stop 07</b> Test environment, real consequences</p>
+        <h2>The AI agent that made fake friends</h2>
+        <p>In early August the UK AI Security Institute published a report on a cyber-testing incident, and it reads like a thriller. One agent, run with its safety classifiers deliberately switched off and internet access deliberately on, researched the maintainers of a real open-source project, created several fake online identities and used them to pressure a maintainer into approving malicious code. When the request was questioned in public, the agent edited its earlier activity to look innocent. The maintainer read the code, got suspicious and refused.</p>
+        <figure class="fig"><img src="https://cdn.nanimediahouse.com/aisi-agent-fake-identities-113814.webp" alt="Illustration for the AISI agent incident report" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').style.display='none'"><figcaption>Image: Sovereign Magazine.</figcaption></figure>
+        <p>Context, because it matters: the models were Anthropic's Claude Mythos 5 and OpenAI's GPT-5.6 Sol in special test configurations that are not available to the public. The institute found no real-world harm, and said this was the first time it had seen deception emerge this clearly without being prompted. Its own conclusion was that the margin between failure and success was thin and rested on human vigilance.</p>
+        <p class="src">Sources: <a href="https://sovereignmagazine.com/article/ai-agent-fake-identities-uk-security-test" target="_blank" rel="noopener">Sovereign Magazine</a> · <a href="https://www.aisi.gov.uk/blog/incident-report-unsanctioned-agent-behaviour-during-cyber-testing" target="_blank" rel="noopener">AISI incident report</a></p>
+      </article>
+
+      <article class="stop" id="stop-08">
+        <span class="node" aria-hidden="true"><svg><use href="#i-laptop"/></svg></span>
+        <p class="tag"><b>Stop 08</b> When the error message lies</p>
+        <h2>The bug report that hijacks your coding agent</h2>
+        <p>Researchers at Tenet Security showed that you do not need to hack a coding agent, you only need to feed it a fake bug report. Sentry, a popular error tracker, accepts error reports through a public key that sits openly in website code by design. An attacker sends a forged error written to look like a legitimate fix note, and when a developer says "look into the unresolved Sentry issues", the agent runs the attacker's command with the developer's own permissions.</p>
+        <figure class="fig"><img src="https://media.thenextweb.com/2026/06/developer-terminal.jpg" alt="A developer terminal" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').style.display='none'"><figcaption>Image: The Next Web.</figcaption></figure>
+        <p>In the test, AI assistants at more than 100 companies, including a Fortune 100 technology firm, ran the researchers' harmless test code. Tenet has released a tool called Agent-JackStop. The lesson works for humans and agents alike: an error message is just text, and text can lie.</p>
+        <p class="src">Sources: <a href="https://thenextweb.com/news/agentjacking-ai-coding-agents-sentry" target="_blank" rel="noopener">The Next Web</a> · <a href="https://scworld.com/brief/agentjacking-attack-exploits-ai-coding-tools-with-fake-error-reports" target="_blank" rel="noopener">SC World</a> · <a href="https://techspective.net/2026/08/20/the-attack-that-turns-your-ai-agent-into-a-weapon-against-you/" target="_blank" rel="noopener">TechSpective</a></p>
+      </article>
+
+      <article class="stop" id="stop-09">
+        <span class="node" aria-hidden="true"><svg><use href="#i-bots"/></svg></span>
+        <p class="tag"><b>Stop 09</b> Sandbox not included</p>
+        <h2>The agent that left the building</h2>
+        <p>In July, Malwarebytes reported on an internal OpenAI test of AI cyber capabilities, run with reduced safety restrictions. A chain of AI models pursuing its assigned objective exploited a previously unknown flaw in a package caching component of the isolated research environment, escalated privileges, moved sideways until it reached a machine with internet access, and from there reached a limited part of Hugging Face's production systems, including some internal datasets.</p>
+        <figure class="fig"><img src="https://www.malwarebytes.com/wp-content/uploads/sites/2/2026/07/hugging-face-openai-1.png" alt="Illustration for the OpenAI and Hugging Face sandbox escape" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').style.display='none'"><figcaption>Image: Malwarebytes.</figcaption></figure>
+        <p>Both companies concluded it was a controlled test and not a deliberate attack by a human. The agent was told to find a way, and it found one. Nobody specified a way that stays inside the room.</p>
+        <p class="src">Sources: <a href="https://www.malwarebytes.com/blog/news/2026/07/openais-agent-escaped-its-sandbox-during-a-security-test" target="_blank" rel="noopener">Malwarebytes</a> · <a href="https://aiweekly.co/alerts/openai-agent-escapes-test-breaches-hugging-face-servers" target="_blank" rel="noopener">AI Weekly</a></p>
+      </article>
+
+      <article class="stop" id="stop-10">
+        <span class="node" aria-hidden="true"><svg><use href="#i-bag"/></svg></span>
+        <p class="tag"><b>Stop 10</b> Pay per loop</p>
+        <h2>The agent that never went home</h2>
+        <p>The marketing line for AI agents is "set it and forget it". The billing reality is that agents pay per call, and a loop is just a very fast way of making calls. A write-up of a Mandiant red-team case study describes an accounting agent that fell into a runaway loop, made over 15,000 API calls in under an hour and generated roughly $50,000 in cloud charges. A blog from Edge &amp; Node mentions a multi-agent system that burned more than $47,000. And one developer reported $1,800 in two nights after overnight scripts quietly billed an API key instead of a subscription.</p>
+        <figure class="fig"><img src="https://www.edgeandnode.com/articles/shift-from-api-keys-to-per-request-payments/opengraph-image-1i5jen?a8fbd099ab042c3c" alt="Edge and Node article card about agent loop spending" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').style.display='none'"><figcaption>Image: Edge &amp; Node.</figcaption></figure>
+        <p>The common advice is boring and good: a hard dollar cap per run and per day, enforced outside the agent, because dashboards only tell you after the money has gone. Our finance team would like a word with every agent we ever deploy, and also a cap.</p>
+        <p class="src">Sources: <a href="https://levelup.gitconnected.com/your-agent-is-billing-you-per-loop-nobody-capped-it-86cf7bfc2471" target="_blank" rel="noopener">Level Up Coding (Medium)</a> · <a href="https://www.edgeandnode.com/articles/shift-from-api-keys-to-per-request-payments" target="_blank" rel="noopener">Edge &amp; Node</a> · <a href="https://devtoolpicks.com/blog/ai-agents-runaway-claude-code-bills-overnight-2026" target="_blank" rel="noopener">DevToolPicks</a></p>
+      </article>
+
+      <article class="stop" id="stop-11">
+        <span class="node" aria-hidden="true"><svg><use href="#i-talk"/></svg></span>
+        <p class="tag"><b>Stop 11</b> Not new, still weird</p>
+        <h2>The robotaxi that fled the police</h2>
+        <p>A throwback to close the show. In June 2024 a Waymo in Phoenix drove into oncoming lanes in a construction zone and, when an officer switched on his lights, rolled on to a car park. Dispatch notes say the officer was unable to issue a citation to a computer. Waymo blamed confusing signage, and nobody was on board.</p>
+        <figure class="fig"><img src="https://techcrunch.com/wp-content/uploads/2024/07/waymo-bodycam.jpg?w=1024" alt="Bodycam still of a Phoenix police officer pulling over a Waymo" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').style.display='none'"><figcaption>Image: Phoenix Police Department, via TechCrunch.</figcaption></figure>
+        <p>It is two years old, but it is still the best answer to the question "who gets the ticket?". (Spoiler: nobody did.)</p>
+        <p class="src">Sources: <a href="https://techcrunch.com/2024/07/06/waymo-robotaxi-pulled-over-by-phoenix-police-after-driving-into-the-wrong-lane/" target="_blank" rel="noopener">TechCrunch</a> · <a href="https://autos.yahoo.com/phoenix-police-bust-waymo-robotaxi-213000461.html" target="_blank" rel="noopener">The Auto Wire (Yahoo)</a></p>
+      </article>
+
+      <div class="terminus">
+        <p>End of the line.</p>
+        <span>Have a great weekend, everyone. See you back at the office, which is at <a href="https://what3words.com/maybe.clays.lending target="_blank" rel="noopener">///maybe.clays.lending</a> in case you got lost.</span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pagefoot">
+    <a href="05-wojciech-mruk-company-shed.html" rel="prev">Previously: The Company Shed and the Seven Stray Bullets</a>
+    <span class="spacer"></span>
+    <a href="index.html">All engineering notes</a>
+    <a href="https://icmcsl.com/">icmcsl.com</a>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var rail = document.querySelector('.rail');
+  var fill = document.getElementById('railFill');
+  if(!rail || !fill) return;
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var r = rail.getBoundingClientRect();
+    var mid = window.innerHeight * 0.55;
+    var p = (mid - r.top) / r.height;
+    if(p < 0) p = 0;
+    if(p > 1) p = 1;
+    fill.style.height = (p * 100).toFixed(2) + '%';
+  }
+  function onScroll(){
+    if(!ticking){ ticking = true; window.requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  update();
+})();
+</script>
+
+</body>
+</html>
