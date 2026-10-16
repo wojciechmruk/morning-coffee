@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Line 07 — Europe Isn’t Late, It’s Reading the Small Print</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..125,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF;
+  --paper-2:#F0F7FF;
+  --ink:#0F172A;
+  --ink-soft:#475569;
+  --line:#0284C7;
+  --terminus:#0369A1;
+  --rule:rgba(2,132,199,.15);
+  --rail-dead:rgba(2,132,199,.12);
+  --shadow:rgba(2,132,199,.08);
+  --success:#16a34a;
+  --danger:#dc2626;
+  --sans:"Archivo",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.72;
+}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--line);outline-offset:3px;border-radius:2px}
+
+.shell{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* ---------- masthead ---------- */
+.masthead{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:22px 0 20px;border-bottom:1px solid var(--rule);
+}
+.badge{
+  font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:.01em;
+  font-variation-settings:"wdth" 112;
+  background:var(--line);color:#FFFFFF;
+  padding:4px 11px;border-radius:3px;
+}
+.masthead p{margin:0;font-family:var(--sans);font-size:14.5px;color:var(--ink-soft);font-weight:500}
+.masthead .spacer{flex:1}
+.brand{display:flex;align-items:center;flex:none}
+.brand img{display:block;height:32px;width:auto}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 8px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero-copy{min-width:0}
+.hero-image{
+  position:relative;isolation:isolate;width:85%;margin:0;justify-self:center;
+  overflow:hidden;
+  background:var(--paper);
+  border-radius:12px;
+}
+.hero-image img{
+  display:block;width:100%;height:auto;
+  border-radius:12px;
+}
+.hero h1{
+  font-family:var(--sans);
+  font-weight:800;
+  font-variation-settings:"wdth" 118;
+  font-size:clamp(2.45rem,5.5vw,4.2rem);
+  line-height:.98;
+  letter-spacing:-.025em;
+  margin:0 0 22px;
+  color:var(--ink);
+  text-wrap:balance;
+}
+.standfirst{
+  font-size:clamp(1.15rem,2.2vw,1.35rem);
+  line-height:1.5;max-width:44ch;margin:0 0 26px;color:var(--ink-soft);
+  font-style:italic;font-weight:300;
+}
+.byline{
+  font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--ink-soft);
+  display:flex;gap:18px;flex-wrap:wrap;margin:0;
+}
+.byline strong{color:var(--ink);font-weight:700}
+
+/* ---------- route map ---------- */
+.route{
+  margin:52px 0 0;padding:34px 30px 30px;
+  background:var(--paper-2);
+  border:1px solid var(--rule);
+  border-radius:6px;
+  box-shadow:0 2px 8px var(--shadow);
+}
+.route-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  flex-wrap:wrap;margin-bottom:34px;
+}
+.route-head h2{
+  font-family:var(--sans);font-weight:700;font-size:1.02rem;margin:0;
+  font-variation-settings:"wdth" 108;letter-spacing:.005em;color:var(--line);
+}
+.route-head span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+
+.stations{
+  list-style:none;margin:0;padding:0;position:relative;
+  display:grid;grid-template-columns:repeat(11,1fr);gap:0;
+}
+.stations::before{
+  content:"";position:absolute;left:8%;right:8%;top:19px;height:6px;
+  background:var(--line);border-radius:3px;
+}
+.stations li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.stations a{
+  text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:12px;
+  padding:0 6px;
+}
+.dot{
+  position:relative;z-index:2;
+  width:38px;height:38px;border-radius:50%;
+  background:var(--paper-2);border:4px solid var(--line);
+  display:grid;place-items:center;
+  font-family:var(--sans);font-weight:800;font-size:13.5px;color:var(--line);
+  transition:transform .18s ease,background .18s ease, color .18s ease;
+}
+.stations a:hover .dot{background:var(--line);color:#FFFFFF;transform:scale(1.12)}
+.stations li:last-child .dot{border-color:var(--terminus);color:var(--terminus)}
+.st-name{
+  font-family:var(--sans);font-size:13.5px;font-weight:600;line-height:1.28;
+  max-width:13ch;color:var(--ink);
+}
+.stations a:hover .st-name{text-decoration:underline;text-underline-offset:3px;color:var(--line)}
+.route-foot{
+  margin:30px 0 0;padding-top:18px;border-top:1px solid var(--rule);
+  font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500;
+}
+
+/* ---------- article rail ---------- */
+.article{padding:80px 0 0;position:relative}
+.rail-wrap{position:relative;padding-left:96px}
+.rail{
+  position:absolute;left:18px;top:14px;bottom:70px;width:6px;
+  background:var(--rail-dead);border-radius:3px;overflow:hidden;
+}
+.rail-fill{
+  display:block;width:100%;height:var(--progress,0%);
+  background:var(--line);border-radius:3px;
+}
+
+.stop{position:relative;padding-bottom:64px;scroll-margin-top:28px}
+.node{
+  position:absolute;left:-96px;top:2px;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--paper);border:4px solid var(--line);
+  display:grid;place-items:center;
+}
+.node svg{width:19px;height:19px;stroke:var(--line);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.stop:last-of-type .node{border-color:var(--terminus)}
+.stop:last-of-type .node svg{stroke:var(--terminus)}
+
+.tag{
+  font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--ink-soft);
+  margin:0 0 6px;display:flex;align-items:center;gap:9px;
+}
+.tag b{
+  color:var(--line);font-weight:800;
+  font-variation-settings:"wdth" 112;
+}
+.stop h2{
+  font-family:var(--sans);font-weight:700;
+  font-variation-settings:"wdth" 106;
+  font-size:clamp(1.55rem,3.3vw,2.2rem);
+  line-height:1.1;letter-spacing:-.018em;
+  margin:0 0 18px;max-width:22ch;text-wrap:balance;color:var(--ink);
+}
+.stop p{margin:0 0 20px;max-width:64ch}
+.stop p:last-child{margin-bottom:0}
+
+.slang{
+  font-family:var(--sans);font-weight:600;
+  font-size:clamp(1.05rem,2.2vw,1.35rem);
+  line-height:1.3;letter-spacing:-.015em;
+  margin:24px 0 24px;padding:16px 20px;
+  background:var(--paper-2);
+  border-left:5px solid var(--line);
+  border-radius:0 8px 8px 0;
+  color:var(--ink);
+  max-width:34ch;
+}
+
+/* ---------- TOOLTIPS (TECHNICAL TERMS) ---------- */
+.tech-term {
+  position: relative;
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.9em;
+  color: var(--line);
+  border-bottom: 2px dashed var(--line);
+  cursor: help;
+  padding: 0 2px;
+  background: rgba(2, 132, 199, 0.06);
+  border-radius: 3px;
+}
+
+.tech-term .tooltip-text {
+  visibility: hidden;
+  width: 250px;
+  background-color: var(--ink);
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 10px 12px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  pointer-events: none;
+}
+
+.tech-term .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--ink) transparent transparent transparent;
+}
+
+/* FIX: tooltip also on focus/active for touch devices */
+.tech-term:hover .tooltip-text,
+.tech-term:focus .tooltip-text,
+.tech-term:active .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ---------- CODE SNIPPET ---------- */
+.code-box {
+  background: var(--ink);
+  color: #F8FAFC;
+  font-family: monospace;
+  font-size: 13px;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 18px 0;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+.code-box .kw { color: #38BDF8; font-weight: bold; }
+.code-box .comment { color: #94A3B8; font-style: italic; }
+
+/* ---------- QUIZ ENGINE STYLES ---------- */
+.quiz-container {
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 28px;
+  margin-top: 24px;
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.quiz-option-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 14px 18px;
+  margin: 10px 0;
+  background: #FFFFFF;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.quiz-option-btn:hover:not(:disabled) {
+  border-color: var(--line);
+  background: #E0F2FE;
+}
+
+.quiz-option-btn.correct {
+  background: #DCFCE7 !important;
+  border-color: var(--success) !important;
+  color: #14532D !important;
+  font-weight: 700;
+}
+
+.quiz-option-btn.incorrect {
+  background: #FEE2E2 !important;
+  border-color: var(--danger) !important;
+  color: #7F1D1D !important;
+}
+
+.quiz-feedback-box {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.5;
+  display: none;
+}
+
+.quiz-next-btn {
+  margin-top: 18px;
+  padding: 10px 20px;
+  background: var(--line);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.quiz-next-btn:hover {
+  background: var(--terminus);
+}
+
+/* ---------- end ---------- */
+.terminus{
+  position:relative;margin-top:8px;padding:34px 0 0;border-top:1px solid var(--rule);
+}
+.terminus p{
+  font-family:var(--sans);font-weight:700;font-size:1.05rem;margin:0 0 4px;
+  color:var(--terminus);font-variation-settings:"wdth" 108;
+}
+.terminus span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+
+.pagefoot{
+  margin-top:60px;padding:26px 0 70px;border-top:1px solid var(--rule);
+  display:flex;gap:26px;flex-wrap:wrap;align-items:center;
+  font-family:var(--sans);font-size:14.5px;font-weight:500;
+}
+.pagefoot a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px}
+.pagefoot a:hover{color:var(--line);border-color:var(--line)}
+.pagefoot .spacer{flex:1}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr;gap:24px}
+  .hero h1{font-size:clamp(2.2rem,6vw,4rem)}
+  .hero-image{max-width:320px}
+  .route{padding:26px 20px 24px}
+  .stations{grid-template-columns:1fr;gap:0}
+  .stations::before{left:19px;right:auto;top:8%;bottom:8%;width:6px;height:auto}
+  .stations li{align-items:flex-start;text-align:left}
+  .stations a{flex-direction:row;align-items:center;gap:16px;padding:9px 0;width:100%}
+  .st-name{max-width:none;font-size:15px}
+}
+@media (max-width:640px){
+  body{font-size:17px}
+  .shell{padding:0 18px}
+  .hero{padding:40px 0 4px}
+  .rail-wrap{padding-left:0}
+  .rail{display:none}
+  .node{position:static;margin-bottom:14px}
+  .stop{padding-bottom:52px}
+  .stop h2{max-width:none}
+  .slang{max-width:none}
+}
+
+.hero{grid-template-columns:1fr}
+.stop ul,.stop ol{margin:0 0 20px;padding-left:1.3em;max-width:64ch}
+.stop li{margin-bottom:8px}
+.stop li::marker{color:var(--line);font-weight:700}
+.slang.wide{max-width:none}
+.tbl{overflow-x:auto;margin:22px 0;border:1px solid var(--rule);border-radius:10px}
+.tbl table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:14px;line-height:1.45}
+.tbl th{background:var(--line);color:#fff;text-align:left;padding:10px 14px;font-weight:700}
+.tbl td{padding:10px 14px;border-top:1px solid var(--rule);vertical-align:top}
+.tbl tr:nth-child(even) td{background:var(--paper-2)}
+.code-box pre{margin:0;font:inherit;white-space:pre}
+@media (min-width:821px){
+  .stations{grid-template-columns:repeat(11,1fr)}
+  .stations::before{left:4.5%;right:4.5%}
+  .st-name{font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 9h13v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V9Z"/><path d="M17 10h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M8 5.5c0-1 1-1.2 1-2.2M12 5.5c0-1 1-1.2 1-2.2"/></symbol>
+  <symbol id="i-lightning" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 0-4.9 6 3.5 3.5 0 0 0-3.1 3.5 3.5 3.5 0 0 0 2 3.1 4.5 4.5 0 0 0 8 3.4 4.5 4.5 0 0 0 8-3.4 3.5 3.5 0 0 0 2-3.1 3.5 3.5 0 0 0-3.1-3.5A5 5 0 0 0 12 2z"/></symbol>
+  <symbol id="i-beer" viewBox="0 0 24 24"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M9 2v20"/><path d="M5 6h12v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 16.5 14 18.5 21 12 17 5.5 21 7.5 14 2 9.5 9 9"/></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></symbol><symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 22V3"/><path d="M5 4h13l-2 4 2 4H5"/></symbol><symbol id="i-map" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></symbol>
+</svg>
+
+
+<div class="shell">
+
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="ICM csl homepage"><img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl logo"></a>
+    <span class="badge">Post 07</span>
+    <p>ICM engineering notes</p>
+    <span class="spacer"></span>
+    <p>Friday Morning Coffee #07</p>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Europe Isn’t Late. It’s Reading the Small Print. ☕🌧️</h1>
+      <p class="standfirst">Why you know everything about Silicon Valley and nothing about what Europe (and Ireland) is up to.</p>
+      <p class="byline"><strong>Wojciech Mruk</strong> <span>Friday Morning Coffee</span> <span>Insights #07</span></p>
+    </div>
+  </section>
+
+  <nav class="route" aria-label="Newsletter stations">
+    <div class="route-head"><h2>Your Coffee Route</h2><span>Pick a stop to jump in</span></div>
+    <ul class="stations">
+      <li><a href="#stop-01"><span class="dot">01</span><span class="st-name">Pour the coffee</span></a></li>
+      <li><a href="#stop-02"><span class="dot">02</span><span class="st-name">The show</span></a></li>
+      <li><a href="#stop-03"><span class="dot">03</span><span class="st-name">Small print</span></a></li>
+      <li><a href="#stop-04"><span class="dot">04</span><span class="st-name">Marco</span></a></li>
+      <li><a href="#stop-05"><span class="dot">05</span><span class="st-name">The quiet bit</span></a></li>
+      <li><a href="#stop-06"><span class="dot">06</span><span class="st-name">The sandbox</span></a></li>
+      <li><a href="#stop-07"><span class="dot">07</span><span class="st-name">Trojan horse?</span></a></li>
+      <li><a href="#stop-08"><span class="dot">08</span><span class="st-name">Too high a fence</span></a></li>
+      <li><a href="#stop-09"><span class="dot">09</span><span class="st-name">Time = data?</span></a></li>
+      <li><a href="#stop-10"><span class="dot">10</span><span class="st-name">The disguise</span></a></li>
+      <li><a href="#stop-11"><span class="dot">11</span><span class="st-name">Last sip</span></a></li>
+    </ul>
+    <p class="route-foot">11 stops. A big mug, and a refill. About ten minutes, give or take a chat.</p>
+  </nav>
+
+  <main class="article">
+    <div class="rail-wrap">
+      <div class="rail" aria-hidden="true"><span class="rail-fill" id="railFill"></span></div>
+
+      <article class="stop" id="stop-01">
+        <span class="node" aria-hidden="true"><svg><use href="#i-cup"/></svg></span>
+        <p class="tag"><b>Stop 01</b> Pour the coffee</p>
+        <h2>Kettle on, so</h2>
+        <p>Morning, all.</p>
+        <p>Today's topic is a great injustice, and I'm only slightly exaggerating. If you believe the headlines, the whole world of AI lives in one small corner of California. Everywhere else, apparently, people are still sorting emails by hand and waiting for somebody to call.</p>
+        <p>I'd like to put in a good word for the rest of us. Make it a strong coffee. It's raining, naturally.</p>
+      </article>
+      <article class="stop" id="stop-02">
+        <span class="node" aria-hidden="true"><svg><use href="#i-lightning"/></svg></span>
+        <p class="tag"><b>Stop 02</b> The show</p>
+        <h2>The Silicon Valley blockbuster</h2>
+        <p>AI news reads like a Hollywood trailer. Somebody walks on stage, pulls a new model out of his pocket, and it draws a dog in a hat and sings an opera. The crowd goes wild, and the money arrives in sacks. I'm not mocking it. Entertainment is a big part of life and I've happily lost whole evenings to it.</p>
+        <p>But a business doesn't run on a dog in a hat. When the dust settles after the demo, there's one question left on the table, and it's not a fun one: <strong>where does our data go?</strong> Security, privacy, and who can read what. Nobody has ever applauded a data-processing agreement, and yet here we are, all reading one.</p>
+      </article>
+      <article class="stop" id="stop-03">
+        <span class="node" aria-hidden="true"><svg><use href="#i-book"/></svg></span>
+        <p class="tag"><b>Stop 03</b> The small print</p>
+        <h2>Europe, reading the terms and conditions</h2>
+        <p>While some labs are busy training models to make ever more convincing memes, Europe has been doing what Europe does best: reading the small print. Somebody has to.</p>
+        <ul>
+          <li><strong><a href="https://mistral.ai/">Mistral AI</a> (France).</strong> Strong open-weight models you can run on your own servers. Your company secrets stay in your building, which is where secrets are happiest.</li>
+          <li><strong><a href="https://schwarz-digits.de/en/presse/archive/2026/cohere-and-aleph-alpha-to-form-global-ai-powerhouse">Aleph Alpha</a> (Germany).</strong> Aimed squarely at banks, industry and the public sector, where "trust me" doesn't count as documentation. Fresh news, by the way: in April 2026 they announced they're joining forces with Canada's Cohere, so the sovereign-AI map is being rearranged as we speak.</li>
+          <li><strong><a href="https://gdpr-info.eu/">GDPR</a> and the <a href="https://artificialintelligenceact.eu/">EU AI Act</a>.</strong> Yes, the paperwork. But GDPR started here and the rest of the world ended up copying it. The AI Act is the same game, just with more at stake.</li>
+        </ul>
+        <p class="slang">Not the loudest room in the pub. Often the one where the deal actually gets signed.</p>
+      </article>
+      <article class="stop" id="stop-04">
+        <span class="node" aria-hidden="true"><svg><use href="#i-chat"/></svg></span>
+        <p class="tag"><b>Stop 04</b> A story</p>
+        <h2>The Marco question</h2>
+        <!-- ANECDOTE PLACEHOLDER: swap in the real Marco story if you have one. This is a light, invented example of the kind of thing that fits. -->
+        <p>At my last job there was a colleague called Marco. Brilliant engineer, and the calmest man I've ever worked with. One afternoon someone from management proposed pasting a chunk of a real client database into a shiny new chatbot, "just to see what it can do."</p>
+        <p>Marco didn't say no. He didn't raise his voice. He smiled, put down his espresso, and asked one question: "Lovely. And where does it go afterwards?"</p>
+        <p>Silence. Somebody coughed. Somebody else discovered an urgent need to check their laptop. The idea quietly left the room, and I like to think it went home to have a long think about itself.</p>
+        <p>That's the whole of enterprise AI security, really. Marco's question, asked early, by somebody who's allowed to be annoying.</p>
+      </article>
+      <article class="stop" id="stop-05">
+        <span class="node" aria-hidden="true"><svg><use href="#i-brain"/></svg></span>
+        <p class="tag"><b>Stop 05</b> The quiet bit</p>
+        <h2>And what about Ireland?</h2>
+        <p>Fair question. Is Ireland building its own chatbot? Probably not. We're not going to out-shout California, and honestly, who has the energy?</p>
+        <p>What we do is a bit sneakier. You know the villain in the old spy films: the bald man in the armchair with the white cat on his lap, one little finger to his lips, quietly running everything from the shadows? That's Ireland in AI. Without the evil laugh. We'd need a bigger cat.</p>
+        <ul>
+          <li><strong>The quiet engineers.</strong> A lot of the big tech names keep their European headquarters here, so plenty of the "boring" work (compliance, security, making it all behave under European rules) lands on teams in Dublin and Cork. Sure look, somebody has to do it.</li>
+          <li><strong>Applied, not flashy.</strong> <a href="https://ceadar.ie/">CeADAR</a>, Ireland's national centre for applied AI, helps companies use AI on real and sometimes expensive problems, where a wrong answer costs money rather than just embarrassment.</li>
+          <li><strong>Regulation as a home advantage.</strong> The AI Act asks every member state to offer regulatory sandboxes, a safe place to test your system against the rules. Ireland has the know-how and the habit of being the place where tech and regulators learn to get along.</li>
+        </ul>
+      </article>
+      <article class="stop" id="stop-06">
+        <span class="node" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+        <p class="tag"><b>Stop 06</b> the homework</p>
+        <h2>Bring it home: a sandbox with a local model</h2>
+        <p>So, the sensible move: if the question is "where does the data go?", the cleanest answer is "nowhere". Run the model on our own machine, inside a sandbox, and the chatbot never phones home. It's the AI equivalent of keeping the pet in the house instead of letting it wander off to the neighbours.</p>
+        <p>A starting recipe, small and reversible:</p>
+        <ul>
+          <li><strong>A runtime.</strong> Something like <a href="https://ollama.com/">Ollama</a> or <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> to run an open-weight model on a workstation or a modest server.</li>
+          <li><strong>A container around it.</strong> Docker, non-root, read-only mounts, and <code>--network none</code> (or a tightly controlled internal network). The model can think all it likes, but it can't ring anyone.</li>
+          <li><strong>Fake data first.</strong> Test with generated data, not the real client database. Marco would approve.</li>
+          <li><strong>A small, boring use case.</strong> Summarising internal docs or explaining logs. Not "run the company".</li>
+        </ul>
+        <p>Honest trade-offs: local models are usually smaller than the big cloud ones, you need decent hardware, and now <em>you</em> are the one patching and monitoring it. Freedom isn't free, as the saying goes. It's just billed in a different place.</p>
+      </article>
+
+      <article class="stop" id="stop-07">
+        <span class="node" aria-hidden="true"><svg><use href="#i-star"/></svg></span>
+        <p class="tag"><b>Stop 07</b> a question with no answer</p>
+        <h2>Is local AI safe, or a Trojan horse?</h2>
+        <p>Now the awkward bit. We've just built a lovely wooden horse and wheeled it inside the walls. Let's look at what might be in its belly.</p>
+        <ul>
+          <li><strong>Where did the weights come from?</strong> A downloaded model is a large file made by somebody else. Older formats can even run code when loaded, which is why safer formats like <a href="https://huggingface.co/docs/safetensors">safetensors</a> exist. Models from unknown uploaders deserve the same suspicion as an email attachment called "invoice.exe".</li>
+          <li><strong>Can we inspect it?</strong> "Open-weight" is not "open-source". You can run the model, but you can't really read it. Can anyone prove there's nothing odd baked in? Honestly, nobody can yet.</li>
+          <li><strong>The tooling is software too.</strong> Runtimes, UIs and plugins get vulnerabilities and need updates like everything else.</li>
+          <li><strong>A sandbox stops leaks, not bad advice.</strong> If the model reads a poisoned document, it can still be talked into doing silly things with whatever access we gave it. The <a href="https://genai.owasp.org/llm-top-10/">OWASP Top 10 for LLM applications</a> is a good, sobering read.</li>
+          <li><strong>Docker is not a vault.</strong> Containers share the host's kernel. For anything sensitive, a VM or a stronger isolation layer is the grown-up option.</li>
+        </ul>
+        <p class="slang wide">So here's the question, and I'm deliberately not answering it: <strong>does keeping AI in-house make us safer, or does it just move the risk from somebody else's server to our own front room?</strong></p>
+        <p>Maybe it depends on who's watching the horse. Maybe the Greeks should have had a Marco. Tell me what you think.</p>
+      </article>
+
+      <article class="stop" id="stop-08">
+        <span class="node" aria-hidden="true"><svg><use href="#i-lightning"/></svg></span>
+        <p class="tag"><b>Stop 08</b> the other problem</p>
+        <h2>And what if the fence is too high?</h2>
+        <p>Let's flip it. Say we lock everything down so tightly that nothing can get out. Lovely. Now the AI can't do much either, because <strong>it only knows what we tell it</strong>. Ask a model about a project it has never seen and you'll get a confident, well-written guess. Worse, a guess that sounds exactly like knowledge.</p>
+        <p>And the moment we give an agent real access (our files, our wiki, our tickets), the fence has a gate in it. An agent can reach whatever we let it reach, and not an inch beyond. Which makes the real design question less "which model?" and more "<strong>who gets the keys, and to which rooms?</strong>"</p>
+        <ul>
+          <li><strong>Least privilege.</strong> Read-only first. One folder, not the whole drive.</li>
+          <li><strong>A human in the loop</strong> for anything that sends, deletes or pays.</li>
+          <li><strong>A log of what it touched.</strong> If we can't see it, we can't trust it.</li>
+        </ul>
+        <p class="slang wide">Too little access and the AI is a polite stranger. Too much and it's a polite stranger with a spare key.</p>
+      </article>
+
+      <article class="stop" id="stop-09">
+        <span class="node" aria-hidden="true"><svg><use href="#i-brain"/></svg></span>
+        <p class="tag"><b>Stop 09</b> a philosophical detour</p>
+        <h2>Time is money. Data is money. So is time data?</h2>
+        <p>Every office has two sayings: "time is money" and "data is the new oil". Put them side by side and a 4pm-on-Friday thought arrives: <strong>if both equal money, is time the same thing as data?</strong></p>
+        <p>I'd argue they're cousins. Data is time that someone wrote down. Every log line is a moment. Every ticket is somebody's afternoon. And like time, it spoils: the "current version" of a procedure from three years ago isn't current, it's an antique with a good font. (See Post 05, and the tumbleweeds.)</p>
+        <p>And here's the twist: both are relative. An hour is long in a queue and short at the pub. A dataset is the same. Raw, it's a liability. Disguised, the very same data can be perfectly safe to share. It depends entirely on what we do to it <em>before</em> it goes in.</p>
+      </article>
+
+      <article class="stop" id="stop-10">
+        <span class="node" aria-hidden="true"><svg><use href="#i-map"/></svg></span>
+        <p class="tag"><b>Stop 10</b> one more layer</p>
+        <h2>The disguise layer</h2>
+        <p>Here's another gate between us and the model, and it has nothing to do with legal paperwork. What we're protecting is our <strong>project data</strong>: client names, project codes, server and site names, tag names, and even the categories that describe what a system does. So before anything goes in, we rename it. The AI gets the shape of the problem, not the problem itself.</p>
+        <div class="code-box"><pre><span class="comment">What we have</span>
+Project ACME-PLANT-7, site Cork, server icm-sql-02,
+tag KILN3_TEMP_ZONE2 above limit for 45 min
+
+<span class="comment">What the model sees</span>
+Project [PROJECT_1], site [SITE_A], server [SERVER_1],
+tag [SENSOR_A_ZONE_2] above limit for 45 min</pre></div>
+        <p>You can go a level higher and rename the <em>categories</em> too: "kiln temperature" becomes "process sensor", "customer contract" becomes "document type B". Nothing fancy is needed to start. A dictionary of our sensitive words plus a find-and-replace script already does a lot, and a tool like <a href="https://github.com/microsoft/presidio">Microsoft Presidio</a> can be taught our own patterns (project codes, hostnames) with custom rules. The model still answers, and the real names go back in afterwards, locally, from a lookup table that never leaves the building.</p>
+        <p>Before anyone celebrates, three honest warnings:</p>
+        <ol>
+          <li><strong>A new name isn't a secret.</strong> If the numbers, the structure and the odd details stay intact, a clever reader can still work out whose process it is. Disguise makes leaks harder to use, not impossible.</li>
+          <li><strong>Context gives it away.</strong> A log full of kiln behaviour tells you the industry even without a client name. Decide how much of the shape you're willing to reveal.</li>
+          <li><strong>You can disguise too well.</strong> Strip all the meaning and the AI hands back the average, useless answer. Another trade-off to argue about at the coffee machine.</li>
+        </ol>
+        <p>That lookup table, by the way, is now the most valuable file we own. The horse is back, and it brought a friend.</p>
+      </article>
+
+      <article class="stop" id="stop-11">
+        <span class="node" aria-hidden="true"><svg><use href="#i-flag"/></svg></span>
+        <p class="tag"><b>Stop 11</b> Last sip</p>
+        <h2>What I'd take from it</h2>
+        <p>America sells the show. Europe builds the foundations. We need both, but only one of them is usually in the headlines.</p>
+        <p>For us at ICM, the practical bit is small and Marco-shaped. Before we put any client data into any tool, we ask where it goes, who can see it, and whether we can run it ourselves. If the answer is "grand, don't worry about it", that's your answer too.</p>
+        <p>So next time someone tells you Europe is "falling behind again", nod politely, take a sip, and ask where their data is. Then watch the room go quiet.</p>
+        <p><strong>Over to you.</strong> Got a Marco story of your own, or a view on the horse? Reply, grab me at the coffee machine, or leave a comment.</p>
+      </article>
+
+      <div class="terminus">
+        <p>Stay curious, keep your data close, and have a grand Friday. ☕</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pagefoot">
+    <a href="#" aria-label="Back to top">← Back to top</a>
+    <span class="spacer"></span>
+    <a href="https://icmcsl.com/">icmcsl.com</a>
+  </footer>
+
+</div>
+<script>
+// Rail progress indicator
+(function(){
+  var rail = document.querySelector('.rail');
+  var fill = document.getElementById('railFill');
+  if(!rail || !fill) return;
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var r = rail.getBoundingClientRect();
+    var mid = window.innerHeight * 0.55;
+    var p = (mid - r.top) / r.height;
+    if(p < 0) p = 0;
+    if(p > 1) p = 1;
+    fill.style.height = (p * 100).toFixed(2) + '%';
+  }
+  function onScroll(){
+    if(!ticking){ ticking = true; window.requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  update();
+})();
+
+</script>
+</body>
+</html>
