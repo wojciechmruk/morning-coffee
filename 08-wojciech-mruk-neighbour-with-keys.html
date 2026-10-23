@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Line 08 — The Neighbour With the Keys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..125,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF;
+  --paper-2:#F0F7FF;
+  --ink:#0F172A;
+  --ink-soft:#475569;
+  --line:#0284C7;
+  --terminus:#0369A1;
+  --rule:rgba(2,132,199,.15);
+  --rail-dead:rgba(2,132,199,.12);
+  --shadow:rgba(2,132,199,.08);
+  --success:#16a34a;
+  --danger:#dc2626;
+  --sans:"Archivo",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.72;
+}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--line);outline-offset:3px;border-radius:2px}
+
+.shell{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* ---------- masthead ---------- */
+.masthead{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:22px 0 20px;border-bottom:1px solid var(--rule);
+}
+.badge{
+  font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:.01em;
+  font-variation-settings:"wdth" 112;
+  background:var(--line);color:#FFFFFF;
+  padding:4px 11px;border-radius:3px;
+}
+.masthead p{margin:0;font-family:var(--sans);font-size:14.5px;color:var(--ink-soft);font-weight:500}
+.masthead .spacer{flex:1}
+.brand{display:flex;align-items:center;flex:none}
+.brand img{display:block;height:32px;width:auto}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 8px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero-copy{min-width:0}
+.hero-image{
+  position:relative;isolation:isolate;width:85%;margin:0;justify-self:center;
+  overflow:hidden;
+  background:var(--paper);
+  border-radius:12px;
+}
+.hero-image img{
+  display:block;width:100%;height:auto;
+  border-radius:12px;
+}
+.hero h1{
+  font-family:var(--sans);
+  font-weight:800;
+  font-variation-settings:"wdth" 118;
+  font-size:clamp(2.45rem,5.5vw,4.2rem);
+  line-height:.98;
+  letter-spacing:-.025em;
+  margin:0 0 22px;
+  color:var(--ink);
+  text-wrap:balance;
+}
+.standfirst{
+  font-size:clamp(1.15rem,2.2vw,1.35rem);
+  line-height:1.5;max-width:44ch;margin:0 0 26px;color:var(--ink-soft);
+  font-style:italic;font-weight:300;
+}
+.byline{
+  font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--ink-soft);
+  display:flex;gap:18px;flex-wrap:wrap;margin:0;
+}
+.byline strong{color:var(--ink);font-weight:700}
+
+/* ---------- route map ---------- */
+.route{
+  margin:52px 0 0;padding:34px 30px 30px;
+  background:var(--paper-2);
+  border:1px solid var(--rule);
+  border-radius:6px;
+  box-shadow:0 2px 8px var(--shadow);
+}
+.route-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  flex-wrap:wrap;margin-bottom:34px;
+}
+.route-head h2{
+  font-family:var(--sans);font-weight:700;font-size:1.02rem;margin:0;
+  font-variation-settings:"wdth" 108;letter-spacing:.005em;color:var(--line);
+}
+.route-head span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+
+.stations{
+  list-style:none;margin:0;padding:0;position:relative;
+  display:grid;grid-template-columns:repeat(7,1fr);gap:0;
+}
+.stations::before{
+  content:"";position:absolute;left:8%;right:8%;top:19px;height:6px;
+  background:var(--line);border-radius:3px;
+}
+.stations li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.stations a{
+  text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:12px;
+  padding:0 6px;
+}
+.dot{
+  position:relative;z-index:2;
+  width:38px;height:38px;border-radius:50%;
+  background:var(--paper-2);border:4px solid var(--line);
+  display:grid;place-items:center;
+  font-family:var(--sans);font-weight:800;font-size:13.5px;color:var(--line);
+  transition:transform .18s ease,background .18s ease, color .18s ease;
+}
+.stations a:hover .dot{background:var(--line);color:#FFFFFF;transform:scale(1.12)}
+.stations li:last-child .dot{border-color:var(--terminus);color:var(--terminus)}
+.st-name{
+  font-family:var(--sans);font-size:13.5px;font-weight:600;line-height:1.28;
+  max-width:13ch;color:var(--ink);
+}
+.stations a:hover .st-name{text-decoration:underline;text-underline-offset:3px;color:var(--line)}
+.route-foot{
+  margin:30px 0 0;padding-top:18px;border-top:1px solid var(--rule);
+  font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500;
+}
+
+/* ---------- article rail ---------- */
+.article{padding:80px 0 0;position:relative}
+.rail-wrap{position:relative;padding-left:96px}
+.rail{
+  position:absolute;left:18px;top:14px;bottom:70px;width:6px;
+  background:var(--rail-dead);border-radius:3px;overflow:hidden;
+}
+.rail-fill{
+  display:block;width:100%;height:var(--progress,0%);
+  background:var(--line);border-radius:3px;
+}
+
+.stop{position:relative;padding-bottom:64px;scroll-margin-top:28px}
+.node{
+  position:absolute;left:-96px;top:2px;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--paper);border:4px solid var(--line);
+  display:grid;place-items:center;
+}
+.node svg{width:19px;height:19px;stroke:var(--line);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.stop:last-of-type .node{border-color:var(--terminus)}
+.stop:last-of-type .node svg{stroke:var(--terminus)}
+
+.tag{
+  font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--ink-soft);
+  margin:0 0 6px;display:flex;align-items:center;gap:9px;
+}
+.tag b{
+  color:var(--line);font-weight:800;
+  font-variation-settings:"wdth" 112;
+}
+.stop h2{
+  font-family:var(--sans);font-weight:700;
+  font-variation-settings:"wdth" 106;
+  font-size:clamp(1.55rem,3.3vw,2.2rem);
+  line-height:1.1;letter-spacing:-.018em;
+  margin:0 0 18px;max-width:22ch;text-wrap:balance;color:var(--ink);
+}
+.stop p{margin:0 0 20px;max-width:64ch}
+.stop p:last-child{margin-bottom:0}
+
+.slang{
+  font-family:var(--sans);font-weight:600;
+  font-size:clamp(1.05rem,2.2vw,1.35rem);
+  line-height:1.3;letter-spacing:-.015em;
+  margin:24px 0 24px;padding:16px 20px;
+  background:var(--paper-2);
+  border-left:5px solid var(--line);
+  border-radius:0 8px 8px 0;
+  color:var(--ink);
+  max-width:34ch;
+}
+
+/* ---------- TOOLTIPS (TECHNICAL TERMS) ---------- */
+.tech-term {
+  position: relative;
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.9em;
+  color: var(--line);
+  border-bottom: 2px dashed var(--line);
+  cursor: help;
+  padding: 0 2px;
+  background: rgba(2, 132, 199, 0.06);
+  border-radius: 3px;
+}
+
+.tech-term .tooltip-text {
+  visibility: hidden;
+  width: 250px;
+  background-color: var(--ink);
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 10px 12px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  pointer-events: none;
+}
+
+.tech-term .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--ink) transparent transparent transparent;
+}
+
+/* FIX: tooltip also on focus/active for touch devices */
+.tech-term:hover .tooltip-text,
+.tech-term:focus .tooltip-text,
+.tech-term:active .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ---------- CODE SNIPPET ---------- */
+.code-box {
+  background: var(--ink);
+  color: #F8FAFC;
+  font-family: monospace;
+  font-size: 13px;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 18px 0;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+.code-box .kw { color: #38BDF8; font-weight: bold; }
+.code-box .comment { color: #94A3B8; font-style: italic; }
+
+/* ---------- QUIZ ENGINE STYLES ---------- */
+.quiz-container {
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 28px;
+  margin-top: 24px;
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.quiz-option-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 14px 18px;
+  margin: 10px 0;
+  background: #FFFFFF;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.quiz-option-btn:hover:not(:disabled) {
+  border-color: var(--line);
+  background: #E0F2FE;
+}
+
+.quiz-option-btn.correct {
+  background: #DCFCE7 !important;
+  border-color: var(--success) !important;
+  color: #14532D !important;
+  font-weight: 700;
+}
+
+.quiz-option-btn.incorrect {
+  background: #FEE2E2 !important;
+  border-color: var(--danger) !important;
+  color: #7F1D1D !important;
+}
+
+.quiz-feedback-box {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.5;
+  display: none;
+}
+
+.quiz-next-btn {
+  margin-top: 18px;
+  padding: 10px 20px;
+  background: var(--line);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.quiz-next-btn:hover {
+  background: var(--terminus);
+}
+
+/* ---------- end ---------- */
+.terminus{
+  position:relative;margin-top:8px;padding:34px 0 0;border-top:1px solid var(--rule);
+}
+.terminus p{
+  font-family:var(--sans);font-weight:700;font-size:1.05rem;margin:0 0 4px;
+  color:var(--terminus);font-variation-settings:"wdth" 108;
+}
+.terminus span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+
+.pagefoot{
+  margin-top:60px;padding:26px 0 70px;border-top:1px solid var(--rule);
+  display:flex;gap:26px;flex-wrap:wrap;align-items:center;
+  font-family:var(--sans);font-size:14.5px;font-weight:500;
+}
+.pagefoot a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px}
+.pagefoot a:hover{color:var(--line);border-color:var(--line)}
+.pagefoot .spacer{flex:1}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr;gap:24px}
+  .hero h1{font-size:clamp(2.2rem,6vw,4rem)}
+  .hero-image{max-width:320px}
+  .route{padding:26px 20px 24px}
+  .stations{grid-template-columns:1fr;gap:0}
+  .stations::before{left:19px;right:auto;top:8%;bottom:8%;width:6px;height:auto}
+  .stations li{align-items:flex-start;text-align:left}
+  .stations a{flex-direction:row;align-items:center;gap:16px;padding:9px 0;width:100%}
+  .st-name{max-width:none;font-size:15px}
+}
+@media (max-width:640px){
+  body{font-size:17px}
+  .shell{padding:0 18px}
+  .hero{padding:40px 0 4px}
+  .rail-wrap{padding-left:0}
+  .rail{display:none}
+  .node{position:static;margin-bottom:14px}
+  .stop{padding-bottom:52px}
+  .stop h2{max-width:none}
+  .slang{max-width:none}
+}
+
+.hero{grid-template-columns:1fr}
+.stop ul,.stop ol{margin:0 0 20px;padding-left:1.3em;max-width:64ch}
+.stop li{margin-bottom:8px}
+.stop li::marker{color:var(--line);font-weight:700}
+.slang.wide{max-width:none}
+.tbl{overflow-x:auto;margin:22px 0;border:1px solid var(--rule);border-radius:10px}
+.tbl table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:14px;line-height:1.45}
+.tbl th{background:var(--line);color:#fff;text-align:left;padding:10px 14px;font-weight:700}
+.tbl td{padding:10px 14px;border-top:1px solid var(--rule);vertical-align:top}
+.tbl tr:nth-child(even) td{background:var(--paper-2)}
+.code-box pre{margin:0;font:inherit;white-space:pre}
+@media (min-width:821px){
+  .stations{grid-template-columns:repeat(7,1fr)}
+  .stations::before{left:4.5%;right:4.5%}
+  .st-name{font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 9h13v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V9Z"/><path d="M17 10h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M8 5.5c0-1 1-1.2 1-2.2M12 5.5c0-1 1-1.2 1-2.2"/></symbol>
+  <symbol id="i-lightning" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 0-4.9 6 3.5 3.5 0 0 0-3.1 3.5 3.5 3.5 0 0 0 2 3.1 4.5 4.5 0 0 0 8 3.4 4.5 4.5 0 0 0 8-3.4 3.5 3.5 0 0 0 2-3.1 3.5 3.5 0 0 0-3.1-3.5A5 5 0 0 0 12 2z"/></symbol>
+  <symbol id="i-beer" viewBox="0 0 24 24"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M9 2v20"/><path d="M5 6h12v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 16.5 14 18.5 21 12 17 5.5 21 7.5 14 2 9.5 9 9"/></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></symbol><symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 22V3"/><path d="M5 4h13l-2 4 2 4H5"/></symbol><symbol id="i-map" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></symbol>
+</svg>
+
+
+<div class="shell">
+
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="ICM csl homepage"><img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl logo"></a>
+    <span class="badge">Post 08</span>
+    <p>ICM engineering notes</p>
+    <span class="spacer"></span>
+    <p>Friday Morning Coffee #08</p>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>The Neighbour With the Keys, or: AI “Is Taking Our Jobs” Again ☕☘️</h1>
+      <p class="standfirst">From a suspicious neighbour in Ballyfermot to protein folding and burnt Roman scrolls: why the newcomer is usually less scary than the headline.</p>
+      <p class="byline"><strong>Wojciech Mruk</strong> <span>Friday Morning Coffee</span> <span>Insights #08</span></p>
+    </div>
+  </section>
+
+  <nav class="route" aria-label="Newsletter stations">
+    <div class="route-head"><h2>Your Coffee Route</h2><span>Pick a stop to jump in</span></div>
+    <ul class="stations">
+      <li><a href="#stop-01"><span class="dot">01</span><span class="st-name">Pour the coffee</span></a></li>
+      <li><a href="#stop-02"><span class="dot">02</span><span class="st-name">Confession</span></a></li>
+      <li><a href="#stop-03"><span class="dot">03</span><span class="st-name">The neighbour</span></a></li>
+      <li><a href="#stop-04"><span class="dot">04</span><span class="st-name">Déjà vu</span></a></li>
+      <li><a href="#stop-05"><span class="dot">05</span><span class="st-name">Picking locks</span></a></li>
+      <li><a href="#stop-06"><span class="dot">06</span><span class="st-name">Scans &amp; scrolls</span></a></li>
+      <li><a href="#stop-07"><span class="dot">07</span><span class="st-name">Last sip</span></a></li>
+    </ul>
+    <p class="route-foot">7 stops. One mug. Seven minutes, give or take a chat.</p>
+  </nav>
+
+  <main class="article">
+    <div class="rail-wrap">
+      <div class="rail" aria-hidden="true"><span class="rail-fill" id="railFill"></span></div>
+
+      <article class="stop" id="stop-01">
+        <span class="node" aria-hidden="true"><svg><use href="#i-cup"/></svg></span>
+        <p class="tag"><b>Stop 01</b> Pour the coffee</p>
+        <h2>Kettle on, and a deep breath</h2>
+        <p>Morning, all. Grab a proper mug of strong black coffee. Today we're putting the databases, tables and deployments to one side and talking about something bigger: why everyone keeps telling us AI is coming for our jobs, and why history is doing its favourite thing again.</p>
+        <p>Let's be honest. Most articles online make it sound as if AI is about to take our jobs, take over the world and, on top of that, ruin the Irish weather. (Fair play, the competition there is fierce.) The fear goes like this: <em>They</em> are arriving, newer, faster, cheaper, and soon they'll have our desks, our chairs and our access to the office coffee machine.</p>
+        <p>But hold on a second. We've seen this film before, and in Ireland we saw it fairly recently.</p>
+      </article>
+
+      <article class="stop" id="stop-02">
+        <span class="node" aria-hidden="true"><svg><use href="#i-chat"/></svg></span>
+        <p class="tag"><b>Stop 02</b> The confession</p>
+        <h2>“They’re taking our jobs”</h2>
+        <p>Remember when all those people from Eastern Europe arrived here years ago? They landed, settled in, and yes, quietly took a share of the work. I have a confession to make: <strong>I'm one of them.</strong> I turned up, found a desk, started writing code and pretended to understand what the locals were saying after the third pint.</p>
+        <p>Just when we thought the market had settled, along came another newcomer. This one isn't even a person. It doesn't drink Barry's tea, it never complains about the rain, and it can chew through a million lines of code in five seconds. Here they come again, taking our jobs!</p>
+        <p class="slang wide">Do we pack our bags? Not necessarily. New technology is like new people: at first we keep a polite distance, because nobody likes strangers on the home patch.</p>
+      </article>
+
+      <article class="stop" id="stop-03">
+        <span class="node" aria-hidden="true"><svg><use href="#i-map"/></svg></span>
+        <p class="tag"><b>Stop 03</b> A story</p>
+        <h2>The neighbour from Ballyfermot</h2>
+        <p>My old neighbour in Ballyfermot, Dublin, was a case in point. If you saw him on the street you wouldn't hand him your life savings. Shady, a bit suspicious, with the look of a man whose CV has some interesting chapters.</p>
+        <p>Then came the day I slammed my front door and found myself outside in the rain in a hoodie. And what do you know: his CV included a deep "locksmithing" chapter. Before I'd even thought about breaking a window, he took out a bit of wire, worked the lock with the patience of a watchmaker, and had the door open in four seconds.</p>
+        <p>Two doors down lived another neighbour who, for reasons known to nobody, had spare keys to most of the houses on the street. He wandered around the estate in his slippers, humming something about keys and secrets.</p>
+        <figure style="margin:1.5rem 0;text-align:center">
+          <svg viewBox="0 0 600 230" role="img" aria-label="Cartoon of a man in slippers with a huge keyring beside a locked door, in the rain" style="max-width:100%;height:auto;color:inherit" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <g opacity=".45"><path d="M40 20l-8 20M90 10l-8 20M150 24l-8 20M230 8l-8 20M330 18l-8 20M420 6l-8 20M500 22l-8 20M560 10l-8 20M60 70l-8 20M200 60l-8 20M470 66l-8 20"/></g>
+            <rect x="40" y="70" width="110" height="150" rx="4"/>
+            <circle cx="132" cy="150" r="5" fill="currentColor"/>
+            <path d="M40 220h520"/>
+            <circle cx="300" cy="105" r="18"/>
+            <path d="M292 100h.1M308 100h.1M293 112q7 6 14 0" stroke-width="2.5"/>
+            <path d="M300 123v55M300 138l-32 22M300 138l40 -8M300 178l-18 40M300 178l18 40"/>
+            <path d="M270 218h24M306 218h24" stroke-width="6"/>
+            <circle cx="350" cy="128" r="26"/>
+            <g stroke-width="2.5"><path d="M350 154v18l8 0M350 164l8 0"/><path d="M332 108l-12 -14M352 102l0 -18M370 108l12 -14"/></g>
+            <text x="440" y="60" font-size="16" fill="currentColor" stroke="none" text-anchor="middle" font-family="sans-serif">♪ mm-hm, keys and secrets ♪</text>
+          </svg>
+          <figcaption style="font-size:.85em;opacity:.75;margin-top:.5rem">Fig. 1: The neighbour, the keyring and a soft Dublin day. (Artist's impression. Slippers accurate.)</figcaption>
+        </figure>
+        <p>The moral from Ballyfermot is simple: <strong>what looks dangerous, odd or suspicious can, in the right hands and at the right moment, be exactly what gets you out of trouble.</strong> And AI is much the same.</p>
+      </article>
+
+      <article class="stop" id="stop-04">
+        <span class="node" aria-hidden="true"><svg><use href="#i-book"/></svg></span>
+        <p class="tag"><b>Stop 04</b> Déjà vu</p>
+        <h2>History keeps doing this</h2>
+        <p>Here's a fun one. The word "computer" used to be a <em>job title</em>. Rooms full of people, many of them women, did calculations by hand, including at NASA. When the electronic machines arrived, those people didn't vanish. Some of them, like <a href="https://en.wikipedia.org/wiki/Dorothy_Vaughan">Dorothy Vaughan</a>, taught themselves FORTRAN and ended up running the new machines. The job didn't disappear. It changed its shirt.</p>
+        <p>When spreadsheets turned up in the late 1970s, people worried that accountants and bookkeepers were finished. What happened was more spreadsheets, more analysis, and a lot more questions for the accountants to answer. Nobody ever missed doing long division on paper.</p>
+        <p>None of this means every change is painless. It means the pattern is usually "the work moves", not "the work ends". And it's worth knowing who gets to hold the new keys.</p>
+      </article>
+
+      <article class="stop" id="stop-05">
+        <span class="node" aria-hidden="true"><svg><use href="#i-lightning"/></svg></span>
+        <p class="tag"><b>Stop 05</b> Picking locks</p>
+        <h2>The neighbour who opened biology</h2>
+        <p>Before we panic that AI will take our last SQL procedure, let's look at where it did things human brains simply couldn't do in time.</p>
+        <p>For about fifty years scientists worked on the "protein folding problem". To understand a disease and design a drug you need to know the shape of the protein involved, and working out the structure of a <strong>single</strong> protein could take months or even years of painstaking lab work.</p>
+        <p>Then came <strong>AlphaFold</strong> from DeepMind. In 2022 it was used to predict the structures of <a href="https://alphafold.ebi.ac.uk/">over 200 million proteins</a>, covering nearly every protein known to science, and put them in a database anyone can search. In 2024 its creators shared the <a href="https://www.nobelprize.org/prizes/chemistry/2024/press-release/">Nobel Prize in Chemistry</a>. It helps researchers with work on diseases and new medicines. It doesn't hand out cures, but it opened a door science had been rattling since before many of us were born.</p>
+      </article>
+
+      <article class="stop" id="stop-06">
+        <span class="node" aria-hidden="true"><svg><use href="#i-brain"/></svg></span>
+        <p class="tag"><b>Stop 06</b> Prying eyes, kindly meant</p>
+        <h2>Scans, surgeons and scorched scrolls</h2>
+        <p><strong>In medicine,</strong> algorithms can look at X-rays, mammograms and MRI scans and flag small changes that are easy to miss on a long shift. A human still makes the call. Think of it as a second pair of eyes that never needs a coffee break. In the operating theatre, robot-assisted systems controlled by surgeons give a steadiness that doesn't wobble after a hard night on call.</p>
+        <p><strong>In history,</strong> when Vesuvius erupted almost 2,000 years ago, it buried a library in Herculaneum and turned its scrolls into lumps of charcoal. Unroll one and it crumbles. In 2023 and 2024 the <a href="https://scrollprize.org/">Vesuvius Challenge</a> showed that machine learning, working on 3D X-ray scans, could pick out faint traces of ink inside the rolled scrolls, and the first passages of text were read without ever opening them. We opened a door to ancient history without picking up a hammer.</p>
+      </article>
+
+      <article class="stop" id="stop-07">
+        <span class="node" aria-hidden="true"><svg><use href="#i-flag"/></svg></span>
+        <p class="tag"><b>Stop 07</b> Last sip</p>
+        <h2>So what does this mean for us?</h2>
+        <p>It's easy to picture AI as a giant Terminator about to pull the plug on our server. Take away the drama and you get something much more useful: a very good helper. Like our humming neighbour, it has access to patterns and data we'd never have the time or patience to dig through by hand.</p>
+        <p>We don't have to trust it blindly. We don't have to hand over every key or sign over the car. (See the last post for how to keep the spare keys safe.) But just as Ireland absorbed programmers from Poland and India and came out of it rather well, we can absorb AI into our daily work:</p>
+        <ul>
+          <li>Let it take the "jobs" none of us enjoy: writing tedious tests, hunting typos in stored procedures for eight hours, repetitive code.</li>
+          <li>Keep what no algorithm can replace: strategic thinking, architecture, solving real business problems, and having coffee together on a Friday morning.</li>
+        </ul>
+        <p>So the next time someone says "new people have arrived and they're taking our jobs", smile and think of the neighbour from Ballyfermot. Sometimes the least expected arrival is the only one who can open the lock we've been standing in front of, in the rain.</p>
+        <p><strong>Over to you.</strong> Who was your Ballyfermot neighbour, the one who looked suspicious and then saved the day? Tell me at the coffee machine.</p>
+      </article>
+
+      <div class="terminus">
+        <p>Stay curious, keep your spare keys safe, and have a grand Friday. ☕</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pagefoot">
+    <a href="#" aria-label="Back to top">← Back to top</a>
+    <span class="spacer"></span>
+    <a href="https://icmcsl.com/">icmcsl.com</a>
+  </footer>
+
+</div>
+
+<script>
+// Rail progress indicator
+(function(){
+  var rail = document.querySelector('.rail');
+  var fill = document.getElementById('railFill');
+  if(!rail || !fill) return;
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var r = rail.getBoundingClientRect();
+    var mid = window.innerHeight * 0.55;
+    var p = (mid - r.top) / r.height;
+    if(p < 0) p = 0;
+    if(p > 1) p = 1;
+    fill.style.height = (p * 100).toFixed(2) + '%';
+  }
+  function onScroll(){
+    if(!ticking){ ticking = true; window.requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  update();
+})();
+
+</script>
+</body>
+</html>
