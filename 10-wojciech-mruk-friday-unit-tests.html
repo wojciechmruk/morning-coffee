@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Friday Morning Coffee #10: Unit Tests, Cola and Chickens</title>
+<style>
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--g:#0f766e;--ink:#1f2937;--mute:#6b7280;--line:#e5e7eb}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:17px/1.65 Georgia,"Times New Roman",serif}
+main{max-width:720px;margin:0 auto;padding:2.5rem 1.25rem 3rem}
+h1,h2,h3,.meta,figcaption,.tally,button,label,th{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1{font-size:2.2rem;line-height:1.15;margin:.4rem 0 .6rem}
+h2{font-size:1.4rem;margin:2.4rem 0 .4rem}
+h3{font-size:1.1rem;margin:1.8rem 0 .3rem;color:var(--ink)}
+.meta{color:var(--g);font-weight:600;font-size:.9rem}
+.lead{color:var(--mute);font-size:1.1rem}
+a{color:var(--g)}
+.box{border:1px solid var(--line);border-left:4px solid var(--g);border-radius:8px;padding:1rem 1.2rem;background:#f9fafb;margin:1.2rem 0}
+.box p{margin:.3rem 0}
+.box strong{font-family:system-ui,sans-serif}
+figure{margin:1.4rem 0}
+figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block}
+figcaption{font-size:.85rem;color:var(--mute);margin-top:.4rem}
+ul{padding-left:1.2rem}li{margin:.3rem 0}
+.q{font-family:system-ui,sans-serif;font-weight:600}
+footer{margin-top:2.5rem;color:var(--mute);font:.9rem system-ui,sans-serif}
+.tw{overflow-x:auto;margin:1rem 0;border:1px solid var(--line);border-radius:8px}
+.tw table{border-collapse:collapse;min-width:560px;width:100%;font:.85rem/1.45 system-ui,sans-serif}
+.tw th,.tw td{padding:.6rem .7rem;text-align:left;vertical-align:top;border-top:1px solid var(--line)}
+.tw thead th{background:var(--g);color:#fff;border-top:0}
+.tw tbody tr:nth-child(even){background:#f0fdfa}
+.tw thead a{color:#fff}
+.tally{margin-top:.8rem;padding:.8rem 1rem;border-radius:8px;background:#ecfdf5;font-weight:600}
+</style>
+</head>
+<body>
+<main>
+<p class="meta">ICM csl · ICM engineering notes · Friday Morning Coffee #10</p>
+<h1>Unit Tests, Cola and Chickens: A Friday Morning Coffee ☕</h1>
+<p class="lead">Grab your coffee, mute the notifications for a few minutes, and let's talk about the elephant in the room before the weekend.</p>
+
+<figure>
+<img src="images/10-make-tests.jpeg" alt="Comic strip: a developer gets a session-expired error after fetching a Cola, a Mars orbiter burns up over metric and imperial units, bags pile up at Heathrow when a bag ID is null, a Zune freezes on a leap day, a Skyrim chicken reports a crime, and an AI agent writes the unit tests while a developer drinks coffee.">
+<figcaption>Friday Morning Coffee #10, with a little help from an image generator.</figcaption>
+</figure>
+
+<h2>The elephant in the room: unit tests</h2>
+<p>We all know the daily reality. Deadlines are tight, features need to ship, and writing unit tests is the first thing that gets skipped. The result is a classic piece of technical debt that quietly grows in the background. Like everything else, extremes are bad. Too many tests can slow down delivery and make every change feel heavy. No tests at all is playing with fire.</p>
+<p>Last time we looked at another weak spot, documentation, and we are slowly straightening that out too. Now let's go one step further and ask a practical question: what happens when a system has no safety nets?</p>
+<p>Sometimes the cause of a bug is so non-obvious, so unlikely, and seemingly so unrelated to the system that the whole team stares at the monitor and scratches their heads. Below are five stories of the kind that circulate in the software industry, where a missing test turned a small mistake into a very expensive one, or at least a very funny one.</p>
+
+<h2>Five stories, five missing tests</h2>
+
+<h3>1. The session that expired on the way to a Cola</h3>
+<p>Picture a support ticket that sounds like a joke: <em>“The form in the app keeps losing my data, but ONLY when I go to get a Cola. When I drink coffee, everything works!”</em></p>
+<p>Support teams often hear reports like this one, and the investigation usually turns up something surprisingly mundane. In this telling, the coffee machine sat two minutes from the desk, while the vending machine was at the bottom of the building, a round trip of about fifteen minutes. The application had a hidden session timeout set to exactly fifteen minutes, and when it expired, unsaved form data was cleared without warning.</p>
+<div class="box"><p><strong>What would have caught it:</strong> a unit test on the session state object that checks what happens to unsaved input after the idle timeout, and confirms that validation and a warning run before any reset.</p></div>
+<p class="meta"><a href="https://martinfowler.com/bliki/UnitTest.html">Martin Fowler on what a unit test is</a></p>
+
+<h3>2. Mars Climate Orbiter (1999): the unit mix-up</h3>
+<p>NASA's Mars Climate Orbiter was lost in September 1999. One team's software reported thruster impulse data in pound-force seconds, while the navigation software expected newton-seconds. The spacecraft, worth about 327 million dollars, came too close to Mars and was lost in the atmosphere. NASA's mishap investigation identified the unit mismatch between the two systems as the root cause.</p>
+<div class="box"><p><strong>What would have caught it:</strong> a simple unit test on the interface between the two modules. Feed in a known value and assert the unit and the converted result. A couple of lines of test code could have saved a spacecraft.</p></div>
+<p class="meta"><a href="https://mars.jpl.nasa.gov/msp98/orbiter/">NASA JPL: Mars Climate Orbiter mission page</a> · <a href="https://en.wikipedia.org/wiki/Mars_Climate_Orbiter">Wikipedia overview</a></p>
+
+<h3>3. Heathrow Terminal 5 (2008): the baggage that was not there</h3>
+<p>When Terminal 5 opened at London Heathrow in March 2008, the new baggage handling system struggled under real passenger load. Tens of thousands of bags were misrouted or lost in the first days, and the airport's operations were badly disrupted for over a week. Public accounts describe a system that could not handle the case where an item's identification was missing or unexpected, and the consequences spread through the whole operation.</p>
+<div class="box"><p><strong>What would have caught it:</strong> edge-case tests for missing and malformed identifiers, for example what the code does when the ID is <code>null</code> or has an unknown format. Combine those with load tests, because a bug that is harmless at ten items per minute can be a disaster at a thousand.</p></div>
+<p class="meta"><a href="https://en.wikipedia.org/wiki/Heathrow_Terminal_5">Wikipedia: Heathrow Terminal 5</a> · <a href="https://www.bbc.com/news/uk-england-london-12340224">BBC coverage of the Terminal 5 opening</a></p>
+
+<h3>4. The Zune and the leap day (31 December 2008)</h3>
+<p>On 31 December 2008, many Microsoft Zune 30 players froze at the same time and got stuck in a reboot loop. The cause was a bug in the clock driver's day-counting logic. When the calendar reached the 366th day of a leap year, the loop condition did not handle that exact value, and the device never left the loop. The fix was a software update, but the freeze had already become a famous example of how one boundary condition can take down thousands of devices at once.</p>
+<div class="box"><p><strong>What would have caught it:</strong> boundary-value tests for the date conversion function: day 365, day 366 in a leap year, and the first day of the next year. These are some of the cheapest tests you will ever write, and some of the most valuable.</p></div>
+<p class="meta"><a href="https://en.wikipedia.org/wiki/Zune#Zune_30_leap_year_bug">Wikipedia: Zune, leap year bug</a> · <a href="https://www.microsoft.com/en-us/">Microsoft Zune background</a></p>
+
+<h3>5. Skyrim's chickens: the witnesses nobody planned for</h3>
+<p>During testing of a crime system in an open-world RPG, testers noticed that committing a minor offence in an empty village attracted guards almost instantly. The reason was delightfully absurd. The village chickens inherited from a general <code>Entity</code> class, and a witness behaviour was enabled by default. The chickens were reporting crimes faster than the neighbours.</p>
+<div class="box"><p><strong>What would have caught it:</strong> a unit test on business rules that checks which object types are allowed to report crimes. Does an <code>Animal</code> have <code>CanReportCrime</code>? The answer should be no, and a test makes that explicit instead of accidental.</p></div>
+<p class="meta">Game development is full of stories like this. The lesson is about inheritance and default values, not about chickens.</p>
+
+<h2>Summary table</h2>
+<div class="tw"><table>
+<thead><tr><th>Story</th><th>What went wrong</th><th>Test that would have helped</th><th>Reference</th></tr></thead>
+<tbody>
+<tr><th scope="row">Cola timeout</th><td>Hidden session timeout silently cleared unsaved form data</td><td>State test on idle timeout and validation before reset</td><td><a href="https://martinfowler.com/bliki/UnitTest.html">Fowler: Unit Test</a></td></tr>
+<tr><th scope="row">Mars Climate Orbiter</th><td>Pound-force seconds passed where newton-seconds were expected</td><td>Interface test with explicit units and conversion checks</td><td><a href="https://mars.jpl.nasa.gov/msp98/orbiter/">NASA JPL mission page</a></td></tr>
+<tr><th scope="row">Heathrow T5</th><td>Unexpected bag identifiers broke the sorting logic under load</td><td>Edge-case tests for null and malformed IDs, plus load tests</td><td><a href="https://en.wikipedia.org/wiki/Heathrow_Terminal_5">Wikipedia</a></td></tr>
+<tr><th scope="row">Zune 30</th><td>Day-counting loop never exited on day 366 of a leap year</td><td>Boundary-value tests for date conversion</td><td><a href="https://en.wikipedia.org/wiki/Zune#Zune_30_leap_year_bug">Wikipedia</a></td></tr>
+<tr><th scope="row">Skyrim chickens</th><td>Default inheritance gave animals the ability to report crimes</td><td>Business-rule test on which types may report crimes</td><td>Game development folklore</td></tr>
+</tbody></table></div>
+
+<h2>Balance: the test pyramid and the things we actually need</h2>
+<p>Most of these stories are not about exotic bugs. They are about boring cases nobody thought to check: a null value, a unit, a boundary, a default. A healthy test suite usually has many fast unit tests at the bottom, fewer integration tests in the middle, and a small number of end-to-end tests at the top. Martin Fowler describes this as the <a href="https://martinfowler.com/bliki/TestPyramid.html">test pyramid</a>.</p>
+<p>For .NET teams, the tooling is already mature. <a href="https://learn.microsoft.com/en-us/dotnet/core/testing/">Microsoft's testing documentation</a> covers the basics, and frameworks such as <a href="https://xunit.net/">xUnit</a> make it easy to write parameterised tests for exactly the edge cases above. Start small: pick the code that moves money, units, dates or identifiers, and cover the boundaries first.</p>
+
+<h2>Taming it with AI, without going crazy 🤖</h2>
+<p>Nobody wants to spend half the day typing repetitive test boilerplate. This is where AI tools can help. Coding agents can draft unit tests, suggest edge cases and point out branches nobody covered. The important part is to keep a human in the loop and to make the tests run automatically.</p>
+<p>That is the idea behind <a href="https://pre-commit.com/">pre-commit hooks</a>: the tests run before a commit is accepted, so broken code does not reach the shared branch. Tools such as <a href="https://docs.claude.com/en/docs/claude-code/hooks">Claude Code hooks</a> show the same principle in an agentic workflow, where automated checks run around each change the agent makes. The concept is simple: when an agent writes tests and the system enforces that they pass before every commit, we get a strong shield against the most embarrassing, abstract bugs, including the edge cases that only appear when someone walks to the vending machine on another floor.</p>
+<p>AI does not replace judgement, though. A generated test that simply asserts whatever the code currently does is a mirror, not a safety net. Review generated tests the same way you review production code.</p>
+
+<h2>A quick checklist for Monday</h2>
+<ul>
+<li>Test every place where units, dates, or currencies are converted.</li>
+<li>Write one boundary test for every numeric or date range you touch.</li>
+<li>Decide what happens when an identifier is missing or unknown, and test that decision.</li>
+<li>Check default values and inheritance: should this object really be able to do that?</li>
+<li>Run the tests automatically before every commit.</li>
+</ul>
+
+<p class="q">Over to you: which of these stories has a parallel in your own codebase? Which boundary has bitten you hardest?</p>
+
+<footer>Stories are shared as industry anecdotes; the NASA, Wikipedia and BBC references are the sources to check for details. · Sláinte! ☕ · icmcsl.com</footer>
+</main>
+</body>
+</html>
