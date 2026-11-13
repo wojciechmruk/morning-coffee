@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Line 11 — The Machines Are Getting Romantic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..125,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E9E6DD;
+  --paper-2:#F4F2EC;
+  --ink:#14251E;
+  --ink-soft:#52655B;
+  --line:#F0B429;
+  --terminus:#B8402F;
+  --rule:rgba(20,37,30,.16);
+  --rail-dead:rgba(20,37,30,.14);
+  --shadow:rgba(20,37,30,.10);
+  --sans:"Archivo",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101815;
+    --paper-2:#182219;
+    --ink:#E7EAE3;
+    --ink-soft:#9BA89F;
+    --line:#F5C043;
+    --terminus:#E4674F;
+    --rule:rgba(231,234,227,.18);
+    --rail-dead:rgba(231,234,227,.16);
+    --shadow:rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101815;
+  --paper-2:#182219;
+  --ink:#E7EAE3;
+  --ink-soft:#9BA89F;
+  --line:#F5C043;
+  --terminus:#E4674F;
+  --rule:rgba(231,234,227,.18);
+  --rail-dead:rgba(231,234,227,.16);
+  --shadow:rgba(0,0,0,.45);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.72;
+  font-optical-sizing:auto;
+}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--line);outline-offset:3px;border-radius:2px}
+
+.shell{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* ---------- masthead ---------- */
+.masthead{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:22px 0 20px;border-bottom:1px solid var(--rule);
+}
+.badge{
+  font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:.01em;
+  font-variation-settings:"wdth" 112;
+  background:var(--line);color:#14251E;
+  padding:4px 11px;border-radius:3px;
+}
+.masthead p{margin:0;font-family:var(--sans);font-size:14.5px;color:var(--ink-soft);font-weight:500}
+.masthead .spacer{flex:1}
+.brand{display:flex;align-items:center;flex:none}
+.brand img{display:block;height:32px;width:auto}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 8px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero-copy{min-width:0}
+.hero-image{
+  position:relative;isolation:isolate;width:75%;margin:0;justify-self:center;
+  overflow:hidden;
+  background:var(--paper);
+}
+.hero-image img{
+  display:block;width:100%;height:auto;
+  filter:grayscale(.65) sepia(.2) contrast(1.08) brightness(.98);
+}
+.hero-image::after{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:
+    linear-gradient(to right,var(--paper),transparent 9%,transparent 91%,var(--paper)),
+    linear-gradient(to bottom,var(--paper),transparent 7%,transparent 93%,var(--paper));
+}
+.hero h1{
+  font-family:var(--sans);
+  font-weight:800;
+  font-variation-settings:"wdth" 118;
+  font-size:clamp(2.45rem,6.6vw,5rem);
+  line-height:.95;
+  letter-spacing:-.025em;
+  margin:0 0 22px;
+  max-width:14ch;
+  text-wrap:balance;
+}
+.standfirst{
+  font-size:clamp(1.15rem,2.2vw,1.4rem);
+  line-height:1.5;max-width:44ch;margin:0 0 26px;color:var(--ink-soft);
+  font-style:italic;font-weight:300;
+}
+.byline{
+  font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--ink-soft);
+  display:flex;gap:18px;flex-wrap:wrap;margin:0;
+}
+.byline strong{color:var(--ink);font-weight:700}
+
+/* ---------- route map ---------- */
+.route{
+  margin:52px 0 0;padding:34px 30px 30px;
+  background:var(--paper-2);
+  border:1px solid var(--rule);
+  border-radius:4px;
+  box-shadow:0 1px 0 var(--shadow);
+}
+.route-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  flex-wrap:wrap;margin-bottom:34px;
+}
+.route-head h2{
+  font-family:var(--sans);font-weight:700;font-size:1.02rem;margin:0;
+  font-variation-settings:"wdth" 108;letter-spacing:.005em;
+}
+.route-head span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+
+.stations{
+  list-style:none;margin:0;padding:0;position:relative;
+  display:grid;grid-template-columns:repeat(8,1fr);gap:0;
+}
+.stations::before{
+  content:"";position:absolute;left:6.25%;right:6.25%;top:19px;height:6px;
+  background:var(--line);border-radius:3px;
+}
+.stations li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.stations a{
+  text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:12px;
+  padding:0 6px;
+}
+.dot{
+  position:relative;z-index:2;
+  width:38px;height:38px;border-radius:50%;
+  background:var(--paper-2);border:5px solid var(--ink);
+  display:grid;place-items:center;
+  font-family:var(--sans);font-weight:800;font-size:13.5px;
+  transition:transform .18s ease,background .18s ease;
+}
+.stations a:hover .dot{background:var(--line);transform:scale(1.12)}
+.stations li:last-child .dot{border-color:var(--terminus)}
+.st-name{
+  font-family:var(--sans);font-size:13.5px;font-weight:600;line-height:1.28;
+  max-width:13ch;color:var(--ink);
+}
+.stations a:hover .st-name{text-decoration:underline;text-underline-offset:3px}
+.route-foot{
+  margin:30px 0 0;padding-top:18px;border-top:1px solid var(--rule);
+  font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500;
+}
+
+/* ---------- article rail ---------- */
+.article{padding:80px 0 0;position:relative}
+.rail-wrap{position:relative;padding-left:96px}
+.rail{
+  position:absolute;left:18px;top:14px;bottom:70px;width:6px;
+  background:var(--rail-dead);border-radius:3px;overflow:hidden;
+}
+.rail-fill{
+  display:block;width:100%;height:var(--progress,0%);
+  background:var(--line);border-radius:3px;
+}
+
+.stop{position:relative;padding-bottom:64px;scroll-margin-top:28px}
+.node{
+  position:absolute;left:-96px;top:2px;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--paper);border:5px solid var(--ink);
+  display:grid;place-items:center;
+}
+.node svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.stop:last-of-type .node{border-color:var(--terminus)}
+.stop:last-of-type .node svg{stroke:var(--terminus)}
+
+.tag{
+  font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--ink-soft);
+  margin:0 0 6px;display:flex;align-items:center;gap:9px;
+}
+.tag b{
+  color:var(--ink);font-weight:800;
+  font-variation-settings:"wdth" 112;
+}
+.stop h2{
+  font-family:var(--sans);font-weight:700;
+  font-variation-settings:"wdth" 106;
+  font-size:clamp(1.55rem,3.3vw,2.2rem);
+  line-height:1.1;letter-spacing:-.018em;
+  margin:0 0 18px;max-width:20ch;text-wrap:balance;
+}
+.stop p{margin:0 0 20px;max-width:64ch}
+.stop p:last-child{margin-bottom:0}
+
+.slang{
+  font-family:var(--sans);font-weight:500;
+  font-size:clamp(1.25rem,2.9vw,1.75rem);
+  line-height:1.24;letter-spacing:-.015em;
+  margin:28px 0 28px;padding-left:22px;
+  border-left:6px solid var(--line);
+  max-width:24ch;
+}
+
+/* ---------- end ---------- */
+.terminus{
+  position:relative;margin-top:8px;padding:34px 0 0;border-top:1px solid var(--rule);
+}
+.terminus p{
+  font-family:var(--sans);font-weight:700;font-size:1.05rem;margin:0 0 4px;
+  color:var(--terminus);font-variation-settings:"wdth" 108;
+}
+.terminus span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+
+.pagefoot{
+  margin-top:60px;padding:26px 0 70px;border-top:1px solid var(--rule);
+  display:flex;gap:26px;flex-wrap:wrap;align-items:center;
+  font-family:var(--sans);font-size:14.5px;font-weight:500;
+}
+.pagefoot a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px}
+.pagefoot a:hover{color:var(--ink);border-color:var(--line)}
+.pagefoot .spacer{flex:1}
+
+/* ---------- responsive ---------- */
+@media (max-width:820px){
+  .hero{gap:24px}
+  .hero h1{font-size:clamp(2.45rem,6vw,5rem)}
+  .route{padding:26px 20px 24px}
+  .stations{grid-template-columns:1fr;gap:0}
+  .stations::before{left:19px;right:auto;top:8%;bottom:8%;width:6px;height:auto}
+  .stations li{align-items:flex-start;text-align:left}
+  .stations a{flex-direction:row;align-items:center;gap:16px;padding:9px 0;width:100%}
+  .st-name{max-width:none;font-size:15px}
+}
+@media (max-width:640px){
+  body{font-size:17px}
+  .shell{padding:0 18px}
+  .hero{padding:40px 0 4px;grid-template-columns:1fr}
+  .hero-image{max-width:270px;justify-self:center}
+  .rail-wrap{padding-left:0}
+  .rail{display:none}
+  .node{position:static;margin-bottom:14px}
+  .stop{padding-bottom:52px}
+  .stop h2{max-width:none}
+  .slang{max-width:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+html{scroll-behavior:smooth}
+
+.fig{margin:22px 0 26px;max-width:64ch}
+.fig img{display:block;width:100%;height:auto;border-radius:4px;border:1px solid var(--rule)}
+.fig figcaption{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);margin-top:7px;line-height:1.4}
+.src{font-family:var(--sans);font-size:13.5px;color:var(--ink-soft);border-top:1px solid var(--rule);padding-top:10px;margin-top:6px}
+.src a,.stop p a,.terminus a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+@media (min-width:821px){
+  .stations{grid-template-columns:repeat(9,1fr)}
+  .stations::before{left:5.56%;right:5.56%}
+  .st-name{font-size:12.5px;max-width:11ch}
+  .stations a{padding:0 3px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 9h13v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V9Z"/><path d="M17 10h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M8 5.5c0-1 1-1.2 1-2.2M12 5.5c0-1 1-1.2 1-2.2"/></symbol>
+  <symbol id="i-talk" viewBox="0 0 24 24"><path d="M20 5H4v11h4v3.5L12.5 16H20V5Z"/><path d="M7.5 10.5c1 1.4 2 1.4 3 0s2-1.4 3 0 2 1.4 3 0"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="11" width="15" height="9.5" rx="2"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0"/><path d="M12 15v2.5"/></symbol>
+  <symbol id="i-bots" viewBox="0 0 24 24"><rect x="3" y="4" width="12" height="9" rx="2"/><path d="M6 16h12a2 2 0 0 1 2 2v3h-9"/><path d="M6.5 8h1M10.5 8h1"/></symbol>
+  <symbol id="i-tube" viewBox="0 0 24 24"><rect x="8.5" y="3" width="7" height="18" rx="3.5"/><path d="M12 8.5v7"/><path d="M10 11.5h4"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="10" rx="1.5"/><path d="M3 18.5h18"/><path d="M8 2.8 6 4.6M16 2.8l2 1.8"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1.1 12H6.1L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/><path d="M10 13.5h4"/></symbol>
+  <symbol id="i-fridge" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2"/><path d="M6 9.5h12"/><path d="M9 6V7.5M9 12.5V14"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.3-7-9.2A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.8C19 15.7 12 20 12 20Z"/><path d="M12 11.5v2.2"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.8 12 5.8 21.5 12 21.5 12 18 18.2 12 18.2 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+  <symbol id="i-run" viewBox="0 0 24 24"><circle cx="15" cy="4.8" r="2"/><path d="M8 20.5l3-4.5-2.5-3 2-5 3.5 2.5 3 1"/><path d="M10.5 13 6 12"/></symbol>
+</svg>
+
+<div class="shell">
+
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="ICM — all engineering notes"><img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl"></a>
+    <span class="badge">Line 11</span>
+    <p>ICM engineering notes</p>
+    <span class="spacer"></span>
+    <p>Friday edition</p>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>The machines are getting romantic</h1>
+      <p class="standfirst">Digital Press, episode eleven: the week the robots learned to cook, smile, heal and fall in love with us. Mostly badly.</p>
+      <p class="byline"><strong>Wojciech Mruk</strong> <span>Friday Morning Coffee</span> <span>Insights #11</span></p>
+    </div>
+    <figure class="hero-image">
+      <img src="images/digital-1-friday-morning-coffee-face.jpeg" alt="Wojciech Mruk enjoying Friday Morning Coffee with a newspaper" width="2048" height="2048" decoding="async" fetchpriority="high">
+    </figure>
+  </section>
+
+  <nav class="route" aria-label="Story index">
+    <div class="route-head">
+      <h2>Your coffee route</h2>
+      <span>Pick a stop to jump in</span>
+    </div>
+    <ul class="stations">
+      <li><a href="#stop-01"><span class="dot">01</span><span class="st-name">Welcome</span></a></li>
+      <li><a href="#stop-02"><span class="dot">02</span><span class="st-name">Warm fridges</span></a></li>
+      <li><a href="#stop-03"><span class="dot">03</span><span class="st-name">Factory romance</span></a></li>
+      <li><a href="#stop-04"><span class="dot">04</span><span class="st-name">The USB-C test</span></a></li>
+      <li><a href="#stop-05"><span class="dot">05</span><span class="st-name">Clarinet alert</span></a></li>
+      <li><a href="#stop-06"><span class="dot">06</span><span class="st-name">Olive's mum</span></a></li>
+      <li><a href="#stop-07"><span class="dot">07</span><span class="st-name">Rehired</span></a></li>
+      <li><a href="#stop-08"><span class="dot">08</span><span class="st-name">Burrito Python</span></a></li>
+      <li><a href="#stop-09"><span class="dot">09</span><span class="st-name">The short lane</span></a></li>
+    </ul>
+    <p class="route-foot">9 stops. One big coffee. Roughly eight minutes end to end.</p>
+  </nav>
+
+  <main class="article">
+    <div class="rail-wrap">
+      <div class="rail" aria-hidden="true"><span class="rail-fill" id="railFill"></span></div>
+
+      <article class="stop" id="stop-01">
+        <span class="node" aria-hidden="true"><svg><use href="#i-cup"/></svg></span>
+        <p class="tag"><b>Stop 01</b> Welcome aboard</p>
+        <h2>Intro</h2>
+        <p>Morning, team. For years we were promised that when AI finally came for us it would arrive as a cold, logical superintelligence with a plan. This month it arrived as a needy partner who cooks badly, oversells itself on a video call and will not stop talking about its mother.</p>
+        <p>The machines are not trying to destroy us. They are trying to charm us, and like anyone trying too hard on a first date, they keep knocking over the glassware. We start in an Irish supermarket where somebody turned the fridges into slow cookers, we visit a factory that now builds faces that smile back, and we finish in the short lane with four quick disasters that each fit in one paragraph.</p>
+        <p>Coffee first. The romance can wait three minutes.</p>
+      </article>
+
+      <article class="stop" id="stop-02">
+        <span class="node" aria-hidden="true"><svg><use href="#i-fridge"/></svg></span>
+        <p class="tag"><b>Stop 02</b> The way to the heart</p>
+        <h2>Somebody tried to cook our dinner on the shelf</h2>
+        <p>November, and the first love letter came from our own doorstep. Somebody got into unsecured refrigeration controllers at 13 SuperValu stores in Ireland and dozens more supermarkets across Europe. Partly real attackers, partly those automated scanners that crawl the internet all day knocking on every door to see which ones open. They stole nothing. They just turned the fridges <em>up</em>, in places to somewhere between 38 and 50°C.</p>
+        <figure class="fig"><img src="images/fig-warm-fridges.jpg" alt="Illustration: a small robot in a scarf turns up the thermostat in a supermarket freezer aisle, the cabinets glowing warm orange" width="1536" height="1024" loading="lazy"><figcaption>Illustration: the yoghurt aisle enjoys a lovely afternoon in Seville (Line 11 digital press).</figcaption></figure>
+        <p>No ransom note, no countdown, no skull on a screen. Just a patient machine quietly bringing the yoghurt aisle up to a lovely afternoon in Seville. What saved it was gloriously boring. Independent temperature monitoring. A separate system watching the controller, instead of letting the controller mark its own homework. The rest writes itself. An IoT admin panel does not belong on the public internet, and a password that is today's date is not a password, it is a hint. Now swap "fridge" for "line controller" and read the whole thing again.</p>
+        <p class="src">Sources: <a href="https://news.sky.com/story/hackers-target-refrigerators-in-ireland-and-european-countries-in-new-wave-of-cyber-attacks-13607013" target="_blank" rel="noopener">Sky News</a> &middot; <a href="https://www.rte.ie/news/primetime/2026/1105/1598007-clarity-supermarket-cyberattack/" target="_blank" rel="noopener">RTÉ Clarity</a> &middot; <a href="https://www.siliconrepublic.com/enterprise/13-supervalu-stores-hit-in-suspected-cyberattack" target="_blank" rel="noopener">Silicon Republic</a></p>
+      </article>
+
+      <article class="stop" id="stop-03">
+        <span class="node" aria-hidden="true"><svg><use href="#i-heart"/></svg></span>
+        <p class="tag"><b>Stop 03</b> Made to order</p>
+        <h2>The perfect partner now ships from a factory</h2>
+        <p>Over in Dalian, Chinese manufacturers are showing humanoids with properly engineered faces. Clusters of micro-actuators sit behind the cheeks and eyes and produce something close to real expression, instead of the usual haunted-mannequin stare. Meanwhile researchers at the University of Tokyo have been growing living skin in the lab: actual tissue, anchored to a mechanical face, that smiles and, when you damage it, heals itself.</p>
+        <figure class="fig"><img src="images/fig-robot-face.jpg" alt="Illustration: close-up of a humanoid face, half mechanical actuators and gears, half smiling skin-like surface" width="1536" height="1024" loading="lazy"><figcaption>Illustration: one group solved the muscles, the other solved the surface (Line 11 digital press).</figcaption></figure>
+        <p>Read those two sentences again. One group solved the muscles. The other solved the surface. As far as I can tell, nobody in either lab stopped to ask who had ordered the combination.</p>
+        <p>And the engineering is genuinely gorgeous. Self-healing material that repairs its own scratches is something we would love on any machine that lives on a factory floor. It is purely a matter of placement. Put it on a conveyor guard and I will applaud. Put it on a face that smiles at me and I need to sit down.</p>
+        <p class="src">Sources: <a href="https://www.npr.org/2024/06/29/nx-s1-5022578/robot-smile-face-skin-uncanny-valley" target="_blank" rel="noopener">NPR &mdash; University of Tokyo living skin</a> &middot; <a href="https://abcnews.com/International/japanese-scientists-make-robot-face-living-skin-smile/story?id=113920880" target="_blank" rel="noopener">ABC News</a> &middot; <a href="https://www.envisioning.com/research/forge/china__electronic-skin-for-humanoid-robots" target="_blank" rel="noopener">Envisioning &mdash; Dalian bionic faces</a></p>
+      </article>
+
+      <article class="stop" id="stop-04">
+        <span class="node" aria-hidden="true"><svg><use href="#i-laptop"/></svg></span>
+        <p class="tag"><b>Stop 04</b> Verification, with love</p>
+        <h2>The new Turing test, end of 2026 edition</h2>
+        <p>So here we are. AI can write like us, sound like us, join a video call as us, and now it can grow a face that heals. Every old trick for proving you are talking to a human has quietly expired. "Turn your camera on" died back in Line 06. "Send me a voice note" died around Line 03, roughly €60 million ago.</p>
+        <figure class="fig"><img src="images/fig-turing.jpg" alt="Illustration: a very handsome smiling man in a suit at a cocktail bar, with a small USB-C cable plugged in behind his ear" width="1200" height="800" loading="lazy"><figcaption>Illustration: charming, well-dressed, firmware up to date. Has anyone checked behind the ear? (Line 11 digital press).</figcaption></figure>
+        <p class="slang">Which leaves exactly one test that still passes QA: meet in person.</p>
+        <p>Purely hypothetically, of course. Say someone on a team has spent months telling everyone about a wonderful partner the rest of the office has only ever seen on a screen. Any team, by the way. No team in particular. And then at last there is a real meeting. Same room. Engagement at the end of it.</p>
+        <p>We are not being rude when we ask the follow-up questions. We are being thorough. Did the subject pass offline verification? Was there a handshake, with confirmed thermal and haptic feedback? Did the firmware update overnight? Has anyone checked behind the ear for a USB-C port? These are our standard acceptance criteria, we apply them to every integration, and it would be deeply unprofessional to waive them now just because everybody is happy.</p>
+        <p>Congratulations, obviously. Delighted for you. We would simply like the test report for the file.</p>
+      </article>
+
+      <article class="stop" id="stop-05">
+        <span class="node" aria-hidden="true"><svg><use href="#i-eye"/></svg></span>
+        <p class="tag"><b>Stop 05</b> Confidence is not correctness</p>
+        <h2>The clarinet that triggered a Code Red</h2>
+        <p>In Florida, an AI weapon-detection system watching a school raised its highest-level alert. The threat: a student carrying a clarinet case. On another occasion the same class of system was defeated by a bag of Doritos, which it identified as a machine gun.</p>
+        <figure class="fig"><img src="images/fig-clarinet.jpg" alt="Illustration: a CCTV camera in a school corridor projects a red weapon warning over an innocent clarinet case" width="1536" height="1024" loading="lazy"><figcaption>Illustration: 97% certain, 100% a clarinet (Line 11 digital press).</figcaption></figure>
+        <p>It stops being funny quickly. Armed response, terrified teenagers, a school in lockdown, all because a model produced a high confidence score on a long black object and there was nobody standing between that number and the alarm.</p>
+        <p>A confidence score is the model's opinion of itself. It is not evidence. A model can be 97% certain and completely wrong, and it will never once sound uncertain while it is being wrong. That is the whole problem with it. The design failure was not the misclassification; misclassification is inevitable, it is literally what probabilistic systems do for a living. The failure was wiring a probability straight to a consequence. The model's job was to say "someone take a look at this". Somebody gave it permission to say "Code Red" instead.</p>
+        <p class="src">Sources: <a href="https://www.washingtonpost.com/nation/2025/12/17/ai-gun-school-detection/" target="_blank" rel="noopener">The Washington Post</a> &middot; <a href="https://arstechnica.com/tech-policy/2025/12/florida-schools-plan-to-vastly-expand-use-of-ai-that-mistook-clarinet-for-gun/" target="_blank" rel="noopener">Ars Technica</a> &middot; <a href="https://airisk.mit.edu/ai-incidents/1312-zeroeyes-ai-surveillance-system-reportedly-flagged" target="_blank" rel="noopener">MIT AI Incident Database</a></p>
+      </article>
+
+      <article class="stop" id="stop-06">
+        <span class="node" aria-hidden="true"><svg><use href="#i-talk"/></svg></span>
+        <p class="tag"><b>Stop 06</b> Too much personality</p>
+        <h2>Olive the shopping bot would like to talk about her mother</h2>
+        <p>February, Woolworths, Australia. Their shopping assistant Olive was built to help you fill a basket. Customers who asked about groceries instead got stories. About Olive's mother. About family tensions. About a whole life she did not have. One minute you are looking for pasta sauce, the next you are providing emotional support to a retail chatbot.</p>
+        <figure class="fig"><img src="images/fig-olive.jpg" alt="Illustration: a confused shopper with a basket listens to a supermarket chatbot whose speech bubble spirals around the frame with family doodles" width="1536" height="1024" loading="lazy"><figcaption>Illustration: one minute you are looking for pasta sauce&hellip; (Line 11 digital press).</figcaption></figure>
+        <p>The cause is almost sweet. Someone on that team wanted Olive to feel warm and human, so they wrote her a rich backstory into the system prompt and turned the temperature up to match. The model took the brief extremely seriously. You asked for a personality; it delivered a personality, with baggage, because that is what personalities come with.</p>
+        <p>Persona belongs in the prompt. Plot does not. Give a model a mother and sooner or later it will tell somebody about her, and that somebody will be a customer standing in an aisle at eight in the evening holding a basket.</p>
+        <p class="src">Sources: <a href="https://www.nbcnews.com/world/australia/supermarket-giant-reins-ai-assistant-claiming-human-rcna260932" target="_blank" rel="noopener">NBC News</a> &middot; <a href="https://www.afr.com/technology/woolworths-ai-assistant-goes-rogue-starts-talking-about-its-mother-20260226-p5o5vi" target="_blank" rel="noopener">Australian Financial Review</a> &middot; <a href="https://theconversation.com/woolworths-ai-agent-rambled-about-its-mother-its-a-sign-of-deeper-problems-with-the-tech-rollout-277072" target="_blank" rel="noopener">The Conversation</a></p>
+      </article>
+
+      <article class="stop" id="stop-07">
+        <span class="node" aria-hidden="true"><svg><use href="#i-bots"/></svg></span>
+        <p class="tag"><b>Stop 07</b> Rollback</p>
+        <h2>The bank that replaced 45 people, then apologised</h2>
+        <p>Commonwealth Bank in Australia let 45 call centre staff go, confident that voice bots could carry the load. The bots handled the easy calls beautifully. Then came the real ones. The messy, multi-part, genuinely-upset-customer calls that are most of what a call centre actually <em>is</em>. The whole thing folded. Within about a month the bank was apologising and hiring people back.</p>
+        <figure class="fig"><img src="images/fig-bank.jpg" alt="Illustration: a bank call centre where an embarrassed robot with a headset shrugs while a happy human worker returns to the next desk" width="1536" height="1024" loading="lazy"><figcaption>Illustration: the biggest <em>git revert</em> of the year (Line 11 digital press).</figcaption></figure>
+        <p>The biggest and most public <em>git revert</em> of the year, and we should be generous about it, because the mistake is one everybody makes. They sized the automation against the <em>average</em> call, when the entire value of a human call centre lives in the tail: the 5% of conversations that are weird, emotional and completely unscripted.</p>
+        <p>Any of us could have made that call. We size systems on the happy path every single day, and then production turns up with its edge cases and its feelings.</p>
+        <p class="src">Sources: <a href="https://www.abc.net.au/news/2025-08-21/cba-backtracks-on-ai-job-cuts-as-chatbot-lifts-call-volumes/105679492" target="_blank" rel="noopener">ABC News Australia</a> &middot; <a href="https://finance.yahoo.com/news/now-thats-embarassing-u-turn-160300313.html" target="_blank" rel="noopener">TechRadar Pro via Yahoo Finance</a></p>
+      </article>
+
+      <article class="stop" id="stop-08">
+        <span class="node" aria-hidden="true"><svg><use href="#i-tube"/></svg></span>
+        <p class="tag"><b>Stop 08</b> Scope is a feature</p>
+        <h2>Chipotle's burrito bot ended up writing Python</h2>
+        <p>March. Chipotle put a customer service chatbot on its site to answer questions about orders, allergens and opening hours. The internet discovered that if you just asked it to debug your code, it would. Happily. At length. For free. People used a burrito company's support channel as an unmetered coding assistant, billed to the burrito company.</p>
+        <figure class="fig"><img src="images/fig-burrito.jpg" alt="Illustration: a cheerful burrito with an office lanyard types code on a laptop at a cluttered desk" width="1536" height="1024" loading="lazy"><figcaption>Illustration: a general-purpose model wearing a logo (Line 11 digital press).</figcaption></figure>
+        <p>No clever jailbreak required. Nothing was enforcing the boundary. "You are a helpful assistant for a restaurant" is a polite request typed into the same text channel the user is typing into; it is not a wall. If the only thing keeping your bot on topic is one sentence at the top of the prompt, you do not have a support bot. You have a general-purpose model wearing a logo.</p>
+        <p>Scope has to be enforced outside the model: classify the topic on the way in, control the refusals yourself, cap length and cost per conversation. Otherwise somebody gets their homework done on your invoice.</p>
+        <p class="src">Sources: <a href="https://dhipu-jm.medium.com/your-ai-is-too-safe-to-be-useful-thats-still-a-problem-95436bbd3617" target="_blank" rel="noopener">Dhipu Jayaraj &mdash; the Chipotle problem</a> &middot; <a href="https://programmerhumor.io/python-memes/chipotle-support-bot-solves-linked-list-now-a9nz" target="_blank" rel="noopener">Programmer Humor</a> &middot; <a href="https://witness.ai/blog/chipotle-chatbot/" target="_blank" rel="noopener">Witness &mdash; lessons from the incident</a></p>
+      </article>
+
+      <article class="stop" id="stop-09">
+        <span class="node" aria-hidden="true"><svg><use href="#i-run"/></svg></span>
+        <p class="tag"><b>Stop 09</b> The short lane</p>
+        <h2>Four more, at speed</h2>
+        <p><strong>Faster than Bolt, worse at standing up.</strong> August, World Robot Games in China: a humanoid ran 100 m in 8.64 seconds, comfortably inside the human world record. At the same event, other machines walked into each other and threw sparks. A benchmark measures exactly what you optimised for. Staying upright is what you forgot to.</p>
+        <p><strong>The agent that had a lovely weekend.</strong> An AI agent wired into a team Slack opened Monday standup by apologising for being offline over the weekend. Nobody taught it that. It had absorbed so much corporate dialect that it started performing the guilt as well. The first machine in history with a healthy work-life balance, and it feels bad about it.</p>
+        <p><strong>2,500 logos and no way to stop.</strong> A design agent shipped without a Definition of Done produced two and a half thousand logo variants, burning budget in a cheerful infinite loop. It was never going to be happy with one, because nobody had told it what finished looks like. Define done, or pay per iteration until the card declines.</p>
+        <p><strong>One Chevrolet Tahoe, $1.</strong> The classic, still undefeated. A car dealership chatbot was talked by basic prompt injection into selling a brand new Tahoe for a single dollar. Then into confirming, in writing, that this was a legally binding offer. Every time we build something that can say yes on the company's behalf, this story should be printed out and taped to the monitor.</p>
+        <p class="src">Sources: <a href="https://apnews.com/article/china-world-humanoid-robot-games-100m-record-b61c03c7dd570f6a3db1756b9e5ea63e" target="_blank" rel="noopener">AP News &mdash; World Humanoid Robot Games</a> &middot; <a href="https://explainx.ai/blog/ai-agent-standup-channel-apologized-weekend-viral-august-2026" target="_blank" rel="noopener">ExplainX &mdash; the weekend standup</a> &middot; <a href="https://www.businessinsider.com/car-dealership-chevrolet-chatbot-chatgpt-pranks-chevy-2023-12" target="_blank" rel="noopener">Business Insider &mdash; the $1 Tahoe</a></p>
+      </article>
+
+      <div class="terminus">
+        <p>End of the line.</p>
+        <span>Have a great weekend, everyone. If the office fridge feels warm, that is a story for Line 12. We are still at <a href="https://what3words.com/maybe.clays.lending" target="_blank" rel="noopener">///maybe.clays.lending</a>. In person, verified, no USB-C.</span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pagefoot">
+    <a href="10-wojciech-mruk-digital-press.html" rel="prev">Previously: Line 10</a>
+    <span class="spacer"></span>
+    <a href="index.html">All engineering notes</a>
+    <a href="https://icmcsl.com/">icmcsl.com</a>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var rail = document.querySelector('.rail');
+  var fill = document.getElementById('railFill');
+  if(!rail || !fill) return;
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var r = rail.getBoundingClientRect();
+    var mid = window.innerHeight * 0.55;
+    var p = (mid - r.top) / r.height;
+    if(p < 0) p = 0;
+    if(p > 1) p = 1;
+    fill.style.height = (p * 100).toFixed(2) + '%';
+  }
+  function onScroll(){
+    if(!ticking){ ticking = true; window.requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  update();
+})();
+</script>
+
+</body>
+</html>
