@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Line 12 — The Most Important System You Forgot to Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..125,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E9E6DD;--paper-2:#F4F2EC;--ink:#14251E;--ink-soft:#52655B;
+  --line:#F0B429;--terminus:#B8402F;--rule:rgba(20,37,30,.16);
+  --rail-dead:rgba(20,37,30,.14);--shadow:rgba(20,37,30,.10);
+  --sans:"Archivo",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--paper:#101815;--paper-2:#182219;--ink:#E7EAE3;--ink-soft:#9BA89F;--line:#F5C043;--terminus:#E4674F;--rule:rgba(231,234,227,.18);--rail-dead:rgba(231,234,227,.16);--shadow:rgba(0,0,0,.45)}
+}
+:root[data-theme="dark"]{--paper:#101815;--paper-2:#182219;--ink:#E7EAE3;--ink-soft:#9BA89F;--line:#F5C043;--terminus:#E4674F;--rule:rgba(231,234,227,.18);--rail-dead:rgba(231,234,227,.16);--shadow:rgba(0,0,0,.45)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.72;font-optical-sizing:auto}
+img{max-width:100%}a{color:inherit}:focus-visible{outline:3px solid var(--line);outline-offset:3px;border-radius:2px}
+.shell{max-width:1120px;margin:0 auto;padding:0 24px}
+.masthead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:22px 0 20px;border-bottom:1px solid var(--rule)}
+.badge{font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:.01em;font-variation-settings:"wdth" 112;background:var(--line);color:#14251E;padding:4px 11px;border-radius:3px}
+.masthead p{margin:0;font-family:var(--sans);font-size:14.5px;color:var(--ink-soft);font-weight:500}.masthead .spacer{flex:1}
+.brand{display:flex;align-items:center;flex:none}.brand img{display:block;height:32px;width:auto}
+.hero{padding:56px 0 8px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;align-items:center}.hero-copy{min-width:0}
+.hero-image{position:relative;isolation:isolate;width:90%;margin:0;justify-self:center;overflow:hidden;background:var(--paper)}
+.hero-image img{display:block;width:100%;height:auto;border-radius:4px;border:1px solid var(--rule)}
+.hero h1{font-family:var(--sans);font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2.45rem,6.2vw,4.7rem);line-height:.95;letter-spacing:-.025em;margin:0 0 22px;max-width:15ch;text-wrap:balance}
+.standfirst{font-size:clamp(1.15rem,2.2vw,1.4rem);line-height:1.5;max-width:44ch;margin:0 0 26px;color:var(--ink-soft);font-style:italic;font-weight:300}
+.byline{font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--ink-soft);display:flex;gap:18px;flex-wrap:wrap;margin:0}.byline strong{color:var(--ink);font-weight:700}
+.route{margin:52px 0 0;padding:34px 30px 30px;background:var(--paper-2);border:1px solid var(--rule);border-radius:4px;box-shadow:0 1px 0 var(--shadow)}
+.route-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:34px}.route-head h2{font-family:var(--sans);font-weight:700;font-size:1.02rem;margin:0;font-variation-settings:"wdth" 108;letter-spacing:.005em}.route-head span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+.stations{list-style:none;margin:0;padding:0;position:relative;display:grid;grid-template-columns:repeat(8,1fr);gap:0}.stations::before{content:"";position:absolute;left:6.25%;right:6.25%;top:19px;height:6px;background:var(--line);border-radius:3px}.stations li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}.stations a{text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:12px;padding:0 6px}
+.dot{position:relative;z-index:2;width:38px;height:38px;border-radius:50%;background:var(--paper-2);border:5px solid var(--ink);display:grid;place-items:center;font-family:var(--sans);font-weight:800;font-size:13.5px;transition:transform .18s ease,background .18s ease}.stations a:hover .dot{background:var(--line);transform:scale(1.12)}.stations li:last-child .dot{border-color:var(--terminus)}
+.st-name{font-family:var(--sans);font-size:13.5px;font-weight:600;line-height:1.28;max-width:13ch;color:var(--ink)}.stations a:hover .st-name{text-decoration:underline;text-underline-offset:3px}.route-foot{margin:30px 0 0;padding-top:18px;border-top:1px solid var(--rule);font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+.article{padding:80px 0 0;position:relative}.rail-wrap{position:relative;padding-left:96px}.rail{position:absolute;left:18px;top:14px;bottom:70px;width:6px;background:var(--rail-dead);border-radius:3px;overflow:hidden}.rail-fill{display:block;width:100%;height:var(--progress,0%);background:var(--line);border-radius:3px}
+.stop{position:relative;padding-bottom:64px;scroll-margin-top:28px}.node{position:absolute;left:-96px;top:2px;width:40px;height:40px;border-radius:50%;background:var(--paper);border:5px solid var(--ink);display:grid;place-items:center}.node svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.stop:last-of-type .node{border-color:var(--terminus)}.stop:last-of-type .node svg{stroke:var(--terminus)}
+.tag{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--ink-soft);margin:0 0 6px;display:flex;align-items:center;gap:9px}.tag b{color:var(--ink);font-weight:800;font-variation-settings:"wdth" 112}
+.stop h2{font-family:var(--sans);font-weight:700;font-variation-settings:"wdth" 106;font-size:clamp(1.55rem,3.3vw,2.2rem);line-height:1.1;letter-spacing:-.018em;margin:0 0 18px;max-width:22ch;text-wrap:balance}.stop p{margin:0 0 20px;max-width:64ch}.stop p:last-child{margin-bottom:0}
+.slang{font-family:var(--sans);font-weight:500;font-size:clamp(1.25rem,2.9vw,1.75rem);line-height:1.24;letter-spacing:-.015em;margin:28px 0 28px;padding-left:22px;border-left:6px solid var(--line);max-width:27ch}
+.patch{font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--terminus)}
+.fig{margin:22px 0 26px;max-width:64ch}.fig img{display:block;width:100%;height:auto;border-radius:4px;border:1px solid var(--rule)}.fig figcaption{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);margin-top:7px;line-height:1.4}
+.src{font-family:var(--sans);font-size:13.5px;color:var(--ink-soft);border-top:1px solid var(--rule);padding-top:10px;margin-top:6px}.src a,.stop p a,.terminus a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.terminus{position:relative;margin-top:8px;padding:34px 0 0;border-top:1px solid var(--rule)}.terminus p{font-family:var(--sans);font-weight:700;font-size:1.05rem;margin:0 0 4px;color:var(--terminus);font-variation-settings:"wdth" 108}.terminus span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+.pagefoot{margin-top:60px;padding:26px 0 70px;border-top:1px solid var(--rule);display:flex;gap:26px;flex-wrap:wrap;align-items:center;font-family:var(--sans);font-size:14.5px;font-weight:500}.pagefoot a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px}.pagefoot a:hover{color:var(--ink);border-color:var(--line)}.pagefoot .spacer{flex:1}
+@media (min-width:821px){.stations{grid-template-columns:repeat(9,1fr)}.stations::before{left:5.56%;right:5.56%}.st-name{font-size:12.5px;max-width:11ch}.stations a{padding:0 3px}}
+@media (max-width:820px){.hero{gap:24px}.hero h1{font-size:clamp(2.45rem,6vw,5rem)}.route{padding:26px 20px 24px}.stations{grid-template-columns:1fr;gap:0}.stations::before{left:19px;right:auto;top:8%;bottom:8%;width:6px;height:auto}.stations li{align-items:flex-start;text-align:left}.stations a{flex-direction:row;align-items:center;gap:16px;padding:9px 0;width:100%}.st-name{max-width:none;font-size:15px}}
+@media (max-width:640px){body{font-size:17px}.shell{padding:0 18px}.hero{padding:40px 0 4px;grid-template-columns:1fr}.hero-image{max-width:360px;justify-self:center}.rail-wrap{padding-left:0}.rail{display:none}.node{position:static;margin-bottom:14px}.stop{padding-bottom:52px}.stop h2{max-width:none}.slang{max-width:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 9h13v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V9Z"/><path d="M17 10h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M8 5.5c0-1 1-1.2 1-2.2M12 5.5c0-1 1-1.2 1-2.2"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.8 12 5.8 21.5 12 21.5 12 18 18.2 12 18.2 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="10" rx="1.5"/><path d="M3 18.5h18"/><path d="M8 2.8 6 4.6M16 2.8l2 1.8"/></symbol>
+  <symbol id="i-run" viewBox="0 0 24 24"><circle cx="15" cy="4.8" r="2"/><path d="M8 20.5l3-4.5-2.5-3 2-5 3.5 2.5 3 1"/><path d="M10.5 13 6 12"/></symbol>
+  <symbol id="i-grip" viewBox="0 0 24 24"><path d="M8 3v7M16 3v7M8 7h8M6 10h12l-1 11H7L6 10Z"/><path d="M10 14h4"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.3-7-9.2A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.8C19 15.7 12 20 12 20Z"/><path d="M12 11.5v2.2"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></symbol>
+</svg>
+<div class="shell">
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="ICM — all engineering notes"><img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl"></a>
+    <span class="badge">Line 12</span><p>ICM engineering notes</p><span class="spacer"></span><p>Friday edition</p>
+  </header>
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>The most important system you forgot to index</h1>
+      <p class="standfirst">Friday Morning Coffee, episode twelve: your production database gets maintenance windows. Your body gets a chair, a deadline and another coffee.</p>
+      <p class="byline"><strong>Wojciech Mruk</strong><span>Friday Morning Coffee</span><span>Insights #12</span></p>
+    </div>
+    <figure class="hero-image"><img src="images/fig-human-system.jpg" alt="Illustration: an engineer with coffee beside a server rack, connected by a route of small amber status lights" width="1200" height="800" decoding="async" fetchpriority="high"></figure>
+  </section>
+  <nav class="route" aria-label="Story index">
+    <div class="route-head"><h2>Your coffee route</h2><span>Pick a stop to jump in</span></div>
+    <ul class="stations">
+      <li><a href="#stop-01"><span class="dot">01</span><span class="st-name">Unmonitored system</span></a></li>
+      <li><a href="#stop-02"><span class="dot">02</span><span class="st-name">Display calibration</span></a></li>
+      <li><a href="#stop-03"><span class="dot">03</span><span class="st-name">Chair interrupt</span></a></li>
+      <li><a href="#stop-04"><span class="dot">04</span><span class="st-name">Brain and fuel</span></a></li>
+      <li><a href="#stop-05"><span class="dot">05</span><span class="st-name">Walking index</span></a></li>
+      <li><a href="#stop-06"><span class="dot">06</span><span class="st-name">Grip metric</span></a></li>
+      <li><a href="#stop-07"><span class="dot">07</span><span class="st-name">Hang and rise</span></a></li>
+      <li><a href="#stop-08"><span class="dot">08</span><span class="st-name">Three small patches</span></a></li>
+      <li><a href="#stop-09"><span class="dot">09</span><span class="st-name">Deploy gently</span></a></li>
+    </ul>
+    <p class="route-foot">9 stops. Seven small patches. No heroic transformation required by Monday.</p>
+  </nav>
+  <main class="article"><div class="rail-wrap"><div class="rail" aria-hidden="true"><span class="rail-fill" id="railFill"></span></div>
+    <article class="stop" id="stop-01">
+      <span class="node" aria-hidden="true"><svg><use href="#i-cup"/></svg></span>
+      <p class="tag"><b>Stop 01</b> Welcome aboard</p><h2>The system with no monitoring</h2>
+      <p>Morning, team. Look at the care we give our systems. Processors get thermal limits. Databases get indexes, backups and patient maintenance windows. A suspicious disk gets more attention in one afternoon than a suspicious knee gets in six months.</p>
+      <p>Then there is the machine running the engineer. It sits for hours, reads a screen at whatever distance the desk allows, forgets to drink until the headache has opened a ticket, and is expected to produce clear thinking on random meals and interrupted sleep. We call this normal because the error messages arrive gradually.</p>
+      <p>This is not a conversion programme. No ice bath, no 5 a.m. accountability cult, no new identity as a person who photographs breakfast. Just a few low-drama adjustments to the hardware you already own. Coffee first. Then we add monitoring.</p>
+    </article>
+    <article class="stop" id="stop-02">
+      <span class="node" aria-hidden="true"><svg><use href="#i-eye"/></svg></span>
+      <p class="tag"><b>Stop 02</b> Hardware calibration</p><h2>Your monitor is not a close-up magic trick</h2>
+      <p>A workstation should not require your neck to negotiate with it. UK workplace guidance puts the top of the screen roughly level with your eyes and the display about an arm’s length away. That is a starting position, not a legal unit of measurement: adjust for your eyesight, lenses and the actual work.</p>
+      <figure class="fig"><img src="images/fig-workstation.jpg" alt="Illustration: an engineer adjusts a monitor to eye level while a tape measure marks an arm’s-length gap" width="1200" height="800" loading="lazy"><figcaption>Illustration: the most advanced component in this setup is the neck (Line 12 digital press).</figcaption></figure>
+      <p>For tired, dry screen eyes, the American Academy of Ophthalmology suggests the <strong>20-20-20</strong> habit: every 20 minutes, look at something at least 20 feet away for at least 20 seconds. Blink. Let your focus change distance. This is relief for temporary discomfort, not a force field against every eye problem.</p>
+      <p class="slang">If you are leaning towards the screen, the interface is winning.</p>
+      <p class="src">Sources: <a href="https://www.hse.gov.uk/msd/dse/good-posture.htm" target="_blank" rel="noopener">UK HSE — display screen posture</a> &middot; <a href="https://www.aao.org/eye-health/diseases/what-is-eye-strain" target="_blank" rel="noopener">American Academy of Ophthalmology — eye strain</a></p>
+    </article>
+    <article class="stop" id="stop-03">
+      <span class="node" aria-hidden="true"><svg><use href="#i-laptop"/></svg></span>
+      <p class="tag"><b>Stop 03</b> Interrupt the chair</p><h2>The break does not need its own project plan</h2>
+      <p>WHO guidance is refreshingly unglamorous: limit sedentary time and replace some of it with physical activity of any intensity, including light movement. It does <em>not</em> prescribe an official five-minute break every hour. That interval is a useful desk habit, not an international standard with a compliance auditor.</p>
+      <figure class="fig"><img src="images/fig-chair-interrupt.jpg" alt="Illustration: an office chair displays a red warning light as its occupant walks away with coffee" width="1200" height="800" loading="lazy"><figcaption>Illustration: process interrupted; no emergency change advisory board required (Line 12 digital press).</figcaption></figure>
+      <p>Stand up, walk to the kettle, take the stairs, do a few comfortable sit-to-stands. Put the break after a meeting or at the end of a work block so it happens without another notification competing for your attention. A couple of easy minutes is a perfectly valid transaction.</p>
+      <p>And no, we are not repeating the internet claim that sitting for exactly 60 minutes switches off 90% of your fat-burning enzymes. That dramatic number has escaped from a much more complicated research context. The useful message survives without it: do not let the whole day pass in one uninterrupted seated block.</p>
+      <p class="src">Sources: <a href="https://www.who.int/europe/publications/i/item/9789240014886" target="_blank" rel="noopener">WHO — physical activity and sedentary behaviour</a> &middot; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7719906/" target="_blank" rel="noopener">WHO 2020 guidelines paper</a></p>
+    </article>
+    <article class="stop" id="stop-04">
+      <span class="node" aria-hidden="true"><svg><use href="#i-cup"/></svg></span>
+      <p class="tag"><b>Stop 04</b> Brain, water and fuel</p><h2>Stop debugging the input with more coffee</h2>
+      <p>A short walk is a cheap way to change state: leave the screen, move, look at something farther away than your own deadlines. Exercise research does discuss BDNF and cognition, but there is no honest basis for promising that three minutes will reliably upgrade working memory through one neat biochemical mechanism. Take the walk because a break is useful, not because a molecule has signed an SLA.</p>
+      <p>Keep water within reach and drink according to thirst. Mild dehydration can affect mood and aspects of attention, although the popular comparison that 1–2% dehydration is somehow faster than a bad night’s sleep is not a useful engineering specification. If you are thirsty, have a drink; you do not need a dashboard to validate the sensation.</p>
+      <figure class="fig"><img src="images/fig-brain-fuel.jpg" alt="Illustration: a brain-shaped database receives simple inputs from walking shoes, a water glass and a balanced meal" width="1200" height="800" loading="lazy"><figcaption>Illustration: fewer mystical inputs, more predictable maintenance (Line 12 digital press).</figcaption></figure>
+      <p>The same goes for lunch. There is no universal 30-minute dopamine spike followed by exactly two hours of system lag. Real meals and real people are less tidy. A regular meal built around protein, fibre-rich carbohydrates and unsaturated fats is a more defensible default than a vending-machine-only microservices architecture. Omega-3 and vitamin D are nutrients, not magic toggles; supplements are a separate question, not a blanket instruction from a Friday newsletter.</p>
+      <p class="src">Sources: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4314337/" target="_blank" rel="noopener">Acute exercise and peripheral BDNF — meta-analysis</a> &middot; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4207053/" target="_blank" rel="noopener">Hydration and cognitive performance — review</a> &middot; <a href="https://www.who.int/news-room/fact-sheets/detail/healthy-diet" target="_blank" rel="noopener">WHO — healthy diet</a></p>
+    </article>
+    <article class="stop" id="stop-05">
+      <span class="node" aria-hidden="true"><svg><use href="#i-run"/></svg></span>
+      <p class="patch">Patch 01 · Build the walking index</p><h2>Ten thousand is not a minimum supported version</h2>
+      <p>Walking is the least glamorous intervention and the easiest to keep. A 2025 meta-analysis found that 7,000 steps a day, compared with 2,000, was associated with 47% lower all-cause mortality. That is an association across studies, not a promise that your personal risk drops by 47% when the watch vibrates. Earlier research also suggests that benefits begin well below 10,000 and level off at different ranges by age.</p>
+      <figure class="fig"><img src="images/fig-walking-index.jpg" alt="Illustration: a winding walking route resembles a database index tree, with footsteps as amber nodes" width="1200" height="800" loading="lazy"><figcaption>Illustration: the index works best when somebody actually uses it (Line 12 digital press).</figcaption></figure>
+      <p>Start with a repeatable route: ten minutes after lunch, a walk during one phone call, or getting off one stop earlier when practical. Short post-meal activity can reduce the glucose excursion compared with staying inactive, although the trials are small. The walk is not a punishment for eating and it does not need to erase anything.</p>
+      <p class="slang">The best step count is the one that survives Wednesday.</p>
+      <p class="src">Sources: <a href="https://pubmed.ncbi.nlm.nih.gov/40713949/" target="_blank" rel="noopener">The Lancet Public Health — daily steps meta-analysis, 2025</a> &middot; <a href="https://pubmed.ncbi.nlm.nih.gov/35247352/" target="_blank" rel="noopener">Daily steps and mortality — 2022 meta-analysis</a> &middot; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10036272/" target="_blank" rel="noopener">Post-meal exercise and glucose — systematic review</a></p>
+    </article>
+    <article class="stop" id="stop-06">
+      <span class="node" aria-hidden="true"><svg><use href="#i-grip"/></svg></span>
+      <p class="patch">Patch 02 · Keep a useful strength signal</p><h2>Grip strength is a metric, not a horoscope</h2>
+      <p>Grip strength is a neat little summary of overall muscle function, and lower values are associated with worse health outcomes, especially in older adults. That makes it a useful screening and training signal. It does not mean a hand gripper has been clinically proven to extend your life, prevent dementia or make you impossible to kill in a server-room accident.</p>
+      <p>Use the unglamorous version: carry the shopping, row, climb, lift something suitable, or practise a supported hang if your shoulders are happy. Train the larger pattern, not just the number on a dynamometer. If you enjoy measuring, measure consistently; if you do not, the shopping bags will keep the logs.</p>
+      <p class="src">Sources: <a href="https://pubmed.ncbi.nlm.nih.gov/31631989/" target="_blank" rel="noopener">Grip strength and health outcomes — umbrella review</a> &middot; <a href="https://pubmed.ncbi.nlm.nih.gov/33613270/" target="_blank" rel="noopener">Grip strength and mortality — meta-analysis</a></p>
+    </article>
+    <article class="stop" id="stop-07">
+      <span class="node" aria-hidden="true"><svg><use href="#i-heart"/></svg></span>
+      <p class="patch">Patches 03–04 · Hang gently, get up capably</p><h2>Two tests your spine did not ask for</h2>
+      <p><strong>The dead hang.</strong> This is the patch with the weakest direct evidence in today’s episode. A comfortable hang can be grip and shoulder-endurance practice, and it may feel like a pleasant stretch. It is not a proven method for repairing discs, permanently decompressing a spine or adding years to your warranty.</p>
+      <figure class="fig"><img src="images/fig-hang-rise.jpg" alt="Illustration: split scene of a person doing a foot-supported bar hang and another person rising safely from a low chair" width="1200" height="800" loading="lazy"><figcaption>Illustration: feet welcome; heroics not required (Line 12 digital press).</figcaption></figure>
+      <p>If you try it, keep your feet on the floor or a box, stay within a comfortable range, and skip it if hanging hurts or your shoulder is unstable. There is no prize for turning a stretch into a new incident.</p>
+      <p><strong>The sitting-rising test.</strong> Sitting down on the floor and rising again combines strength, balance, mobility and body composition. In a 2025 cohort study of 4,282 adults aged 46–75, lower scores were associated with higher natural and cardiovascular mortality over a median 12.3-year follow-up. It is a risk indicator, not a diagnosis or destiny. Use support if needed, practise the capability rather than chasing a score, and do not turn it into an office leaderboard.</p>
+      <p class="src">Source for sitting-rising: <a href="https://pubmed.ncbi.nlm.nih.gov/40569873/" target="_blank" rel="noopener">Sitting-rising test and mortality — 2025 cohort study</a></p>
+    </article>
+    <article class="stop" id="stop-08">
+      <span class="node" aria-hidden="true"><svg><use href="#i-sun"/></svg></span>
+      <p class="patch">Patches 05–07 · Light, calves and breathing</p><h2>Three small services, each with honest documentation</h2>
+      <p><strong>Get outdoor light after waking.</strong> Daytime light exposure is associated with sleep, mood and easier waking in observational research. Step outside for a few minutes when you can; a cloudy Irish morning still gives you a very different light environment from an office ceiling. No need to stare at the sun, and no need to pretend that five photons set a universal 14-hour melatonin timer.</p>
+      <p><strong>Try the soleus push-up, without the social-media exaggeration.</strong> Seated, keep the front of each foot down and lift the heels in a controlled, repeatable movement. The original laboratory research used sustained contractions over hours and found improved glucose and lipid regulation. A small 2025 prediabetes pilot reported about a 32% lower post-meal glucose excursion during the test. A handful of quick calf raises is not the same protocol, and none of this replaces walking or exercise.</p>
+      <figure class="fig"><img src="images/fig-small-services.jpg" alt="Illustration: three panels show morning daylight, seated heel raises and a relaxed person breathing away from a laptop" width="1200" height="800" loading="lazy"><figcaption>Illustration: lightweight background jobs, not a substitute for the main application (Line 12 digital press).</figcaption></figure>
+      <p><strong>Notice the email-apnea pattern.</strong> During concentrated reading, email or coding, some people catch themselves holding their breath or breathing shallowly. The fix is not a promised 10–15% increase in brain oxygenation; that number does not survive inspection. Simply notice the pattern, unclench your jaw, lower your shoulders and breathe quietly and comfortably. Through the nose if it is clear and pleasant, through the mouth if not. This is a relaxation reset, not respiratory dogma.</p>
+      <p class="src">Sources: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8892387/" target="_blank" rel="noopener">Daytime light exposure, sleep and mood — observational study</a> &middot; <a href="https://pubmed.ncbi.nlm.nih.gov/36034224/" target="_blank" rel="noopener">Original soleus push-up study, iScience 2022</a> &middot; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11946342/" target="_blank" rel="noopener">Soleus push-up prediabetes pilot, 2025</a></p>
+    </article>
+    <article class="stop" id="stop-09">
+      <span class="node" aria-hidden="true"><svg><use href="#i-run"/></svg></span>
+      <p class="tag"><b>Stop 09</b> Production rollout</p><h2>Deploy gently. Keep the rollback plan.</h2>
+      <p>Seven patches is too many to deploy at once, especially on a Friday. Pick one that solves an actual problem: raise the monitor, put a walk after lunch, get outdoor light, or practise getting off the floor with support nearby. Keep it small enough that next week does not require a new personality.</p>
+      <p>Some of these are established guidelines, some are observational markers, and one is a pleasant stretch with an overactive marketing department. They are not interchangeable. The engineering skill is not collecting hacks; it is knowing what the evidence says, what it does not say, and which change you will still be doing in March.</p>
+      <p class="slang">Treat yourself with at least half the care you give a production database.</p>
+      <p>Have a well-indexed Friday. And as ever, your own clinician outranks a newsletter.</p>
+    </article>
+    <div class="terminus"><p>End of the line.</p><span>Have a great weekend, everyone. Stand up, fetch a coffee, and let the chair recover its connection pool. We are still at <a href="https://what3words.com/maybe.clays.lending" target="_blank" rel="noopener">///maybe.clays.lending</a>.</span></div>
+  </div></main>
+  <footer class="pagefoot"><a href="11-wojciech-mruk-digital-press.html" rel="prev">Previously: Line 11</a><span class="spacer"></span><a href="index.html">All engineering notes</a><a href="https://icmcsl.com/">icmcsl.com</a></footer>
+</div>
+<script>
+(function(){
+  var rail=document.querySelector('.rail'),fill=document.getElementById('railFill');if(!rail||!fill)return;var ticking=false;
+  function update(){ticking=false;var r=rail.getBoundingClientRect(),mid=window.innerHeight*.55,p=(mid-r.top)/r.height;if(p<0)p=0;if(p>1)p=1;fill.style.height=(p*100).toFixed(2)+'%'}
+  function onScroll(){if(!ticking){ticking=true;window.requestAnimationFrame(update)}}
+  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll,{passive:true});update();
+})();
+</script>
+</body>
+</html>
