@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Line 13 — Our Company, Our Business Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85..125,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E9E6DD;--paper-2:#F4F2EC;--ink:#14251E;--ink-soft:#52655B;
+  --line:#F0B429;--terminus:#B8402F;--rule:rgba(20,37,30,.16);
+  --rail-dead:rgba(20,37,30,.14);--shadow:rgba(20,37,30,.10);
+  --sans:"Archivo",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--paper:#101815;--paper-2:#182219;--ink:#E7EAE3;--ink-soft:#9BA89F;--line:#F5C043;--terminus:#E4674F;--rule:rgba(231,234,227,.18);--rail-dead:rgba(231,234,227,.16);--shadow:rgba(0,0,0,.45)}
+}
+:root[data-theme="dark"]{--paper:#101815;--paper-2:#182219;--ink:#E7EAE3;--ink-soft:#9BA89F;--line:#F5C043;--terminus:#E4674F;--rule:rgba(231,234,227,.18);--rail-dead:rgba(231,234,227,.16);--shadow:rgba(0,0,0,.45)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.72;font-optical-sizing:auto}
+img{max-width:100%}a{color:inherit}:focus-visible{outline:3px solid var(--line);outline-offset:3px;border-radius:2px}
+.shell{max-width:1120px;margin:0 auto;padding:0 24px}
+.masthead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:22px 0 20px;border-bottom:1px solid var(--rule)}
+.badge{font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:.01em;font-variation-settings:"wdth" 112;background:var(--line);color:#14251E;padding:4px 11px;border-radius:3px}
+.masthead p{margin:0;font-family:var(--sans);font-size:14.5px;color:var(--ink-soft);font-weight:500}.masthead .spacer{flex:1}
+.brand{display:flex;align-items:center;flex:none}.brand img{display:block;height:32px;width:auto}
+.hero{padding:56px 0 8px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;align-items:center}.hero-copy{min-width:0}
+.hero-image{position:relative;isolation:isolate;width:90%;margin:0;justify-self:center;overflow:hidden;background:var(--paper)}
+.hero-image img{display:block;width:100%;height:auto;border-radius:4px;border:1px solid var(--rule)}
+.hero h1{font-family:var(--sans);font-weight:800;font-variation-settings:"wdth" 118;font-size:clamp(2.45rem,6.2vw,4.7rem);line-height:.95;letter-spacing:-.025em;margin:0 0 22px;max-width:15ch;text-wrap:balance}
+.standfirst{font-size:clamp(1.15rem,2.2vw,1.4rem);line-height:1.5;max-width:44ch;margin:0 0 26px;color:var(--ink-soft);font-style:italic;font-weight:300}
+.byline{font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--ink-soft);display:flex;gap:18px;flex-wrap:wrap;margin:0}.byline strong{color:var(--ink);font-weight:700}
+.route{margin:52px 0 0;padding:34px 30px 30px;background:var(--paper-2);border:1px solid var(--rule);border-radius:4px;box-shadow:0 1px 0 var(--shadow)}
+.route-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:34px}.route-head h2{font-family:var(--sans);font-weight:700;font-size:1.02rem;margin:0;font-variation-settings:"wdth" 108;letter-spacing:.005em}.route-head span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+.stations{list-style:none;margin:0;padding:0;position:relative;display:grid;grid-template-columns:repeat(8,1fr);gap:0}.stations::before{content:"";position:absolute;left:6.25%;right:6.25%;top:19px;height:6px;background:var(--line);border-radius:3px}.stations li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}.stations a{text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:12px;padding:0 6px}
+.dot{position:relative;z-index:2;width:38px;height:38px;border-radius:50%;background:var(--paper-2);border:5px solid var(--ink);display:grid;place-items:center;font-family:var(--sans);font-weight:800;font-size:13.5px;transition:transform .18s ease,background .18s ease}.stations a:hover .dot{background:var(--line);transform:scale(1.12)}.stations li:last-child .dot{border-color:var(--terminus)}
+.st-name{font-family:var(--sans);font-size:13.5px;font-weight:600;line-height:1.28;max-width:13ch;color:var(--ink)}.stations a:hover .st-name{text-decoration:underline;text-underline-offset:3px}.route-foot{margin:30px 0 0;padding-top:18px;border-top:1px solid var(--rule);font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+.article{padding:80px 0 0;position:relative}.rail-wrap{position:relative;padding-left:96px}.rail{position:absolute;left:18px;top:14px;bottom:70px;width:6px;background:var(--rail-dead);border-radius:3px;overflow:hidden}.rail-fill{display:block;width:100%;height:var(--progress,0%);background:var(--line);border-radius:3px}
+.stop{position:relative;padding-bottom:64px;scroll-margin-top:28px}.node{position:absolute;left:-96px;top:2px;width:40px;height:40px;border-radius:50%;background:var(--paper);border:5px solid var(--ink);display:grid;place-items:center}.node svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.stop:last-of-type .node{border-color:var(--terminus)}.stop:last-of-type .node svg{stroke:var(--terminus)}
+.tag{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--ink-soft);margin:0 0 6px;display:flex;align-items:center;gap:9px}.tag b{color:var(--ink);font-weight:800;font-variation-settings:"wdth" 112}
+.stop h2{font-family:var(--sans);font-weight:700;font-variation-settings:"wdth" 106;font-size:clamp(1.55rem,3.3vw,2.2rem);line-height:1.1;letter-spacing:-.018em;margin:0 0 18px;max-width:25ch;text-wrap:balance}.stop p{margin:0 0 20px;max-width:66ch}.stop p:last-child{margin-bottom:0}
+.slang{font-family:var(--sans);font-weight:500;font-size:clamp(1.25rem,2.9vw,1.75rem);line-height:1.24;letter-spacing:-.015em;margin:28px 0 28px;padding-left:22px;border-left:6px solid var(--line);max-width:30ch}
+.patch{font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--terminus)}
+.fig{margin:22px 0 26px;max-width:64ch}.fig img{display:block;width:100%;height:auto;border-radius:4px;border:1px solid var(--rule)}.fig figcaption{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);margin-top:7px;line-height:1.4}
+.src{font-family:var(--sans);font-size:13.5px;color:var(--ink-soft);border-top:1px solid var(--rule);padding-top:10px;margin-top:6px}.src a,.stop p a,.terminus a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.filelist{max-width:66ch;padding:18px 22px;background:var(--paper-2);border:1px solid var(--rule);font-family:var(--sans);font-size:14px;line-height:1.8;margin:20px 0}.filelist code,.subject{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.9em}.filelist p{font-family:var(--sans);font-size:14px;margin:0 0 8px}.filelist ul{margin:6px 0 0;padding-left:20px}
+.subject{display:block;max-width:66ch;padding:16px 18px;background:var(--paper-2);border-left:5px solid var(--line);margin:16px 0 20px;white-space:normal;overflow-wrap:anywhere}
+.terminus{position:relative;margin-top:8px;padding:34px 0 0;border-top:1px solid var(--rule)}.terminus p{font-family:var(--sans);font-weight:700;font-size:1.05rem;margin:0 0 4px;color:var(--terminus);font-variation-settings:"wdth" 108}.terminus span{font-family:var(--sans);font-size:14px;color:var(--ink-soft);font-weight:500}
+.pagefoot{margin-top:60px;padding:26px 0 70px;border-top:1px solid var(--rule);display:flex;gap:26px;flex-wrap:wrap;align-items:center;font-family:var(--sans);font-size:14.5px;font-weight:500}.pagefoot a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px}.pagefoot a:hover{color:var(--ink);border-color:var(--line)}.pagefoot .spacer{flex:1}
+@media (min-width:821px){.stations{grid-template-columns:repeat(9,1fr)}.stations::before{left:5.56%;right:5.56%}.st-name{font-size:12.5px;max-width:11ch}.stations a{padding:0 3px}}
+@media (max-width:820px){.hero{gap:24px}.hero h1{font-size:clamp(2.45rem,6vw,5rem)}.route{padding:26px 20px 24px}.stations{grid-template-columns:1fr;gap:0}.stations::before{left:19px;right:auto;top:8%;bottom:8%;width:6px;height:auto}.stations li{align-items:flex-start;text-align:left}.stations a{flex-direction:row;align-items:center;gap:16px;padding:9px 0;width:100%}.st-name{max-width:none;font-size:15px}}
+@media (max-width:640px){body{font-size:17px}.shell{padding:0 18px}.hero{padding:40px 0 4px;grid-template-columns:1fr}.hero-image{max-width:360px;justify-self:center}.rail-wrap{padding-left:0}.rail{display:none}.node{position:static;margin-bottom:14px}.stop{padding-bottom:52px}.stop h2{max-width:none}.slang{max-width:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 9h13v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V9Z"/><path d="M17 10h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M8 5.5c0-1 1-1.2 1-2.2M12 5.5c0-1 1-1.2 1-2.2"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8" cy="11" r="2"/><path d="M5.5 16c.8-2 4.2-2 5 0M13 10h5M13 14h5"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m4 7 8 6 8-6"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6h7l2 2h9v11H3V6Z"/><path d="M3 10h18"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M4 4h7l9 9-7 7-9-9V4Z"/><circle cx="8" cy="8" r="1"/></symbol>
+  <symbol id="i-people" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M2.5 19c.5-5 10.5-5 11 0M14 14c4-1 7 1 7.5 4"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M9 4H5v16h14V4h-4M9 3h6v3H9z"/><path d="m8 12 2 2 5-5M8 17h8"/></symbol>
+</svg>
+<div class="shell">
+  <header class="masthead">
+    <a class="brand" href="index.html" aria-label="ICM — all engineering notes"><img src="https://icmcsl.com/wp-content/uploads/2021/12/logo.png" alt="ICM csl"></a>
+    <span class="badge">Line 13</span><p>ICM engineering notes</p><span class="spacer"></span><p>Friday edition</p>
+  </header>
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Our company, our business card</h1>
+      <p class="standfirst">Friday Morning Coffee, episode thirteen: a training course, a birthday balloon, and the one small detail I actually took home.</p>
+      <p class="standfirst"><strong>A note before we start:</strong> everything below, footers included, is a suggestion, not a rule. ICM has no official guidelines on this. The signatures are only an example taken from existing ones, and building a company standard is not up to me.</p>
+      <p class="byline"><strong>Wojciech Mruk</strong><span>Friday Morning Coffee</span><span>Insights #13</span></p>
+    </div>
+    <figure class="hero-image"><img src="images/fig-one-footer.jpg" alt="Illustration: a stamping machine turns a chaotic pile of personalised email footers into two neat templates" width="1200" height="800" decoding="async" fetchpriority="high"></figure>
+  </section>
+  <nav class="route" aria-label="Story index">
+    <div class="route-head"><h2>Your coffee route</h2><span>Pick a stop to jump in</span></div>
+    <ul class="stations">
+      <li><a href="#stop-01"><span class="dot">01</span><span class="st-name">The training</span></a></li>
+      <li><a href="#stop-02"><span class="dot">02</span><span class="st-name">The balloon</span></a></li>
+      <li><a href="#stop-03"><span class="dot">03</span><span class="st-name">The card</span></a></li>
+      <li><a href="#stop-04"><span class="dot">04</span><span class="st-name">Two footers</span></a></li>
+      <li><a href="#stop-05"><span class="dot">05</span><span class="st-name">The examples</span></a></li>
+      <li><a href="#stop-06"><span class="dot">06</span><span class="st-name">Your call</span></a></li>
+    </ul>
+    <p class="route-foot">6 short stops. One small detail. No balloons.</p>
+  </nav>
+  <main class="article"><div class="rail-wrap"><div class="rail" aria-hidden="true"><span class="rail-fill" id="railFill"></span></div>
+    <article class="stop" id="stop-01">
+      <span class="node" aria-hidden="true"><svg><use href="#i-cup"/></svg></span>
+      <p class="tag"><b>Stop 01</b> A topic I would like to share</p><h2>I once went on a course about identity</h2>
+      <p class="slang"><em>Tús maith leath na hoibre.</em> A good start is half the work, as they say in Irish.</p>
+      <p>This week we were all talking about important things: radiators, one banjaxed plug (Irish English for properly broken) and fires that, luckily, we did not have to put out. Nothing happened, and sure, it was a good reminder. So today I would like to raise a different topic. A much smaller one, with a lot less smoke.</p>
+      <figure class="fig"><img src="images/fire-for-newsletter-web.jpg" alt="Illustration: an office desk on fire next to an oil-filled radiator, with two colleagues watching calmly from their chairs" width="1600" height="720" decoding="async"><figcaption>Illustration only: an artist’s impression of what, luckily, did not happen (Friday Morning Coffee, Line 13).</figcaption></figure>
+      <p>Some time ago I attended a training on work ethos and company identity. You know the kind: values, brand, who we are and why it matters. Coffee, slides, a room full of people being politely thoughtful.</p>
+      <p>I went in with an open mind. I came out with mixed feelings, which, I have learned, is the correct way to leave most trainings.</p>
+    </article>
+    <article class="stop" id="stop-02">
+      <span class="node" aria-hidden="true"><svg><use href="#i-people"/></svg></span>
+      <p class="tag"><b>Stop 02</b> Fair is fair</p><h2>Part of it was lovely. Part of it was a balloon.</h2>
+      <p>A good part was genuinely sympathetic: how we want to treat customers, how we want to treat each other, what we would like people to remember about working with us. I liked that, fair play to them (that is Irish for “well done”). It was honest and it was human.</p>
+      <p>The other part was inflated like a balloon at a birthday party. Big, shiny, impressive for about ten minutes, and then you notice it has started to sag in the corner.</p>
+      <p>But here is what stayed with me. <strong>Small details sometimes do a lot of good.</strong> Not the grand statements, the little things done the same way. Which is, when you take the capital letters off, what “standardisation” mostly means.</p>
+    </article>
+    <article class="stop" id="stop-03">
+      <span class="node" aria-hidden="true"><svg><use href="#i-card"/></svg></span>
+      <p class="tag"><b>Stop 03</b> A simple example</p><h2>Imagine three business cards</h2>
+      <p>Imagine three colleagues hand a customer their business cards. One in a serious font. One with the logo gently stretched, like pizza dough. One with a phone number nobody has used for years.</p>
+      <p>Every card is perfectly fine on its own. Together they quietly say: “we are not entirely sure who we are.” Nobody did anything wrong. There was just no shared starting point.</p>
+      <p>In Ireland, “it’s grand” can mean anything from “excellent” to “I have given up, but kindly”. All three cards are, technically, grand. Whether that is the same “grand”, nobody says.</p>
+      <p>Now, an email footer is a business card that travels in every message. Nobody asks for it, everybody receives it, and it meets far more people than the card in your wallet. A small detail, with a surprisingly long reach.</p>
+    </article>
+    <article class="stop" id="stop-04">
+      <span class="node" aria-hidden="true"><svg><use href="#i-mail"/></svg></span>
+      <p class="tag"><b>Stop 04</b> Looking at what we already have</p><h2>Two footers, borrowed from the top</h2>
+      <p>My example is simple, and I did not design any of it. I took the existing <strong>Director</strong> and <strong>Marketing Executive</strong> signatures and looked at what they have in common. That shared structure is the example.</p>
+      <figure class="fig"><img src="images/fig-shared-baseline.jpg" alt="Illustration: a director and marketing executive feed their signature cards into one shared design grid" width="1200" height="800" loading="lazy"><figcaption>Illustration: two existing signatures, one possible starting point (Friday Morning Coffee, Line 13).</figcaption></figure>
+      <p>One idea might be: a <strong>full</strong> footer for a new message, because it introduces you and gives your details. A <strong>short</strong> one for replies and forwards, because the other person already knows who you are.</p>
+      <figure class="fig"><img src="images/fig-full-short.jpg" alt="Illustration: a long opening email is followed by replies with progressively compact signatures" width="1200" height="800" loading="lazy"><figcaption>Illustration: full to say hello, short to keep talking (Friday Morning Coffee, Line 13).</figcaption></figure>
+      <p>Outlook can keep both and use a different default for new messages and for replies/forwards, so you set it once and forget it.</p>
+      <p class="src">Source: <a href="https://support.microsoft.com/en-us/outlook/mail/how-to-add-and-change-an-email-signature-in-outlook" target="_blank" rel="noopener">Microsoft Support — add and change an Outlook signature</a></p>
+    </article>
+    <article class="stop" id="stop-05">
+      <span class="node" aria-hidden="true"><svg><use href="#i-folder"/></svg></span>
+      <p class="tag"><b>Stop 05</b> Where the examples live</p><h2>One SharePoint folder, three files</h2>
+      <p>The example files are in <a href="https://icmcslie.sharepoint.com/:f:/s/ProjectsHub/IgA3w5FfMjV8SYs-E1MhHY-zAaiw4-a9975vnbX-5RzeVHk?e=otXlOO" target="_blank" rel="noopener"><strong>SharePoint — Projects Hub, Guides, Templates, Email</strong></a>. In the synchronised library:</p>
+      <code class="subject">Projects Hub - Guides\Templates\Email\</code>
+      <div class="filelist"><p><strong>There are three files:</strong></p><ul>
+        <li><code>signature-full.template.html</code></li>
+        <li><code>signature-short.template.html</code></li>
+        <li><code>Email-Signature-Setup-Guide_v0.3.docx</code></li>
+      </ul></div>
+      <figure class="fig"><img src="images/fig-source-of-truth.jpg" alt="Illustration: one folder containing three example files is shared with employee laptops" width="1200" height="800" loading="lazy"><figcaption>Illustration: the folder is where the examples live; this article is only the signpost (Friday Morning Coffee, Line 13).</figcaption></figure>
+      <p>No download buttons here. If you are curious, take the files from SharePoint, so everyone looks at the same version.</p>
+    </article>
+    <article class="stop" id="stop-06">
+      <span class="node" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+      <p class="tag"><b>Stop 06</b> The honest part</p><h2>This is a suggestion, and the call is not mine</h2>
+      <p>To be clear: this is not a company standard, and it is not up to me to build one. I took an example from what already exists and wanted to share a thought. If the people who own our identity want to change it, or do nothing with it, that is entirely theirs to decide.</p>
+      <figure class="fig"><img src="images/fig-signature-qa.jpg" alt="Illustration: an engineer checks one signature across desktop, mobile, dark mode and blocked-image views" width="1200" height="800" loading="lazy"><figcaption>Illustration: if you try it, send yourself one test and see how it looks (Friday Morning Coffee, Line 13).</figcaption></figure>
+      <p>And if you like the idea, there is no ceremony. Set the two defaults, send yourself a new message and a reply, and see whether it looks sensible.</p>
+      <p class="slang">Small things, done the same way. No balloon required.</p>
+    </article>
+    <div class="terminus"><p>End of the line.</p><span>Grand so. Have a great weekend, everyone, and mind yourselves (that is how the Irish say goodbye). We are still at <a href="https://what3words.com/maybe.clays.lending" target="_blank" rel="noopener">///maybe.clays.lending</a>.</span></div>
+  </div></main>
+  <footer class="pagefoot"><a href="12-wojciech-mruk-digital-press.html" rel="prev">Previously: Line 12</a><span class="spacer"></span><a href="index.html">All engineering notes</a><a href="https://icmcsl.com/">icmcsl.com</a></footer>
+</div>
+<script>
+(function(){
+  var rail=document.querySelector('.rail'),fill=document.getElementById('railFill');if(!rail||!fill)return;var ticking=false;
+  function update(){ticking=false;var r=rail.getBoundingClientRect(),mid=window.innerHeight*.55,p=(mid-r.top)/r.height;if(p<0)p=0;if(p>1)p=1;fill.style.height=(p*100).toFixed(2)+'%'}
+  function onScroll(){if(!ticking){ticking=true;window.requestAnimationFrame(update)}}
+  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll,{passive:true});update();
+})();
+</script>
+</body>
+</html>
